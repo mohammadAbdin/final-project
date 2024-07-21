@@ -8,7 +8,6 @@ type UserContextType = {
   setUserType: React.Dispatch<React.SetStateAction<string>>;
   user: UserType | undefined;
   setUser: React.Dispatch<React.SetStateAction<UserType | undefined>>;
-  searchData?: Result;
 };
 export const UserContext = createContext<UserContextType>({
   isLogedIn: false,
@@ -17,14 +16,9 @@ export const UserContext = createContext<UserContextType>({
   setUserType: () => {},
   user: undefined,
   setUser: () => {},
-  searchData: {} as Result,
 });
 interface UserContextProps {
   children: ReactNode;
-}
-
-interface Result {
-  [x: string]: string | undefined;
 }
 
 export const UserProvider: React.FC<UserContextProps> = ({ children }) => {

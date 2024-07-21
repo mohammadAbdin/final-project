@@ -3,7 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"; //
 const AppLayout = () => {
   return (
     <div className="h-full w-full flex flex-row gap-8 text-red-700">
-      SideBar
+      {/* SideBar */}
+      {/* Navbar */}
     </div>
   );
 };
