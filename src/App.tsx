@@ -1,7 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; //
 
 const AppLayout = () => {
-  return <div className="h-full w-full flex flex-row gap-8"></div>;
+  return (
+    <div className="h-full w-full flex flex-row gap-8 text-red-700">
+      SideBar
+    </div>
+  );
 };
 
 const router = createBrowserRouter([
