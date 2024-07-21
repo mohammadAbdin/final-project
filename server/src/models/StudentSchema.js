@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const studentScheduleSchema = new mongoose.Schema({
   day: String, // e.g., 'Monday'
@@ -8,9 +9,19 @@ const studentScheduleSchema = new mongoose.Schema({
 
 const studentSchema = new mongoose.Schema({
   name: String,
-  grade: String,
+  gender: String,
+  class: String,
   schedule: [studentScheduleSchema],
-  notifications: [String],
+});
+let Student;
+
+dbConnectionPromise.then((db) => {
+  Student = db.model("Student", studentSchema); //i must add the collection name
 });
 
-export default mongoose.model("Student", studentSchema);
+export default async function getStudentModel() {
+  if (!Student) {
+    await dbConnectionPromise;
+  }
+  return Student;
+}

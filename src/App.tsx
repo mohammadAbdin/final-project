@@ -1,14 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; //
+import SideBar from "./Components/SideBar/SideBar";
+import Navbar from "./Components/Navbar/Navbar";
 
 const AppLayout = () => {
   return (
     <div className="h-full w-full flex flex-row gap-8 text-red-700">
       {/* SideBar */}
       {/* Navbar */}
+      <Navbar />
+      <SideBar />
     </div>
   );
 };
-
 const router = createBrowserRouter([
   {
     path: "/",

@@ -1,18 +1,13 @@
 import mongoose from "mongoose";
+import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const scheduleSchema = new mongoose.Schema({
   day: String, // e.g., 'Monday'
   period: String, // e.g., '09:00-10:00'
   grade: String,
-  subject: String,
 });
 
 const teacherSchema = new mongoose.Schema({
-  type: {
-    type: String,
-    default: "teacher",
-  },
-  notifications: [String],
   gender: String,
   age: Number,
   name: String,
@@ -20,4 +15,17 @@ const teacherSchema = new mongoose.Schema({
   schedule: [scheduleSchema],
 });
 
-export default mongoose.model("Teacher", teacherSchema);
+let Teacher;
+
+dbConnectionPromise.then((db) => {
+  Teacher = db.model("Teacher", teacherSchema); //i must add the collection name
+});
+
+export default async function getTeacherModel() {
+  if (!Teacher) {
+    await dbConnectionPromise;
+  }
+  return Teacher;
+}
+
+// export default mongoose.model("Teacher", teacherSchema);

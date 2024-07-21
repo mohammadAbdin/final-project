@@ -1,16 +1,30 @@
 import mongoose from "mongoose";
+import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const attendanceSchema = new mongoose.Schema({
   date: {
-    type: String, // Format: 'month/day'
+    type: String, // Format: 'year/month/day'
     required: true,
   },
-  students: [
+  grade: [
     {
-      name: String,
-      id: String,
+      students: {
+        name: String,
+        id: String,
+      },
     },
   ],
 });
 
-export default mongoose.model("Attendance", attendanceSchema);
+let Attendance;
+
+dbConnectionPromise.then((db) => {
+  Attendance = db.model("Attendance", attendanceSchema);
+});
+
+export default async function getAttendanceModel() {
+  if (!Attendance) {
+    await dbConnectionPromise;
+  }
+  return Attendance;
+}

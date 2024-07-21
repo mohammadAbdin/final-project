@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const childSchema = new mongoose.Schema({
   name: String,
@@ -6,8 +7,18 @@ const childSchema = new mongoose.Schema({
 });
 
 const parentSchema = new mongoose.Schema({
-  notifications: [String],
   children: [childSchema],
 });
 
-export default mongoose.model("Parent", parentSchema);
+let Parent;
+
+dbConnectionPromise.then((db) => {
+  Parent = db.model("Parent", parentSchema); //i must add the collection name
+});
+
+export default async function getParentModel() {
+  if (!Parent) {
+    await dbConnectionPromise;
+  }
+  return Parent;
+}
