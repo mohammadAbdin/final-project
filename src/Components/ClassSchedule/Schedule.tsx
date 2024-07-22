@@ -25,7 +25,7 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
               className="p-4 border-b border-gray-700 last:border-b-0"
             >
               <div className="text-sm text-gray-400">{entry.period}</div>
-              <div className="text-white font-semibold mt-1">{entry.grade}</div>
+              <div className="text-white font-semibold mt-1">{entry.class}</div>
             </div>
           ))}
         </div>

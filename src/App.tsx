@@ -1,16 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; //
-import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
+// import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
 
 const AppLayout = () => {
   return (
     <div className="h-full w-full flex flex-row gap-8 text-red-700">
-      {/* SideBar */}
-      {/* Navbar */}
-      <TeacherSchedule />
-      <Navbar />
       <SideBar />
+      <Navbar />
+      {/* <TeacherSchedule /> */}
     </div>
   );
 };
