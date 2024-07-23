@@ -1,5 +1,4 @@
 import Schedule from "../../../Components/ClassSchedule/Schedule";
-
 import { ScheduleEntry } from "../../../Types/ScheduleEntry";
 function TeacherSchedule() {
   const exampleScheduleData: ScheduleEntry[] = [
@@ -41,5 +40,3 @@ function TeacherSchedule() {
 }
 
 export default TeacherSchedule;
-
-

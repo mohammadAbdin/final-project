@@ -1,14 +1,13 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"; //
-// import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
 
 const AppLayout = () => {
   return (
     <div className="h-full w-full flex flex-row gap-8 text-red-700">
-      <SideBar />
       <Navbar />
-      {/* <TeacherSchedule /> */}
+      <SideBar />
     </div>
   );
 };
@@ -22,10 +21,10 @@ const router = createBrowserRouter([
       //   path: "/",
       //   element: <Home />,
       // },
-      // {
-      //   path: "/CompletedProjects",
-      //   element: <CompletedProjects />,
-      // }
+      {
+        path: "/TeacherSchedule",
+        element: <TeacherSchedule />,
+      },
       // {
       //   path: "/Add-Project",
       //   element: <AddProject />,
@@ -37,22 +36,6 @@ const router = createBrowserRouter([
       // {
       //   path: "/Projects/:tag",
       //   element: <ProjectsByTag />,
-      // },
-      // {
-      //   path: "/Projects-to-do",
-      //   element: (
-      //     <ProtectedRoute adminOnly>
-      //       <ProjectsToDo />
-      //     </ProtectedRoute>
-      //   ),
-      // },
-      // {
-      //   path: "/Projects",
-      //   element: (
-      //     <ProtectedRoute adminOnly>
-      //       <AllProjects />
-      //     </ProtectedRoute>
-      //   ),
       // },
       // {
       //   path: "/Projects-to-do/ReviewProject/:projectId",
