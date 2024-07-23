@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
+import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
 
 const AppLayout = () => {
   return (
@@ -29,13 +30,29 @@ const router = createBrowserRouter([
       //   path: "/Add-Project",
       //   element: <AddProject />,
       // },
+      {
+        path: "/StudentSchedule",
+        element: <StudentSchedule />,
+      },
+      {
+        path: "/TeacherSchedule",
+        element: <TeacherSchedule />,
+      },
       // {
-      //   path: "/My-Projects",
-      //   element: <MyProjects />,
+      //   path: "/Projects-to-do",
+      //   element: (
+      //     <ProtectedRoute adminOnly>
+      //       <ProjectsToDo />
+      //     </ProtectedRoute>
+      //   ),
       // },
       // {
-      //   path: "/Projects/:tag",
-      //   element: <ProjectsByTag />,
+      //   path: "/Projects",
+      //   element: (
+      //     <ProtectedRoute adminOnly>
+      //       <AllProjects />
+      //     </ProtectedRoute>
+      //   ),
       // },
       // {
       //   path: "/Projects-to-do/ReviewProject/:projectId",
