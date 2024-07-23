@@ -26,18 +26,14 @@ const router = createBrowserRouter([
         path: "/TeacherSchedule",
         element: <TeacherSchedule />,
       },
-      // {
-      //   path: "/Add-Project",
-      //   element: <AddProject />,
-      // },
       {
         path: "/StudentSchedule",
         element: <StudentSchedule />,
       },
-      {
-        path: "/TeacherSchedule",
-        element: <TeacherSchedule />,
-      },
+      // {
+      //   path: "/Add-Project",
+      //   element: <AddProject />,
+      // },
       // {
       //   path: "/Projects-to-do",
       //   element: (
