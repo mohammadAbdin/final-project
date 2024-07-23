@@ -4,17 +4,32 @@ import { dbConnectionPromise } from "../utils/mongoUtil.js";
 const scheduleSchema = new mongoose.Schema({
   day: String, // e.g., 'Monday'
   period: String, // e.g., '09:00-10:00'
-  grade: String,
+  class: String,
 });
 
 const teacherSchema = new mongoose.Schema({
-  gender: String,
-  age: Number,
+  teacher_id: {
+    type: String,
+    // required: true,
+    unique: true,
+  },
   name: String,
+  age: Number,
+  gender: String,
   subject: String,
   schedule: [scheduleSchema],
 });
-
+// const newTeacher = new Teacher({
+//   _id: 'teacher123', // Manually set the _id
+//   name: 'John Doe',
+//   age: 30,
+//   gender: 'Male',
+//   subject: 'Math',
+//   schedule: [
+//     { day: 'Monday', period: '09:00-10:00', class: '101' },
+//     { day: 'Wednesday', period: '11:00-12:00', class: '102' }
+//   ]
+// });
 let Teacher;
 
 dbConnectionPromise.then((db) => {
@@ -27,5 +42,3 @@ export default async function getTeacherModel() {
   }
   return Teacher;
 }
-
-// export default mongoose.model("Teacher", teacherSchema);

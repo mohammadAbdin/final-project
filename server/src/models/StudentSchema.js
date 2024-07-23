@@ -8,6 +8,11 @@ const studentScheduleSchema = new mongoose.Schema({
 });
 
 const studentSchema = new mongoose.Schema({
+  student_id: {
+    type: String,
+    // required: true,
+    unique: true,
+  },
   name: String,
   gender: String,
   class: String,
