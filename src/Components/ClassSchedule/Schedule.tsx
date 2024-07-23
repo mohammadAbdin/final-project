@@ -25,7 +25,7 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
               className="p-4 border-b border-gray-700 last:border-b-0"
             >
               <div className="text-sm text-gray-400">{entry.period}</div>
-              <div className="text-white font-semibold mt-1">{entry.grade}</div>
+              <div className="text-white font-semibold mt-1">{entry.class}</div>
             </div>
           ))}
         </div>
@@ -36,7 +36,7 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
   const scheduleJSX = generateScheduleJSX(schedule);
 
   return (
-    <div className="min-h-screen bg-gray-900 p-4 md:p-6">
+    <div className="min-h-full bg-gray-900 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-2xl font-bold mb-4 text-white">The schedule</h1>
         <div className="flex flex-wrap -mx-2 mb-6 overflow-x-auto whitespace-nowrap">
@@ -45,7 +45,7 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
           ).map((day, index) => (
             <div
               key={day}
-              className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm m-1"
+              className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm m-2 gap-3"
             >
               Day {index + 1}: {day}
             </div>
