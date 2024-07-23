@@ -1,20 +1,23 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
-import SideBar from "./Components/SideBar/SideBar";
-import Navbar from "./Components/Navbar/Navbar";
-import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import TeacherSchedule from './Pages/Teacher/TeacherSchedule/TeacherSchedule'
+import SideBar from './Components/SideBar/SideBar'
+import Navbar from './Components/Navbar/Navbar'
+import StudentSchedule from './Pages/Student/StudentSchedule/StudentSchedule'
+import Parent from './Pages/Parent/Parent'
+import ExampleParentProfile from './Pages/Parent/ParentProfile'
+import ParentProfilePage from './Pages/ParentProfilePage/ParentProfilePage'
 
 const AppLayout = () => {
   return (
-    <div className="h-full w-full flex flex-row gap-8 text-red-700">
+    <div className="h-full w-full flex flex-row gap-8 ">
       <Navbar />
       <SideBar />
     </div>
-  );
-};
+  )
+}
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <AppLayout />,
     children: [
       // {
@@ -23,12 +26,16 @@ const router = createBrowserRouter([
       //   element: <Home />,
       // },
       {
-        path: "/TeacherSchedule",
+        path: '/TeacherSchedule',
         element: <TeacherSchedule />,
       },
       {
-        path: "/StudentSchedule",
+        path: '/StudentSchedule',
         element: <StudentSchedule />,
+      },
+      {
+        path: '/parent-profile',
+        element: <ParentProfilePage />,
       },
       // {
       //   path: "/Add-Project",
@@ -72,10 +79,10 @@ const router = createBrowserRouter([
       // },
     ],
   },
-]);
+])
 
 function App() {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />
 }
 
-export default App;
+export default App
