@@ -4,15 +4,33 @@ import { dbConnectionPromise } from "../utils/mongoUtil.js";
 const scheduleSchema = new mongoose.Schema({
   day: String, // e.g., 'Monday'
   period: String, // e.g., '09:00-10:00'
-  grade: String,
+  class: String,
 });
 
 const teacherSchema = new mongoose.Schema({
-  gender: String,
-  age: Number,
+  teacher_id: {
+    type: String,
+    // required: true,
+    unique: true,
+  },
   name: String,
+  age: Number,
+  gender: String,
   subject: String,
   schedule: [scheduleSchema],
+});
+teacherSchema.pre("save", function (next) {
+  const schedule = this.schedule;
+  const scheduleSet = new Set();
+  for (const entry of schedule) {
+    const key = `${entry.day}_${entry.period}_${entry.class}`;
+    if (scheduleSet.has(key)) {
+      return next(new Error(`Duplicate schedule entry found: ${key}`));
+    }
+    scheduleSet.add(key);
+  }
+
+  next();
 });
 
 let Teacher;
@@ -27,5 +45,3 @@ export default async function getTeacherModel() {
   }
   return Teacher;
 }
-
-// export default mongoose.model("Teacher", teacherSchema);

@@ -21,9 +21,9 @@ app.use(cookieParser());
 connectDB();
 
 // Routes
-app.use("/", authRoutes);
+app.use("/user", authRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001; // Change 5000 to another port, e.g., 5001
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

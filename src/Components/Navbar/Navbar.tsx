@@ -21,8 +21,8 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="bg-black">
-        <div className="myNavbar verticle-menu-container bg-gray-800 fixed w-screen sm:mr-32 lg:justify-between text-white px-4 sm:px-6 top-0 lg:px-8 ">
+      <header className="bg-gray-800 ">
+        <div className="myNavbar verticle-menu-container bg-gray-800 fixed w-full sm:mr-28 lg:justify-between text-white px-4  sm:px-6 top-0 lg:px-8 ">
           <div className=" flex h-16 items-center justify-between mr-32">
             <img className="mr-2 h-6 md:h-12 w-auto" alt="logo" />
 

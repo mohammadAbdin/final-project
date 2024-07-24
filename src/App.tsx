@@ -1,13 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
-import ParentPage from "./Pages/Parent/ParentPage/ParentPage";
-import SubjectsPage from "./Pages/Parent/ParentPage/SubjectsPage";
+import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
+import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
+import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
+import AddUser from "./Pages/Manager/AddUser/AddUser";
+import ParentPage from "./Pages/ParentProfilePage/ParentPage/ParentPage";
+import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
+import Calendar from "./Components/Calendar/Calendar";
 
 const AppLayout = () => {
   return (
-    <div className="h-full w-full flex flex-row gap-8 text-red-700">
+    <div className="h-full w-full flex flex-row gap-8">
       <Navbar />
       <SideBar />
     </div>
@@ -35,17 +39,37 @@ const router = createBrowserRouter([
         path: "/SubjectsPage",
         element: <SubjectsPage />,
       },
+      {
+        path: "/StudentSchedule",
+        element: <StudentSchedule />,
+      },
+      {
+        path: "/EventCalendar",
+        element: <Calendar />,
+      },
+      {
+        path: "/parent-profile",
+        element: <ParentProfilePage />,
+      },
+      {
+        path: "/Add-members",
+        element: <AddUser />,
+      },
       // {
-      //   path: "/Add-Project",
-      //   element: <AddProject />,
+      //   path: "/Projects-to-do",
+      //   element: (
+      //     <ProtectedRoute adminOnly>
+      //       <ProjectsToDo />
+      //     </ProtectedRoute>
+      //   ),
       // },
       // {
-      //   path: "/My-Projects",
-      //   element: <MyProjects />,
-      // },
-      // {
-      //   path: "/Projects/:tag",
-      //   element: <ProjectsByTag />,
+      //   path: "/Projects",
+      //   element: (
+      //     <ProtectedRoute adminOnly>
+      //       <AllProjects />
+      //     </ProtectedRoute>
+      //   ),
       // },
       // {
       //   path: "/Projects-to-do/ReviewProject/:projectId",
