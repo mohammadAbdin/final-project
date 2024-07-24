@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
+import ParentPage from "./Pages/Parent/ParentPage/ParentPage";
+import SubjectsPage from "./Pages/Parent/ParentPage/SubjectsPage";
 
 const AppLayout = () => {
   return (
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: "/TeacherSchedule",
         element: <TeacherSchedule />,
+      },
+      {
+        path: "/ParentPage",
+        element: <ParentPage />,
+      },
+      {
+        path: "/SubjectsPage",
+        element: <SubjectsPage />,
       },
       // {
       //   path: "/Add-Project",
