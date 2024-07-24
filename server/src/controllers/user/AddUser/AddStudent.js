@@ -1,19 +1,36 @@
 import getStudentModel from "../../../models/StudentSchema.js";
+import getParentModel from "../../../models/ParentSchema.js";
 
 export const AddStudent = async (formData, newUser, fullName, res) => {
-  //   const { gender, parent_id, class } = formData;
+  // console.log("formData", formData);
+  const { gender, parent_id } = formData;
   try {
     const Student = await getStudentModel();
     const newStudent = new Student({
-      parent_id: newUser._id,
-      fullName: fullName,
-      //   email: email,
-      //   phone: phone,
-      children: [],
+      student_id: newUser._id,
+      name: fullName,
+      email: newUser.email,
+      parent_id: parent_id,
+      gender: gender,
+      class: formData.class,
     });
-    // console.log(newParent);
-    console.log("newStudent", newStudent);
+    console.log(newStudent);
     await newStudent.save();
+    try {
+      const studentId = newUser._id.toString();
+      const Parent = await getParentModel();
+      const parent = await Parent.findOne({ parent_id: parent_id });
+
+      if (parent) {
+        parent.children.push({ student_id: studentId });
+        await parent.save();
+        console.log("Child added successfully");
+      } else {
+        console.log("Parent not found");
+      }
+    } catch (error) {
+      console.error("Error adding child to parent:", error);
+    }
   } catch (error) {
     console.error("Error adding user:", error);
     res.status(500).json({ message: "Internal server error" });

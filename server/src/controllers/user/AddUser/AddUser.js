@@ -5,7 +5,7 @@ export const AddUser = async (req, res) => {
   try {
     const { userType, formData } = req.body;
     const { fullName, email, id } = formData;
-    console.log("hi");
+
     console.log(req.body);
     const User = await getUserModel();
     const newUser = new User({
@@ -15,16 +15,7 @@ export const AddUser = async (req, res) => {
       userType: userType,
       notification: [],
     });
-    // student_id: {
-    //   type: String,
-    //   unique: true,
-    // },
-    // parent_id: String,
-    // name: String,
-    // gender: String,
-    // class: String,
     await newUser.save();
-
     switch (userType) {
       case "Student":
         AddStudent(formData, newUser, fullName, res);

@@ -6,6 +6,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
+import parentRoutes from "./routes/parentRoutes.js";
 import { connectDB } from "./utils/mongoUtil.js";
 import process from "process";
 
@@ -22,6 +23,7 @@ connectDB();
 
 // Routes
 app.use("/user", authRoutes);
+app.use("/parent", parentRoutes);
 
 const PORT = process.env.PORT || 5001; // Change 5000 to another port, e.g., 5001
 app.listen(PORT, () => {

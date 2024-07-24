@@ -1,6 +1,7 @@
 // ParentInfo.tsx
 import React from "react";
 import { FormDataType } from "../../../Types/FormDataType";
+import { ParentOptionsType } from "../../../Types/ParentOptionsType";
 
 interface StudentProps {
   formData: FormDataType;
@@ -8,15 +9,17 @@ interface StudentProps {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
   AddUserRequest: (userType: string, formData: FormDataType) => Promise<void>;
-  parentIds: string[]; // Add this prop to pass parent IDs
+  parentOptions: ParentOptionsType[];
 }
 
 function StudentInfo({
   formData,
   handleInputChange,
   AddUserRequest,
-  parentIds,
+  parentOptions,
 }: StudentProps) {
+  console.log(parentOptions);
+
   return (
     <div className="mt-4 p-2 px-2 lg:p-4 lg:px-10 border rounded-lg">
       <h2 className="text-lg text-left font-medium">Parent Information</h2>
@@ -36,11 +39,15 @@ function StudentInfo({
             className="mt-1 block w-1/3 border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
             required
           >
-            {parentIds.map((id) => (
-              <option key={id} value={id}>
-                {id}
-              </option>
-            ))}
+            {parentOptions.length > 1 ? (
+              parentOptions.map((parentOption, index) => (
+                <option key={index} value={parentOption.parent_id}>
+                  {parentOption.userPassword}
+                </option>
+              ))
+            ) : (
+              <option>a</option>
+            )}
           </select>
         </div>
 
@@ -61,7 +68,40 @@ function StudentInfo({
             required
           />
         </div>
-
+        <div className="mb-4">
+          <label
+            htmlFor="email"
+            className="block text-sm text-left font-medium text-gray-700"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            className="mt-1 block w-1/3 border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-left text-gray-700"
+          >
+            ID number
+          </label>
+          <input
+            type="tel"
+            id="id"
+            name="id"
+            value={formData.id}
+            onChange={handleInputChange}
+            className="mt-1 block w-1/3 border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+            required
+          />
+        </div>
         <div className="mb-4">
           <label
             htmlFor="gender"
@@ -90,15 +130,20 @@ function StudentInfo({
           >
             Class
           </label>
-          <input
-            type="text"
+          <select
             id="class"
             name="class"
             value={formData.class}
             onChange={handleInputChange}
             className="mt-1 block w-1/3 border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
             required
-          />
+          >
+            {Array.from({ length: 12 }, (_, i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="w-full flex justify-start">
@@ -108,10 +153,10 @@ function StudentInfo({
               e.preventDefault();
               console.log("Student", formData);
 
-              //   AddUserRequest("Parent", formData);
+              AddUserRequest("Student", formData);
             }}
           >
-            Add Parent
+            Add Student
           </button>
         </div>
       </form>

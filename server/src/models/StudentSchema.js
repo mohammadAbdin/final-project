@@ -1,12 +1,6 @@
 import mongoose from "mongoose";
 import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
-// const studentScheduleSchema = new mongoose.Schema({
-//   day: String, // e.g., 'Monday'
-//   period: String, // e.g., '09:00-10:00'
-//   subject: String,
-// });
-
 const studentSchema = new mongoose.Schema({
   student_id: {
     type: String,
