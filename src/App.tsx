@@ -3,9 +3,7 @@ import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
-
 import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
-
 import AddUser from "./Pages/Manager/AddUser/AddUser";
 import ParentPage from "./Pages/ParentProfilePage/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
