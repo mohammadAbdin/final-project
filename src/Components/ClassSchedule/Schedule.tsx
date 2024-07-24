@@ -44,18 +44,7 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
     <div className="min-h-full bg-gray-900 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-2xl font-bold mb-4 text-white">The schedule</h1>
-        <div className="flex flex-row  gap-10   mb-6 ml-7 w-full overflow-x-auto whitespace-nowrap">
-          {Object.keys(
-            schedule.reduce((acc, curr) => ({ ...acc, [curr.day]: true }), {})
-          ).map((day, index) => (
-            <div
-              key={day}
-              className="px-6 py-2 bg-blue-600 text-white  rounded-full text-sm m-2 "
-            >
-              Day {index + 1}: {day}
-            </div>
-          ))}
-        </div>
+        <div className="flex flex-row  gap-10   mb-6 ml-7 w-full overflow-x-auto whitespace-nowrap"></div>
         <div className="flex flex-wrap ">{scheduleJSX}</div>
       </div>
     </div>
