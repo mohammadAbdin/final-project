@@ -8,7 +8,7 @@ import AddUser from "./Pages/Manager/AddUser/AddUser";
 import ParentPage from "./Pages/ParentProfilePage/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 import Calendar from "./Components/Calendar/Calendar";
-
+//
 const AppLayout = () => {
   return (
     <div className="h-full w-full flex flex-row gap-8">
