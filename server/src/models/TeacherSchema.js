@@ -19,17 +19,20 @@ const teacherSchema = new mongoose.Schema({
   subject: String,
   schedule: [scheduleSchema],
 });
-// const newTeacher = new Teacher({
-//   _id: 'teacher123', // Manually set the _id
-//   name: 'John Doe',
-//   age: 30,
-//   gender: 'Male',
-//   subject: 'Math',
-//   schedule: [
-//     { day: 'Monday', period: '09:00-10:00', class: '101' },
-//     { day: 'Wednesday', period: '11:00-12:00', class: '102' }
-//   ]
-// });
+teacherSchema.pre("save", function (next) {
+  const schedule = this.schedule;
+  const scheduleSet = new Set();
+  for (const entry of schedule) {
+    const key = `${entry.day}_${entry.period}_${entry.class}`;
+    if (scheduleSet.has(key)) {
+      return next(new Error(`Duplicate schedule entry found: ${key}`));
+    }
+    scheduleSet.add(key);
+  }
+
+  next();
+});
+
 let Teacher;
 
 dbConnectionPromise.then((db) => {

@@ -3,12 +3,12 @@ import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const examSchema = new mongoose.Schema({
   exam_id: { type: String, unique: true },
+  // maxPoints: Number,
   examName: String,
-  maxPoints: Number,
-  studentMarks: [
+  studentGrades: [
     {
       student_id: String,
-      marks: Number,
+      Grade: Number,
     },
   ],
 });
@@ -44,7 +44,23 @@ const classSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  subjects: [subjectSchema],
+  subjects: {
+    type: [subjectSchema],
+    validate: {
+      validator: function (subjects) {
+        // Create a Set to track unique subject names
+        const subjectNames = new Set();
+        for (const subject of subjects) {
+          if (subjectNames.has(subject.subjectName)) {
+            return false; // Duplicate found
+          }
+          subjectNames.add(subject.subjectName);
+        }
+        return true; // No duplicates
+      },
+      message: "Each class must have unique subject names.",
+    },
+  },
 });
 
 let Class;

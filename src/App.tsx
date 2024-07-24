@@ -1,12 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
+import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
+import AddUser from "./Pages/Manager/AddUser/AddUser";
 
 const AppLayout = () => {
   return (
-    <div className="h-full w-full flex flex-row gap-8 text-red-700">
+    <div className="h-full w-full flex flex-row gap-8">
       <Navbar />
       <SideBar />
     </div>
@@ -30,10 +31,10 @@ const router = createBrowserRouter([
         path: "/StudentSchedule",
         element: <StudentSchedule />,
       },
-      // {
-      //   path: "/Add-Project",
-      //   element: <AddProject />,
-      // },
+      {
+        path: "/Add-members",
+        element: <AddUser />,
+      },
       // {
       //   path: "/Projects-to-do",
       //   element: (
