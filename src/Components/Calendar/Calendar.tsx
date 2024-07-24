@@ -88,7 +88,6 @@ const calendarData = [
 ];
 
 const isWeekEnd = (date: Date): boolean => date.getDay() === 6;
-const defaultCurrentDate = new Date(2024, 6, 2, 11, 15);
 
 const DayScaleCell = ({
   startDate,
@@ -117,7 +116,7 @@ const TimeTableCell = ({
 );
 
 const handleClicked = () => {
-  //navgation
+  //navigation
 };
 
 const Calendar = ({
@@ -142,7 +141,7 @@ export default () => (
     <h1>Event Calendar</h1>
     <Paper>
       <Scheduler data={calendarData}>
-        <ViewState defaultCurrentDate={defaultCurrentDate} />
+        <ViewState  />
         <MonthView
           dayScaleCellComponent={DayScaleCell}
           timeTableCellComponent={TimeTableCell}
