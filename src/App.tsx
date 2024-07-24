@@ -7,6 +7,8 @@ import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
 
 import AddUser from "./Pages/Manager/AddUser/AddUser";
+import ParentPage from "./Pages/ParentProfilePage/ParentPage/ParentPage";
+import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 
 const AppLayout = () => {
   return (
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: "/TeacherSchedule",
         element: <TeacherSchedule />,
+      },
+      {
+        path: "/ParentPage",
+        element: <ParentPage />,
+      },
+      {
+        path: "/SubjectsPage",
+        element: <SubjectsPage />,
       },
       {
         path: "/StudentSchedule",
