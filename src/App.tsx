@@ -1,8 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
-import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
+import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
+// import Parent from './Pages/Parent/Parent'
+// import ExampleParentProfile from './Pages/Parent/ParentProfile'
+import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
+
 import AddUser from "./Pages/Manager/AddUser/AddUser";
 
 const AppLayout = () => {
@@ -30,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/StudentSchedule",
         element: <StudentSchedule />,
+      },
+      {
+        path: "/parent-profile",
+        element: <ParentProfilePage />,
       },
       {
         path: "/Add-members",
