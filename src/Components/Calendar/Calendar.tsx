@@ -65,6 +65,14 @@ const StyledAppointmentsAppointmentContent = styled(
     height: "100%",
   },
 }));
+/*const date = "2024/6/8";
+const parts = date.split("/");
+
+// Convert the parts into numbers
+const year = parseInt(parts[0], 10);
+const month = parseInt(parts[1], 10);
+const day = parseInt(parts[2], 10);
+console.log(year, month, day);*/
 
 const calendarData = [
   {
@@ -114,6 +122,11 @@ const TimeTableCell = ({
     {...restProps}
   />
 );
+const error = console.error;
+console.error = (...args: any) => {
+  if (/defaultProps/.test(args[0])) return;
+  error(...args);
+};
 
 const handleClicked = () => {
   //navigation
@@ -138,7 +151,7 @@ const Calendar = ({
 
 export default () => (
   <>
-    <h1>Event Calendar</h1>
+    <h1>Calendar</h1>
     <Paper>
       <Scheduler data={calendarData}>
         <ViewState  />
