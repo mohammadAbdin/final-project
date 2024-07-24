@@ -16,7 +16,6 @@ const studentSchema = new mongoose.Schema({
   name: String,
   gender: String,
   class: String,
-  // schedule: [studentScheduleSchema],
 });
 let Student;
 

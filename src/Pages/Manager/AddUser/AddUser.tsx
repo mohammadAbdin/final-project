@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import ParentInfo from "./ParentInfo";
 import AddUserRequest from "../../../Api/PostAddUserRequest";
-
+import { FormDataType } from "../../../Types/FormDataType";
+import StudentInfo from "./StudentInfo";
 function AddUser() {
   const [selectedOption, setSelectedOption] = useState("Student");
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     fullName: "",
     email: "",
-    phone: "",
+    // phone: "",
     id: "",
   });
+  const parentIds = ["parent1", "parent2", "parent3"]; // Example parent IDs
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -72,11 +76,16 @@ function AddUser() {
           AddUserRequest={AddUserRequest}
         />
       )}
+      {selectedOption === "Student" && (
+        <StudentInfo
+          formData={formData}
+          handleInputChange={handleInputChange}
+          AddUserRequest={AddUserRequest}
+          parentIds={parentIds}
+        />
+      )}
 
-      {/* Display form data object for debugging purposes */}
-      <div className="mt-4">
-        {/* <pre>{JSON.stringify(formData, null, 2)}</pre> */}
-      </div>
+      <div className="mt-4"></div>
     </div>
   );
 }

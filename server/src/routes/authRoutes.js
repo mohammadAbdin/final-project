@@ -4,7 +4,7 @@ import { logOutUser } from "../controllers/logIn/logOutController.js";
 import { protectedRoute } from "../token/protectedRoute.js";
 import { getUserAfterTokens } from "../token/getUserAfterTokens.js";
 import { addNotification } from "../controllers/logIn/addNotificationController.js";
-import { AddUser } from "../controllers/user/AddUser.js";
+import { AddUser } from "../controllers/user/AddUser/AddUser.js";
 const router = express.Router();
 router.post("/Add-user", AddUser);
 router.post("/auth", LoginUser);
