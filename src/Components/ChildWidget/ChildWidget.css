@@ -9,7 +9,15 @@
   border-radius: 2rem;
 }
 
+.main-subjects-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 90vh;
+}
+
 .subjects-container {
+  margin-top: 1rem;
   display: flex;
   justify-content: space-around;
 }
@@ -21,4 +29,30 @@
   color: #4f4f76;
   border-radius: 1rem;
   border: 1px solid #4f4f76;
+}
+
+.main-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.calendar-container,
+.marks-container,
+.student-schedule-container,
+.feedback-container {
+  border: #4f4f76 2px solid;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 2rem;
+}
+
+@media screen and (min-width: 576px) {
+  .main-info-container {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    width: 100%;
+    height: 100%;
+  }
 }
