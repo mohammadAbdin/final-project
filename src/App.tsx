@@ -9,6 +9,7 @@ import ParentPage from "./Pages/ParentProfilePage/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 import EventClanedar from "./Components/Calendar/EventCalendar";
 import StudentDetails from "./Pages/Student/StudentDetails/StudentDetails";
+import TeacherAbsentCalendar from "./Pages/Teacher/TeacherAbsentCalendar/TeacherAbsentCalendar";
 const AppLayout = () => {
   return (
     <div className="h-full w-full flex flex-row gap-8">
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/EventCalendar",
         element: <EventClanedar />,
+      },
+      {
+        path: "/TeacherAbsentCalendar",
+        element: <TeacherAbsentCalendar />,
       },
       {
         path: "/AbsentCalendar",

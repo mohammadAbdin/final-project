@@ -50,6 +50,7 @@ export default function StudentDetails() {
           <div className={classes.container}>
             <div className={`${classes.text} text-gray-600`}>
               {data.students == "True" ? <p>he came</p> : <p>he did not</p>}
+              {/* here to add an x and a green check  */}
             </div>
           </div>
         </StyledAppointmentsAppointmentContent>
