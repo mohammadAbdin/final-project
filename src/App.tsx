@@ -2,12 +2,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
-import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
+//import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
 import AddUser from "./Pages/Manager/AddUser/AddUser";
 import ParentPage from "./Pages/ParentProfilePage/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 import Calendar from "./Components/Calendar/Calendar";
+import EventClanedar from "./Components/Calendar/Display";
 //
 const AppLayout = () => {
   return (
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/EventCalendar",
-        element: <Calendar />,
+        element: <EventClanedar />,
       },
       {
         path: "/parent-profile",
