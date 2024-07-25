@@ -3,7 +3,8 @@ import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
-import Calendar from "./Components/Calendar/Calendar";
+//import Calendar from "./Components/Calendar/Calendar";
+import EventClanedar from "./Components/Calendar/Display";
 
 const AppLayout = () => {
   return (
@@ -31,9 +32,9 @@ const router = createBrowserRouter([
         path: "/StudentSchedule",
         element: <StudentSchedule />,
       },
-      { 
+      {
         path: "/EventCalendar",
-        element: <Calendar />
+        element: <EventClanedar />,
       },
       // {
       //   path: "/Add-Project",
