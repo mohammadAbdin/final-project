@@ -9,6 +9,7 @@ import authRoutes from "./routes/authRoutes.js";
 import parentRoutes from "./routes/parentRoutes.js";
 import classRoutes from "./routes/classRoutes.js";
 import teacherRoutes from "./routes/teacherRoutes.js";
+import studentRoutes from "./routes/studentRoutes.js";
 import { connectDB } from "./utils/mongoUtil.js";
 import process from "process";
 
@@ -48,6 +49,7 @@ app.use("/user", authRoutes);
 app.use("/parent", parentRoutes);
 app.use("/class", classRoutes);
 app.use("/teacher", teacherRoutes);
+app.use("/student", studentRoutes);
 
 const PORT = process.env.PORT || 5001; // Change 5000 to another port, e.g., 5001
 app.listen(PORT, () => {
