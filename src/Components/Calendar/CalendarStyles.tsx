@@ -1,12 +1,6 @@
 import {
-  Scheduler,
   Appointments,
   MonthView,
-  Toolbar,
-  DateNavigator,
-  ViewSwitcher,
-  TodayButton,
-  AppointmentTooltip,
 } from "@devexpress/dx-react-scheduler-material-ui";
 const PREFIX = "Abx";
 import { styled, alpha } from "@mui/material/styles";
@@ -56,6 +50,7 @@ export const StyledAppointmentsAppointmentContent = styled(
     opacity: 0.7,
   },
   [`& .${classes.container}`]: {
+    // backgroundColor: "red",
     width: "100%",
     lineHeight: 1.2,
     height: "100%",

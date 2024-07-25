@@ -1,10 +1,8 @@
-import { styled, alpha } from "@mui/material/styles";
 import { ViewState } from "@devexpress/dx-react-scheduler";
 import {
   classes,
   StyledMonthViewDayScaleCell,
   StyledMonthViewTimeTableCell,
-  StyledAppointmentsAppointmentContent,
 } from "./CalendarStyles";
 import {
   Scheduler,
@@ -19,9 +17,22 @@ import {
 
 import Paper from "@mui/material/Paper";
 import classNames from "clsx";
-export default ({ eventsData }) => {
-  // const apidata = [data1, data2];
-
+interface CalendarComponentType {
+  calendarData: {
+    students: string;
+    allStudents: string;
+    startDate: Date;
+    endDate: Date;
+  }[];
+  Calendar1: ({
+    data,
+    ...restProps
+  }: Appointments.AppointmentContentProps) => JSX.Element; // Replace with your actual calendar data structure
+}
+const CalendarComponent = ({
+  calendarData,
+  Calendar1,
+}: CalendarComponentType) => {
   // const calendarData1 = [
   //   {
   //     students: "Holiday",
@@ -42,44 +53,6 @@ export default ({ eventsData }) => {
   //     endDate: new Date(2024, 6, 4, 12, 1),
   //   },
   // ];
-  const calendarData = eventsData.map((data) => {
-    const parts = data.date.split("/");
-
-    // Convert the parts into numbers
-    const year = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10);
-    const day = parseInt(parts[2], 10);
-    const obj = {
-      students: data.eventName,
-      allStudents: "",
-      startDate: new Date(year, month - 1, day, 12, 0),
-      endDate: new Date(year, month - 1, day, 12, 1),
-    };
-    return obj;
-  });
-  const attendanceRecords = [
-    {
-      date: "2024/07/24", // Format: 'year/month/day'
-      attendance: true,
-    },
-    {
-      date: "2024/07/23",
-      attendance: false,
-    },
-    {
-      date: "2024/07/22",
-      attendance: false,
-
-      // `attendance` is optional and will default to `false`
-    },
-    {
-      date: "2024/07/21",
-      attendance: true,
-    },
-  ];
-  // const date = "2024/6/8";
-
-  // console.log(year, month, day);
 
   // const attendanceRecords = [
   //   {
@@ -119,32 +92,11 @@ export default ({ eventsData }) => {
       {...restProps}
     />
   );
-  const error = console.error;
-  console.error = (...args: any) => {
-    if (/defaultProps/.test(args[0])) return;
-    error(...args);
-  };
-
-  const handleClicked = () => {
-    //navigation
-  };
-
-  const Calendar = ({
-    data,
-    ...restProps
-  }: Appointments.AppointmentContentProps) => {
-    return (
-      <>
-        <StyledAppointmentsAppointmentContent {...restProps} data={data}>
-          <div className={classes.container}>
-            <div className={classes.text} onClick={handleClicked}>
-              {data.students} / {data.allStudents}
-            </div>
-          </div>
-        </StyledAppointmentsAppointmentContent>
-      </>
-    );
-  };
+  // const error = console.error;
+  // console.error = (...args: any) => {
+  //   if (/defaultProps/.test(args[0])) return;
+  //   error(...args);
+  // };
 
   return (
     <>
@@ -157,7 +109,7 @@ export default ({ eventsData }) => {
             timeTableCellComponent={TimeTableCell}
           />
 
-          <Appointments appointmentContentComponent={Calendar} />
+          <Appointments appointmentContentComponent={Calendar1} />
           <AppointmentTooltip showCloseButton />
           <Toolbar />
           <DateNavigator />
@@ -168,3 +120,4 @@ export default ({ eventsData }) => {
     </>
   );
 };
+export default CalendarComponent;
