@@ -21,11 +21,7 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
         <div className="bg-gray-800 rounded-lg ">
           {groupedByDay[day].map((entry) => (
             <div
-              onClick={() => {
-                // if he is a teacher do
-                // if()
-                // else do nothing
-              }}
+              onClick={() => {}}
               key={`${day}-${entry.period}`}
               className="p-4 border-b border-gray-700 last:border-b-0"
             >

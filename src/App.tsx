@@ -10,7 +10,22 @@ import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 import EventClanedar from "./Components/Calendar/EventCalendar";
 import StudentDetails from "./Pages/Student/StudentDetails/StudentDetails";
 import TeacherAbsentCalendar from "./Pages/Teacher/TeacherAbsentCalendar/TeacherAbsentCalendar";
+import LogIn from "./Pages/LogIn/LogIn";
+import useGetTokens from "./Hooks/UseGetTokens";
+import { useContext, useEffect } from "react";
+import { UserContext } from "./Context/UserContext";
 const AppLayout = () => {
+  const { user, setIsLogedIn, setUser } = useContext(UserContext);
+  const { isLoading } = useGetTokens(setIsLogedIn, setUser);
+  useEffect(() => {
+    if (!isLoading) {
+      console.log("User after fetch:", user);
+    }
+  }, [isLoading, user]);
+
+  if (isLoading) {
+    return <></>;
+  }
   return (
     <div className="h-full w-full flex flex-row gap-8">
       <Navbar />
@@ -28,6 +43,10 @@ const router = createBrowserRouter([
       //   path: "/",
       //   element: <Home />,
       // },
+      {
+        path: "/LogIn",
+        element: <LogIn />,
+      },
       {
         path: "/TeacherSchedule",
         element: <TeacherSchedule />,
