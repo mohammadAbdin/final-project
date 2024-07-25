@@ -119,7 +119,16 @@ function AddUser() {
                     ? "rounded-t-lg border-gray-300 border-b-white text-sky-600"
                     : "border-transparent"
                 }`}
-                onClick={() => setSelectedOption("Student")}
+                onClick={() => {
+                  setFormData({
+                    fullName: "",
+                    email: "",
+                    id: "",
+                    age: 0,
+                    schedule: [],
+                  });
+                  setSelectedOption("Student");
+                }}
               >
                 Student
               </a>
@@ -131,7 +140,16 @@ function AddUser() {
                     ? "rounded-t-lg border-gray-300 border-b-white text-sky-600"
                     : "border-transparent"
                 }`}
-                onClick={() => setSelectedOption("Parent")}
+                onClick={() => {
+                  setFormData({
+                    fullName: "",
+                    email: "",
+                    id: "",
+                    age: 0,
+                    schedule: [],
+                  });
+                  setSelectedOption("Parent");
+                }}
               >
                 Parent
               </a>
@@ -143,7 +161,16 @@ function AddUser() {
                     ? "rounded-t-lg border-gray-300 border-b-white text-sky-600"
                     : "border-transparent"
                 }`}
-                onClick={() => setSelectedOption("Teacher")}
+                onClick={() => {
+                  setFormData({
+                    fullName: "",
+                    email: "",
+                    id: "",
+                    age: 0,
+                    schedule: [],
+                  });
+                  setSelectedOption("Teacher");
+                }}
               >
                 Teacher
               </a>

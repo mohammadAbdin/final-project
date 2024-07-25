@@ -14,6 +14,7 @@ export const AddParent = async (formData, newUser, fullName, email, res) => {
     // console.log(newParent);
     console.log("newParent", newParent);
     await newParent.save();
+    await newUser.save();
   } catch (error) {
     console.error("Error adding user:", error);
     res.status(500).json({ message: "Internal server error" });

@@ -46,7 +46,7 @@ function StudentInfo({
                 </option>
               ))
             ) : (
-              <option>a</option>
+              <option></option>
             )}
           </select>
         </div>

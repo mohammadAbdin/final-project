@@ -16,6 +16,8 @@ export const AddStudent = async (formData, newUser, fullName, res) => {
     });
     console.log(newStudent);
     await newStudent.save();
+    await newUser.save();
+
     try {
       const studentId = newUser._id.toString();
       const Parent = await getParentModel();

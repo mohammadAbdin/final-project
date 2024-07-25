@@ -90,8 +90,7 @@ export const getAllParents = async (req, res) => {
       parent_id: parent.parent_id,
       userPassword: parent.userPassword,
     }));
-    // console.log(passwords);
-    // console.log(parents);
+
     res.status(200).json(passwords);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch users" });
