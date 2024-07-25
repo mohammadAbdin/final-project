@@ -1,41 +1,25 @@
 import getClassModel from "../../../models/ClassSchema.js";
-
+import { restructureSchedule } from "./restructureSchedule.js";
 export const AddClasses = async (schedule, subject, teacher_id, res) => {
   try {
     const Class = await getClassModel();
-    const className = schedule[0].class;
-    // Find the class by name
-    let existingClass = await Class.findOne({ class: className });
+    const restructuredSchedule = restructureSchedule(
+      subject,
+      schedule,
+      teacher_id
+    );
+    restructuredSchedule.map(async (lesson) => {
+      const { class: className, schedule, subject, teacher_id } = lesson;
 
-    if (existingClass) {
-      // Check if the subject already exists in the class
-      let subjectExists = existingClass.subjects.some(
-        (sub) => sub.subject === subject
+      await Class.findOneAndUpdate(
+        { class: className },
+        {
+          $push: { schedule: { $each: schedule } },
+          $addToSet: { subjects: { subject: subject, teacher_id: teacher_id } },
+        },
+        { upsert: true, new: true }
       );
-
-      if (!subjectExists) {
-        // Subject doesn't exist, add it
-        existingClass.subjects.push({ subject });
-      }
-
-      // Add the schedule to the class
-      existingClass.schedule.push(...schedule);
-
-      // Save the updated class
-      await existingClass.save();
-    } else {
-      // Class doesn't exist, create a new one
-      const newClass = new Class({
-        class: className,
-        schedule: schedule,
-        subjects: [{ subject }],
-      });
-
-      await newClass.save();
-    }
-
-    res.status(200).json({ message: "Class added/updated successfully" });
-    console.log(Class);
+    });
   } catch (error) {
     console.error("Error adding user:", error);
     res.status(500).json({ message: "Internal server error" });
@@ -70,3 +54,13 @@ export const AddClasses = async (schedule, subject, teacher_id, res) => {
 //       { day: 'Wednesday', period: '08:00-09:00', class: '4' }
 //     ],
 //     subject:"English"}
+
+// [{
+//     class: '3',
+//     schedule: [
+//       { day: 'Sunday', period: '09:00-10:00', subject: 'Biology' },
+//       { day: 'Monday', period: '09:00-10:00', subject: 'Biology' },
+//       { day: 'Tuesday', period: '09:00-10:00', subject: 'Biology' }
+//     ],
+//     subject: 'Biology'
+//   }...]

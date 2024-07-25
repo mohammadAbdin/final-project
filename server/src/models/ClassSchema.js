@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const examSchema = new mongoose.Schema({
-  exam_id: { type: String, unique: true },
+  exam_id: String,
   examName: String,
   studentGrades: [
     {
@@ -70,7 +70,7 @@ const classSchema = new mongoose.Schema({
 let Class;
 
 dbConnectionPromise.then((db) => {
-  Class = db.model("class", classSchema); //i must add the collection name
+  Class = db.model("class", classSchema, "classes"); //i must add the collection name
 });
 
 export default async function getclassModel() {

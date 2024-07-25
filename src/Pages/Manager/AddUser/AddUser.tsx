@@ -32,47 +32,6 @@ function AddUser() {
     fetchParentIds();
   }, []);
 
-  // const handleInputChange = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  // ) => {
-  //   const { id, value } = e.target;
-  //   if (id == "subject")
-  //     setFormData((prevState) => ({
-  //       ...prevState,
-  //       [id]: e.target.textContent,
-  //     }));
-  //   else
-  //     setFormData((prevState) => ({
-  //       ...prevState,
-  //       [id]: value,
-  //     }));
-  // };
-  // const handleInputChange = (
-  //   e:
-  //     | React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  //     | React.MouseEvent<HTMLDivElement>
-  // ) => {
-  //   const target = e.target as
-  //     | HTMLInputElement
-  //     | HTMLSelectElement
-  //     | HTMLDivElement;
-  //   const { id } = target;
-
-  //   if (target instanceof HTMLDivElement && id === "subject") {
-  //     setFormData((prevState) => ({
-  //       ...prevState,
-  //       [id]: target.textContent || "",
-  //     }));
-  //   } else if (
-  //     target instanceof HTMLInputElement ||
-  //     target instanceof HTMLSelectElement
-  //   ) {
-  //     setFormData((prevState) => ({
-  //       ...prevState,
-  //       [id]: target.value,
-  //     }));
-  //   }
-  // };
   interface SyntheticEvent {
     target: {
       id: string;

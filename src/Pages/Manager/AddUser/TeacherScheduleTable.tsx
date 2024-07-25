@@ -1,5 +1,8 @@
-import React from "react";
+import { ScheduleButton } from "./ScheduleButton";
+import React, { useState, useEffect } from "react";
 import { FormDataType } from "../../../Types/FormDataType";
+import { getAllClasses } from "../../../Api/GetAllClasses";
+import { ClassSchedule } from "../../../Types/ClassScheduleType";
 
 interface TeacherScheduleTableProps {
   days: string[];
@@ -15,6 +18,17 @@ export function TeacherScheduleTable({
   handleButtonClick,
   classNumber,
 }: TeacherScheduleTableProps) {
+  const [allClasses, setAllClasses] = useState<ClassSchedule[]>([
+    { class: "", schedule: [] },
+  ]);
+  useEffect(() => {
+    const getAllClassesRequest = async () => {
+      const res = await getAllClasses();
+      setAllClasses(res);
+    };
+    getAllClassesRequest();
+  }, []);
+
   return (
     <table>
       <thead>
@@ -31,17 +45,14 @@ export function TeacherScheduleTable({
             <td>{period}</td>
             {days.map((day) => (
               <td key={day}>
-                <button
-                  className="bg-gray-700 p-1"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    console.log(formData);
-                    console.log(day, period);
-                    handleButtonClick(day, period, classNumber);
-                  }}
-                >
-                  Add
-                </button>
+                <ScheduleButton
+                  allClasses={allClasses}
+                  formData={formData}
+                  day={day}
+                  period={period}
+                  handleButtonClick={handleButtonClick}
+                  classNumber={classNumber}
+                />
               </td>
             ))}
           </tr>

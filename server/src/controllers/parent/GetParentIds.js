@@ -55,37 +55,6 @@ export const getAllParents = async (req, res) => {
       },
     ]);
 
-    // Log the result
-    // console.log(parents);
-    // // const parents = await Parent.aggregate([
-    // //   {
-    // //     $lookup: {
-    // //       from: "users", // The name of the User collection
-    // //       localField: "parent_id",
-    // //       foreignField: "_id",
-    // //       as: "userDetails",
-    // //     },
-    // //   },
-    // //   {
-    // //     $unwind: "$userDetails", // Unwind the array returned by $lookup
-    // //   },
-    // //   //   {
-    // //   //     $match: {
-    // //   //       $expr: {
-    // //   //         $eq: ["$parent_id", "$userDetails._id"],
-    // //   //       }, // Match documents where parent_id equals userDetails._id
-    // //   //     },
-    // //   //   },
-    // //   {
-    // //     $project: {
-    // //       parent_id: 1,
-    // //       user_id: "$userDetails._id",
-    // //       userPassword: "$userDetails.password",
-    // //     },
-    // //   },
-    // // ]);
-    // // Extract and log the passwords
-    // console.log("parents", parents);
     const passwords = parents.map((parent) => ({
       parent_id: parent.parent_id,
       userPassword: parent.userPassword,
