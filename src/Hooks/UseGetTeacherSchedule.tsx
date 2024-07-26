@@ -2,9 +2,6 @@ import { useState } from "react";
 import { ScheduleEntry } from "../Types/ScheduleEntry";
 
 import { UseGetTeacherScheduleRequest } from "../Api/UseGetTeacherScheduleRequest";
-// import UserType from "../Types/UserType";
-// import ProjectType from "../Types/ProjectType";
-// import { determineSearchDataPropsType } from "./../Types/determineSearchDataPropsType";
 
 interface UseGetTeacherScheduleReturn {
   getTeacherSchedule: (id: string) => Promise<void>;

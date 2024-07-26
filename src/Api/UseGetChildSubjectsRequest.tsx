@@ -1,12 +1,11 @@
 import axios from "axios";
-import { ScheduleEntry } from "../Types/ScheduleEntry";
 
-export const UseGetTeacherScheduleRequest = async (
-  id: string
-): Promise<ScheduleEntry[] | null> => {
+export const UseGetChildSubjectsRequest = async (
+  id: string | undefined
+): Promise<string[] | null> => {
   try {
     const response = await axios.get<[]>(
-      `http://localhost:5001/teacher/Teacher-Schedule/${id}`,
+      `http://localhost:5001/student/Student-Subjects/${id}`,
       {
         headers: {
           "Content-Type": "application/json",

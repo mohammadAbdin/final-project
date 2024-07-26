@@ -56,7 +56,7 @@ const router = createBrowserRouter([
         element: <ParentPage />,
       },
       {
-        path: "/SubjectsPage",
+        path: "/SubjectsPage/:student_id",
         element: <SubjectsPage />,
       },
       {

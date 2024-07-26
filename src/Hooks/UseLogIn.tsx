@@ -79,7 +79,7 @@ const useLogin = (): UseLoginReturn => {
         navigate("/TeacherSchedule");
         break;
       case "Parent":
-        navigate("/parent-profile");
+        navigate("/ParentPage");
         break;
       case "Student":
         navigate("/StudentSchedule");
