@@ -1,10 +1,16 @@
 #root {
   font-size: 16px;
-  margin: 0 0;
-  padding: 0px 0rem;
+  margin: 0;
+  padding: 0;
   text-align: center;
   height: 100%;
   width: 100%;
+}
+
+@media (min-width: 1200px) {
+  #root {
+    padding: 0 8rem;
+  }
 }
 
 .home {

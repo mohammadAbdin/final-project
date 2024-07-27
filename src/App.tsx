@@ -3,10 +3,11 @@ import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
+import StudentList from "./Components/StudentDetail/StudentList";
 
 const AppLayout = () => {
   return (
-    <div className="h-full w-full flex flex-row gap-8 text-red-700">
+    <div className="h-full w-full flex flex-row ">
       <Navbar />
       <SideBar />
     </div>
@@ -29,11 +30,11 @@ const router = createBrowserRouter([
       {
         path: "/StudentSchedule",
         element: <StudentSchedule />,
+      },  
+      {
+        path: "/StudentList",
+        element: <StudentList />,
       },
-      // {
-      //   path: "/Add-Project",
-      //   element: <AddProject />,
-      // },
       // {
       //   path: "/Projects-to-do",
       //   element: (
