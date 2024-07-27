@@ -4,7 +4,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: rgb(119, 119, 170);
+  background: #34485f;
   color: #fcfcfc;
   border-radius: 2rem;
 }
@@ -26,9 +26,9 @@
   padding: 0.5rem;
   margin: 0.3rem;
   background: #fcfcfc;
-  color: #4f4f76;
+  color: #34485f;
   border-radius: 1rem;
-  border: 1px solid #4f4f76;
+  border: 1px solid #34485f;
 }
 
 .main-info-container {
@@ -42,10 +42,12 @@
 .marks-container,
 .student-schedule-container,
 .feedback-container {
-  border: #4f4f76 2px solid;
+  border: #34485f 2px solid;
+  background: #fcfcfc;
   padding: 1rem;
   margin: 1rem;
   border-radius: 2rem;
+  box-shadow: "lg";
 }
 
 @media screen and (min-width: 576px) {

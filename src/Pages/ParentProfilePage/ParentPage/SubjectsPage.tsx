@@ -31,9 +31,9 @@ const SubjectsPage = () => {
             key={subjectItem.teacher_id}
             className="subject-item"
             value={subjectItem.subjectName}
-            onClick={(e) => setSubject(e.target.value)}
+            onClick={(e) => console.log(e) || setSubject(e.target.value)}
           >
-            <p>{subjectItem.subjectName}</p>
+            {subjectItem.subjectName}
           </button>
         ))}
       </div>
