@@ -71,7 +71,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/SubjectsPage/:student_id",
-        path: '/SubjectsPage',
         element: <SubjectsPage />,
       },
       {
