@@ -22,6 +22,7 @@ const SubjectsPage = () => {
       },
     ],
   });
+  console.log;
   const { getChildSubjects, childSubjects } = UseGetChildSubjects(
     setIsLoading,
     student_id
