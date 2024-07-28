@@ -62,15 +62,15 @@
 }
 
 .student-name {
-  font-size: 1.2em;
-  font-weight: bold;
+  /* font-size: 1.2em; */
+  /* font-weight: bold; */
   margin-bottom: 3px;
 }
 
 .student-details h3 {
   margin-top: 5px;
   text-align: left;
-  font-size: 0.9em;
+  /* font-size: 0.9em; */
   font-weight: bold;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .details-box p {
-  font-size: 0.8em;
+  /* font-size: 0.8em; */
   margin: 2.5px 0;
 }
 

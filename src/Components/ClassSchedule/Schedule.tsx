@@ -18,7 +18,7 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
         className="flex-shrink-0 w-full md:text-2xl md:w-1/2 lg:w-1/3 xl:w-1/5 p-2"
       >
         <h2 className="text-lg md:text-3xl font-semibold mb-2 text-white">
-          {day}
+          <p className="text-xl font-normal">{day}</p>
         </h2>
         <div className="bg-gray-800 rounded-lg ">
           {groupedByDay[day].map((entry) => (
@@ -27,10 +27,12 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
               key={`${day}-${entry.period}`}
               className="p-4 border-b border-gray-700 last:border-b-0"
             >
-              <div className="text-sm md:text-lg text-gray-400">
-                {entry.period}
+              <div className="text-xs md:text-lg text-gray-400">
+                <p className="text-xs font-normal">{entry.period}</p>
               </div>
-              <div className="text-white font-semibold mt-1">{entry.class}</div>
+              <div className="text-white font-semibold mt-1">
+                <p className="text-lg font-normal">{entry.class}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -43,8 +45,10 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
   return (
     <div className="min-h-full bg-gray-900 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4 text-white">The schedule</h1>
-        <div className="flex flex-row  gap-10   mb-6 ml-7 w-full overflow-x-auto whitespace-nowrap"></div>
+        <h1 className="text-2xl font-semibold mb-4 text-white ">
+          The schedule
+        </h1>
+        <div className="flex flex-row  gap-10   mb-6 ml-7 w-full overflow-x-auto whitespace-nowrap text-xs"></div>
         {/* <div className="flex flex-row  gap-24 mb-6 ml-14 w-full overflow-x-auto whitespace-nowrap">
           {Object.keys(
             schedule.reduce((acc, curr) => ({ ...acc, [curr.day]: true }), {})
