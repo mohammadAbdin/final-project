@@ -105,6 +105,11 @@ const StudentList = () => {
             </label>
           </div>
         ))}
+        <div>
+          <button className="ml-auto bg-red-600 hover:bg-red-500 text-white py-2 px-4 rounded-lg focus:outline-none">
+            Submit
+          </button>
+        </div>
       </div>
     </fieldset>
   );
