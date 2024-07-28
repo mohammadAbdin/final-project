@@ -6,7 +6,7 @@ import StudentList from "./Components/StudentDetail/StudentList";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
 import AddUser from "./Pages/Manager/AddUser/AddUser";
-import ParentPage from "./Pages/ParentProfilePage/ParentPage/ParentPage";
+import ParentPage from "./Pages/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 import EventClanedar from "./Components/Calendar/EventCalendar";
 import StudentDetails from "./Pages/Student/StudentDetails/StudentDetails";
@@ -15,6 +15,16 @@ import LogIn from "./Pages/LogIn/LogIn";
 import useGetTokens from "./Hooks/UseGetTokens";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./Context/UserContext";
+
+import ParentCard from './Components/ParentCard/ParentCard'
+
+import studentData from './demoData/studentData.js'
+=
+import StudentProfile from './Pages/Student/StudentProfile/StudentProfile'
+import TeacherReportsComponent from './Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent'
+import teacherExamsData from '../src/demoData/teacherExamsData'
+// import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
+
 const AppLayout = () => {
   const { user, setIsLogedIn, setUser } = useContext(UserContext);
   const { isLoading } = useGetTokens(setIsLogedIn, setUser);
@@ -35,9 +45,11 @@ const AppLayout = () => {
   );
 };
 //
+  
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <AppLayout />,
     children: [
       // {
@@ -50,19 +62,20 @@ const router = createBrowserRouter([
         element: <LogIn />,
       },
       {
-        path: "/TeacherSchedule",
+        path: '/TeacherSchedule',
         element: <TeacherSchedule />,
       },
       {
-        path: "/ParentPage",
+        path: '/ParentPage',
         element: <ParentPage />,
       },
       {
         path: "/SubjectsPage/:student_id",
+        path: '/SubjectsPage',
         element: <SubjectsPage />,
       },
       {
-        path: "/StudentSchedule",
+        path: '/StudentSchedule',
         element: <StudentSchedule />,
       },
       {
@@ -75,14 +88,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/AbsentCalendar",
-        element: <StudentDetails />,
+        element: <StudentDetails />,},
+        // {
+        // path: '/EventCalendar',
+        // element: <Calendar />,
+      // },
+      {
+        path: '/parent-card',
+        element: <ParentCard />,
       },
       {
-        path: "/parent-profile",
-        element: <ParentProfilePage />,
-      },
-      {
-        path: "/Add-members",
+        path: '/Add-members',
         element: <AddUser />,
       },
 
@@ -90,6 +106,26 @@ const router = createBrowserRouter([
         path: "/StudentList",
         element: <StudentList />,
       },
+
+      {
+        path: '/student-profile',
+        element: <StudentProfile student={studentData} />,
+      },
+
+      {
+        path: '/teacher-exam-reports',
+        element: (
+          <TeacherReportsComponent
+            examsData={teacherExamsData}
+            isTeacher={true}
+          />
+        ),
+      },
+      // {
+      //   path: '/teacher-attendance',
+      //   element: <TeacherAttendance />,
+      // },
+
       // {
       //   path: "/Projects-to-do",
       //   element: (
@@ -128,10 +164,10 @@ const router = createBrowserRouter([
       // },
     ],
   },
-]);
+])
 
 function App() {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />
 }
 
-export default App;
+export default App

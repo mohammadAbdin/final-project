@@ -1,0 +1,92 @@
+.card-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-item {
+  width: 350px;
+  height: 550px;
+  background: #fff;
+  margin: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+.card-item:hover {
+  filter: blur(0px);
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.image-section {
+  position: relative;
+  width: 100%;
+  height: 40%;
+}
+
+.ellipse-background {
+  width: 100%;
+  height: 50%;
+  background: #000;
+  clip-path: ellipse(70% 100% at 50% 0%);
+}
+
+.image-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.student-details {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  top: 31%;
+  padding: 0 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.student-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.student-details h3 {
+  margin-top: 5px;
+  text-align: left;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.details-box {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 0 3px;
+  text-align: left;
+}
+
+.details-box p {
+  font-size: 0.8em;
+  margin: 2.5px 0;
+}
+
+.details-box p strong {
+  display: inline-block;
+  width: 68px;
+}

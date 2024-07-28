@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../../Context/UserContext";
 import UseGetChildSubjects from "../../../Hooks/UseGetChildSubjects";
-// import Chart from "chart.js/auto";
-// import { CategoryScale } from "chart.js";
+import Chart from "chart.js/auto";
+import { CategoryScale } from "chart.js";
 import LineChart from "../../../Components/StatsChart/StatsChart";
 
 const SubjectsPage = () => {
@@ -31,7 +31,7 @@ const SubjectsPage = () => {
 
   useEffect(() => {
     if (isLoading && user && !childSubjects) {
-      if (user._id != undefined) getChildSubjects();
+      if (user._id != undefined) getChildSubjects()
     }
     if (childSubjects) {
       setSubject(subject || childSubjects[0]);
@@ -47,7 +47,7 @@ const SubjectsPage = () => {
       >
         <span className="sr-only">Loading...</span>
       </div>
-    );
+    )
   }
   // console.log(childSubjects);
   // setSubject(childSubjects[0]);
@@ -103,14 +103,16 @@ const SubjectsPage = () => {
           <p>Sunday...</p>
           <p>Monday...</p>
         </div>
+        {/*  */}
         <div className="feedback-container">
           <h3>Feedback To Teacher:</h3>
           <input type="text" placeholder="Write your massage here.." />
+          {/*  */}
         </div>
         <LineChart chartData={chartData} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SubjectsPage;
+export default SubjectsPage
