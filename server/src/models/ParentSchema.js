@@ -1,13 +1,38 @@
 import mongoose from "mongoose";
+import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const childSchema = new mongoose.Schema({
-  name: String,
-  id: String,
+  student_id: {
+    type: String,
+  },
 });
 
 const parentSchema = new mongoose.Schema({
-  notifications: [String],
+  parent_id: { type: String, required: true, unique: true },
+  fullName: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
   children: [childSchema],
 });
 
-export default mongoose.model("Parent", parentSchema);
+let Parent;
+
+dbConnectionPromise.then((db) => {
+  Parent = db.model("Parent", parentSchema, "Parent"); //i must add the collection name
+});
+
+export default async function getParentModel() {
+  if (!Parent) {
+    await dbConnectionPromise;
+  }
+  return Parent;
+}

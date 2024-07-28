@@ -1,18 +1,55 @@
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"; //
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import SideBar from "./Components/SideBar/SideBar";
+import Navbar from "./Components/Navbar/Navbar";
+import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
+import StudentList from "./Components/StudentDetail/StudentList";
+import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
+// import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
+
+import AddUser from "./Pages/Manager/AddUser/AddUser";
+import ParentPage from "./Pages/ParentPage/ParentPage";
+import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
+import EventClanedar from "./Components/Calendar/EventCalendar";
+import StudentDetails from "./Pages/Student/StudentDetails/StudentDetails";
+import TeacherAbsentCalendar from "./Pages/Teacher/TeacherAbsentCalendar/TeacherAbsentCalendar";
+import LogIn from "./Pages/LogIn/LogIn";
+import useGetTokens from "./Hooks/UseGetTokens";
+import { useContext, useEffect } from "react";
+import { UserContext } from "./Context/UserContext";
+
+import ParentCard from "./Components/ParentCard/ParentCard";
+
+// import studentData from "./demoData/studentData.js";
+
+import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
+import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
+// import teacherExamsData from "../src/demoData/teacherExamsData";
+import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
+// import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 import Grades from "./Pages/Teacher/Grades";
 import ClassesList from "./Pages/Teacher/ClassesList";
 import ClassPage from "./Pages/Teacher/ClassPage";
 
 const AppLayout = () => {
+  const { user, setIsLogedIn, setUser } = useContext(UserContext);
+  const { isLoading } = useGetTokens(setIsLogedIn, setUser);
+  useEffect(() => {
+    if (!isLoading) {
+      console.log("User after fetch:", user);
+    }
+  }, [isLoading, user]);
+
+  if (isLoading) {
+    return <></>;
+  }
   return (
     <div className="h-full w-full flex flex-row gap-8 text-red-700">
-      {/* <Grades /> */}
       {/* SideBar */}
       {/* Navbar */}
-      <Outlet />
     </div>
   );
 };
+//
 
 const router = createBrowserRouter([
   {
@@ -32,22 +69,79 @@ const router = createBrowserRouter([
       //   path: "/",
       //   element: <Home />,
       // },
+      {
+        path: "/LogIn",
+        element: <LogIn />,
+      },
+      {
+        path: "/TeacherSchedule",
+        element: <TeacherSchedule />,
+      },
+      {
+        path: "/ParentPage",
+        element: <ParentPage />,
+      },
+      {
+        path: "/SubjectsPage/:student_id",
+        element: <SubjectsPage />,
+      },
+      {
+        path: "/SubjectsPageReut",
+        element: <SubjectsPageReut />,
+      },
+      {
+        path: "/StudentSchedule",
+        element: <StudentSchedule />,
+      },
+      {
+        path: "/EventCalendar",
+        element: <EventClanedar />,
+      },
+      {
+        path: "/TeacherAbsentCalendar",
+        element: <TeacherAbsentCalendar />,
+      },
+      {
+        path: "/AbsentCalendar",
+        element: <StudentDetails />,
+      },
       // {
-      //   path: "/CompletedProjects",
-      //   element: <CompletedProjects />,
+      // path: '/EventCalendar',
+      // element: <Calendar />,
       // },
+      {
+        path: "/parent-card",
+        element: <ParentCard />,
+      },
+      {
+        path: "/Add-members",
+        element: <AddUser />,
+      },
+
+      {
+        path: "/StudentList",
+        element: <StudentList />,
+      },
+
+      {
+        path: "/student-profile",
+        // element: <StudentProfile student={studentData} />,
+      },
+
+      {
+        // path: "/teacher-exam-reports",
+        // element: (
+        //   <TeacherReportsComponent
+        //     examsData={teacherExamsData}
+        //     isTeacher={true}
+        //   />
+        // ),
+      },
       // {
-      //   path: "/Add-Project",
-      //   element: <AddProject />,
+      //   path: '/teacher-attendance',
+      //   element: <TeacherAttendance />,
       // },
-      // {
-      //   path: "/My-Projects",
-      //   element: <MyProjects />,
-      // },
-      // {
-      //   path: "/Projects/:tag",
-      //   element: <ProjectsByTag />,
-      // },
+
       // {
       //   path: "/Projects-to-do",
       //   element: (
