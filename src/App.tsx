@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
+import StudentList from "./Components/StudentDetail/StudentList";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
 import AddUser from "./Pages/Manager/AddUser/AddUser";
@@ -83,6 +84,11 @@ const router = createBrowserRouter([
       {
         path: "/Add-members",
         element: <AddUser />,
+      },
+
+      {
+        path: "/StudentList",
+        element: <StudentList />,
       },
       // {
       //   path: "/Projects-to-do",
