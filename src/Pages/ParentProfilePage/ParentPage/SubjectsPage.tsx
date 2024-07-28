@@ -2,12 +2,26 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../../Context/UserContext";
 import UseGetChildSubjects from "../../../Hooks/UseGetChildSubjects";
+// import Chart from "chart.js/auto";
+// import { CategoryScale } from "chart.js";
+import LineChart from "../../../Components/StatsChart/StatsChart";
 
 const SubjectsPage = () => {
   const { student_id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(UserContext);
-
+  const [chartData, setChartData] = useState({
+    labels: ["Exam1", "Exam2", "Midterm", "Final"],
+    datasets: [
+      {
+        label: "First dataset",
+        data: [85, 92, 78, 85],
+        fill: true,
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
+      },
+    ],
+  });
   const { getChildSubjects, childSubjects } = UseGetChildSubjects(
     setIsLoading,
     student_id
@@ -92,6 +106,7 @@ const SubjectsPage = () => {
           <h3>Feedback To Teacher:</h3>
           <input type="text" placeholder="Write your massage here.." />
         </div>
+        <LineChart chartData={chartData} />
       </div>
     </div>
   );
