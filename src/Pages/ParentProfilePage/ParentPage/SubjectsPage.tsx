@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Chart from "chart.js/auto";
+import { CategoryScale } from "chart.js";
+import LineChart from "../../../Components/StatsChart/StatsChart";
 
 const SubjectsPage = () => {
   const subjectData = [
@@ -20,7 +23,26 @@ const SubjectsPage = () => {
     },
   ];
 
+  // const Data = [
+  //   { examName: "exam1", Grade: 80 },
+  //   { examName: "exam2", Grade: 70 },
+  //   { examName: "midterm", Grade: 60 },
+  //   { examName: "final", Grade: 85 },
+  // ];
+
   const [subject, setSubject] = useState("");
+  const [chartData, setChartData] = useState({
+    labels: ["Exam1", "Exam2", "Midterm", "Final"],
+    datasets: [
+      {
+        label: "First dataset",
+        data: [85, 92, 78, 85],
+        fill: true,
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
+      },
+    ],
+  });
 
   return (
     <div className="main-subjects-container">
@@ -57,6 +79,7 @@ const SubjectsPage = () => {
           <h3>Feedback To Teacher:</h3>
           <input type="text" placeholder="Write your massage here.." />
         </div>
+        <LineChart chartData={chartData} />
       </div>
     </div>
   );

@@ -154,7 +154,7 @@ export default () => (
     <h1>Calendar</h1>
     <Paper>
       <Scheduler data={calendarData}>
-        <ViewState  />
+        <ViewState />
         <MonthView
           dayScaleCellComponent={DayScaleCell}
           timeTableCellComponent={TimeTableCell}
