@@ -4,7 +4,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
 import StudentList from "./Components/StudentDetail/StudentList";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
-import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
+// import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
 
 import AddUser from "./Pages/Manager/AddUser/AddUser";
 import ParentPage from "./Pages/ParentPage/ParentPage";
@@ -19,11 +19,11 @@ import { UserContext } from "./Context/UserContext";
 
 import ParentCard from "./Components/ParentCard/ParentCard";
 
-import studentData from "./demoData/studentData.js";
+// import studentData from "./demoData/studentData.js";
 
 import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
 import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
-import teacherExamsData from "../src/demoData/teacherExamsData";
+// import teacherExamsData from "../src/demoData/teacherExamsData";
 import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 
@@ -114,17 +114,17 @@ const router = createBrowserRouter([
 
       {
         path: "/student-profile",
-        element: <StudentProfile student={studentData} />,
+        // element: <StudentProfile student={studentData} />,
       },
 
       {
-        path: "/teacher-exam-reports",
-        element: (
-          <TeacherReportsComponent
-            examsData={teacherExamsData}
-            isTeacher={true}
-          />
-        ),
+        // path: "/teacher-exam-reports",
+        // element: (
+        //   <TeacherReportsComponent
+        //     examsData={teacherExamsData}
+        //     isTeacher={true}
+        //   />
+        // ),
       },
       // {
       //   path: '/teacher-attendance',
