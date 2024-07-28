@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import TeacherSideBar from "../../Pages/Teacher/TeacherSideBar";
 import { UserContext } from "../../Context/UserContext";
-import ParentSideBar from "../../Pages/ParentProfilePage/ParentSideBar";
+import ParentSideBar from "../../Pages/ParentPage/ParentSideBar";
 import StudentSideBar from "../../Pages/Student/StudentSideBar";
 // import { UserContext } from "../Context/UserContext";
 // import UserSideBarSections from "./UserSideBarSections";

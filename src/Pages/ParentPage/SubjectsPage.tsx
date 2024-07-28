@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import SubjectsButtons from '../../Components/SubjectsButtons/SubjectsButtons'
-import AttendanceJournal from '../../Components/AttendanceJournal/AttendanceJournal'
-import ExamsTable from '../../Components/ExamsTable/ExamsTable'
+import { useState } from "react";
+import SubjectsButtons from "../../Components/SubjectsButtons/SubjectsButtons";
+import AttendanceJournal from "../../Components/AttendanceJournal/AttendanceJournal";
+import ExamsTable from "../../Components/ExamsTable/ExamsTable";
 
-import teacherReportData from '../../demoData/teacherReportData'
-import mathAttendanceData from '../../demoData/mathAttendanceData'
-import examsData from '../../demoData/examsData'
-import TeacherReportCard from '../../Components/TeacherReportCard/TeacherReportCard'
+import teacherReportData from "../../demoData/teacherReportData";
+import mathAttendanceData from "../../demoData/mathAttendanceData";
+import examsData from "../../demoData/examsData";
+import TeacherReportCard from "../../Components/TeacherReportCard/TeacherReportCard";
 
-const SubjectsPage = () => {
+const SubjectsPageReut = () => {
   const subjectData = [
     {
-      subjectName: 'Mathematics',
-      teacher_id: 'teacher001',
+      subjectName: "Mathematics",
+      teacher_id: "teacher001",
     },
     {
-      subjectName: 'Physics',
-      teacher_id: 'teacher002',
+      subjectName: "Physics",
+      teacher_id: "teacher002",
     },
     {
-      subjectName: 'History',
-      teacher_id: 'teacher003',
+      subjectName: "History",
+      teacher_id: "teacher003",
     },
     {
-      subjectName: 'Biology',
-      teacher_id: 'teacher004',
+      subjectName: "Biology",
+      teacher_id: "teacher004",
     },
-  ]
+  ];
 
-  const [selectedSubject, setSelectedSubject] = useState(null)
-  const [selectedDate, setSelectedDate] = useState(new Date())
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
     <div className="subjects-container flex flex-col ">
@@ -65,7 +65,7 @@ const SubjectsPage = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default SubjectsPage
+export default SubjectsPageReut;

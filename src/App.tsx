@@ -5,6 +5,7 @@ import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
 import StudentList from "./Components/StudentDetail/StudentList";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
+
 import AddUser from "./Pages/Manager/AddUser/AddUser";
 import ParentPage from "./Pages/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
@@ -16,13 +17,14 @@ import useGetTokens from "./Hooks/UseGetTokens";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./Context/UserContext";
 
-import ParentCard from './Components/ParentCard/ParentCard'
+import ParentCard from "./Components/ParentCard/ParentCard";
 
-import studentData from './demoData/studentData.js'
-=
-import StudentProfile from './Pages/Student/StudentProfile/StudentProfile'
-import TeacherReportsComponent from './Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent'
-import teacherExamsData from '../src/demoData/teacherExamsData'
+import studentData from "./demoData/studentData.js";
+
+import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
+import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
+import teacherExamsData from "../src/demoData/teacherExamsData";
+import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 
 const AppLayout = () => {
@@ -45,11 +47,10 @@ const AppLayout = () => {
   );
 };
 //
-  
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <AppLayout />,
     children: [
       // {
@@ -62,11 +63,11 @@ const router = createBrowserRouter([
         element: <LogIn />,
       },
       {
-        path: '/TeacherSchedule',
+        path: "/TeacherSchedule",
         element: <TeacherSchedule />,
       },
       {
-        path: '/ParentPage',
+        path: "/ParentPage",
         element: <ParentPage />,
       },
       {
@@ -74,7 +75,11 @@ const router = createBrowserRouter([
         element: <SubjectsPage />,
       },
       {
-        path: '/StudentSchedule',
+        path: "/SubjectsPageReut",
+        element: <SubjectsPageReut />,
+      },
+      {
+        path: "/StudentSchedule",
         element: <StudentSchedule />,
       },
       {
@@ -87,17 +92,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/AbsentCalendar",
-        element: <StudentDetails />,},
-        // {
-        // path: '/EventCalendar',
-        // element: <Calendar />,
+        element: <StudentDetails />,
+      },
+      // {
+      // path: '/EventCalendar',
+      // element: <Calendar />,
       // },
       {
-        path: '/parent-card',
+        path: "/parent-card",
         element: <ParentCard />,
       },
       {
-        path: '/Add-members',
+        path: "/Add-members",
         element: <AddUser />,
       },
 
@@ -107,12 +113,12 @@ const router = createBrowserRouter([
       },
 
       {
-        path: '/student-profile',
+        path: "/student-profile",
         element: <StudentProfile student={studentData} />,
       },
 
       {
-        path: '/teacher-exam-reports',
+        path: "/teacher-exam-reports",
         element: (
           <TeacherReportsComponent
             examsData={teacherExamsData}
@@ -163,10 +169,10 @@ const router = createBrowserRouter([
       // },
     ],
   },
-])
+]);
 
 function App() {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
