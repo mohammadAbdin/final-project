@@ -4,6 +4,9 @@ import {
   classes,
   StyledAppointmentsAppointmentContent,
 } from "../../../Components/Calendar/CalendarStyles";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
+
 export default function StudentDetails() {
   const attendanceRecords = [
     {
@@ -49,8 +52,11 @@ export default function StudentDetails() {
         <StyledAppointmentsAppointmentContent {...restProps} data={data}>
           <div className={classes.container}>
             <div className={`${classes.text} text-gray-600`}>
-              {data.students == "True" ? <p>he came</p> : <p>he did not</p>}
-              {/* here to add an x and a green check  */}
+              {data.students == "True" ? (
+                <CheckIcon sx={{ color: "#00E732", fontSize: 49 }} />
+              ) : (
+                <ClearIcon sx={{ color: "red", fontSize: 49 }} />
+              )}
             </div>
           </div>
         </StyledAppointmentsAppointmentContent>
