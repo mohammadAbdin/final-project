@@ -5,7 +5,6 @@ import UseGetChildSubjects from "../../../Hooks/UseGetChildSubjects";
 
 const SubjectsPage = () => {
   const { student_id } = useParams();
-  console.log(student_id);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(UserContext);
 
@@ -13,11 +12,15 @@ const SubjectsPage = () => {
     setIsLoading,
     student_id
   );
-  const [subject, setSubject] = useState("");
+  const [subject, setSubject] = useState<string | null>();
 
   useEffect(() => {
     if (isLoading && user && !childSubjects) {
       if (user._id != undefined) getChildSubjects();
+    }
+    if (childSubjects) {
+      setSubject(subject || childSubjects[0]);
+      console.log("hi");
     }
   }, [isLoading, user, getChildSubjects, childSubjects]);
 
@@ -31,25 +34,8 @@ const SubjectsPage = () => {
       </div>
     );
   }
-  console.log(childSubjects);
-  const subjectData = [
-    {
-      subjectName: "Mathematics",
-      teacher_id: "teacher001",
-    },
-    {
-      subjectName: "Physics",
-      teacher_id: "teacher002",
-    },
-    {
-      subjectName: "History",
-      teacher_id: "teacher003",
-    },
-    {
-      subjectName: "Biology",
-      teacher_id: "teacher004",
-    },
-  ];
+  // console.log(childSubjects);
+  // setSubject(childSubjects[0]);
 
   // const subjectData = [
   //   {
@@ -73,14 +59,16 @@ const SubjectsPage = () => {
     <div className="main-subjects-container">
       <h2>You are watching: {subject}</h2>
       <div className="subjects-container">
-        {subjectData.map((subjectItem) => (
+        {childSubjects.map((subjectItem, index) => (
           <button
-            key={subjectItem.teacher_id}
+            key={index}
             className="subject-item"
-            value={subjectItem.subjectName}
-            onClick={(e) => console.log(e) || setSubject(e.target.value)}
+            value={subjectItem}
+            onClick={(e) =>
+              setSubject((e.target as HTMLButtonElement).textContent || "")
+            }
           >
-            {subjectItem.subjectName}
+            {subjectItem}
           </button>
         ))}
       </div>

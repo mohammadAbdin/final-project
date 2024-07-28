@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
 // import { UserContext } from "../Context/UserContext";
 // import { useNavigate } from "react-router-dom";
 // import { showToastInfoMessage } from "./Toast/Toasts";
 
 const StudentSideBar: React.FC = () => {
-  // const navigate = useNavigate();
-  // const { isLogedIn } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   return (
     <ul className="mt-6 space-y-1">
@@ -18,12 +20,17 @@ const StudentSideBar: React.FC = () => {
         </a>
       </li>
       <li>
-        <a
-          href="/EventCalendar"
+        <button
+          // href="/SubjectsPage/:student_id"
+          onClick={() => {
+            console.log(user?._id);
+
+            navigate(`/SubjectsPage/${user?._id}`);
+          }}
           className="block text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
         >
           My details
-        </a>
+        </button>
       </li>
       {/* <li>
         <details className="group [&_summary::-webkit-details-marker]:hidden">
