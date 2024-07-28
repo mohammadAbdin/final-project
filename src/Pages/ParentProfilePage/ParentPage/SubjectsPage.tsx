@@ -104,6 +104,7 @@ const SubjectsPage = () => {
         <div className="feedback-container">
           <h3>Feedback To Teacher:</h3>
           <input type="text" placeholder="Write your massage here.." />
+          {/*  */}
         </div>
       </div>
     </div>
