@@ -1,10 +1,10 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
 import StudentList from "./Components/StudentDetail/StudentList";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
-import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
+// import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
 
 import AddUser from "./Pages/Manager/AddUser/AddUser";
 import ParentPage from "./Pages/ParentPage/ParentPage";
@@ -26,6 +26,9 @@ import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/Tea
 import teacherExamsData from "./demoData/teacherExamsData.js";
 import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
+import Grades from "./Pages/Teacher/Grades";
+import ClassesList from "./Pages/Teacher/ClassesList";
+import ClassPage from "./Pages/Teacher/ClassPage";
 
 const AppLayout = () => {
   const { user, setIsLogedIn, setUser } = useContext(UserContext);
@@ -40,9 +43,9 @@ const AppLayout = () => {
     return <></>;
   }
   return (
-    <div className="h-full w-full flex flex-row gap-8">
-      <Navbar />
-      <SideBar />
+    <div className="h-full w-full flex flex-row gap-8 text-red-700">
+      {/* SideBar */}
+      {/* Navbar */}
     </div>
   );
 };
@@ -53,6 +56,14 @@ const router = createBrowserRouter([
     path: "/",
     element: <AppLayout />,
     children: [
+      {
+        path: "/class",
+        element: <ClassesList />,
+      },
+      {
+        path: "class/:id",
+        element: <ClassPage />,
+      },
       // {
       //   index: true,
       //   path: "/",
@@ -114,17 +125,17 @@ const router = createBrowserRouter([
 
       {
         path: "/student-profile",
-        element: <StudentProfile student={studentData} />,
+        // element: <StudentProfile student={studentData} />,
       },
 
       {
-        path: "/teacher-exam-reports",
-        element: (
-          <TeacherReportsComponent
-            examsData={teacherExamsData}
-            isTeacher={true}
-          />
-        ),
+        // path: "/teacher-exam-reports",
+        // element: (
+        //   <TeacherReportsComponent
+        //     examsData={teacherExamsData}
+        //     isTeacher={true}
+        //   />
+        // ),
       },
       // {
       //   path: '/teacher-attendance',
