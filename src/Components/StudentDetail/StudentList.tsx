@@ -43,6 +43,7 @@ const StudentList = () => {
   const [interactedStudentIds, setInteractedStudentIds] = useState<Set<number>>(
     new Set()
   );
+  const [attendanceReport, setAttendanceReport] = useState<string | null>(null); // New state for attendance report
 
   const toggleDetails = (student_id: number) => {
     if (expandedStudentId === student_id) {
@@ -65,6 +66,24 @@ const StudentList = () => {
       newSet.add(student_id);
       return newSet;
     });
+  };
+
+  const handleSubmit = () => {
+    const presentStudents = studentList
+      .filter((student) => student.attendance)
+      .map((student) => `${student.studentName} (ID: ${student.student_id})`)
+      .join(", ");
+    const absentStudents = studentList
+      .filter((student) => !student.attendance)
+      .map((student) => `${student.studentName} (ID: ${student.student_id})`)
+      .join(", ");
+
+    // Format the attendance report
+    const report = `
+      Present Students: ${presentStudents || "None"}
+      Absent Students: ${absentStudents || "None"}
+    `;
+    setAttendanceReport(report);
   };
 
   return (
@@ -91,10 +110,10 @@ const StudentList = () => {
                 <strong className="font-medium text-gray-900">
                   {student.studentName}
                 </strong>
-                {/* <p className="mt-1 text-sm text-gray-700">
-                  ID: {student.student_id} |{" "}
-                  {student.attendance ? "Present" : "Absent"}
-                </p> */}
+                <p className="mt-1 text-sm text-gray-700">
+                  {/* ID: {student.student_id} |{" "}
+                  {student.attendance ? "Present" : "Absent"} */}
+                </p>
 
                 {/* Details section */}
                 {expandedStudentId === student.student_id && (
@@ -116,10 +135,23 @@ const StudentList = () => {
           </div>
         ))}
         <div>
-          <button className="ml-auto bg-red-600 hover:bg-red-500 text-white py-2 px-4 rounded-lg focus:outline-none">
+          <button
+            className="ml-auto bg-red-600 hover:bg-red-500 text-white py-2 px-4 rounded-lg focus:outline-none"
+            onClick={handleSubmit}
+          >
             Submit
           </button>
         </div>
+
+        {/* Display attendance report */}
+        {attendanceReport && (
+          <div className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
+            <h3 className="font-bold text-lg mb-2">Attendance Report</h3>
+            <pre className="whitespace-pre-wrap text-sm text-gray-700">
+              {attendanceReport}
+            </pre>
+          </div>
+        )}
       </div>
     </fieldset>
   );
