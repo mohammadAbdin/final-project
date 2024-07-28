@@ -1,25 +1,25 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { UserContext } from "../../../Context/UserContext";
-import UseGetChildSubjects from "../../../Hooks/UseGetChildSubjects";
+import { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { UserContext } from '../../../Context/UserContext'
+import UseGetChildSubjects from '../../../Hooks/UseGetChildSubjects'
 
 const SubjectsPage = () => {
-  const { student_id } = useParams();
-  console.log(student_id);
-  const [isLoading, setIsLoading] = useState(true);
-  const { user } = useContext(UserContext);
+  const { student_id } = useParams()
+  console.log(student_id)
+  const [isLoading, setIsLoading] = useState(true)
+  const { user } = useContext(UserContext)
 
   const { getChildSubjects, childSubjects } = UseGetChildSubjects(
     setIsLoading,
     student_id
-  );
-  const [subject, setSubject] = useState("");
+  )
+  const [subject, setSubject] = useState('')
 
   useEffect(() => {
     if (isLoading && user && !childSubjects) {
-      if (user._id != undefined) getChildSubjects();
+      if (user._id != undefined) getChildSubjects()
     }
-  }, [isLoading, user, getChildSubjects, childSubjects]);
+  }, [isLoading, user, getChildSubjects, childSubjects])
 
   if (isLoading || childSubjects === null) {
     return (
@@ -29,27 +29,27 @@ const SubjectsPage = () => {
       >
         <span className="sr-only">Loading...</span>
       </div>
-    );
+    )
   }
-  console.log(childSubjects);
+  console.log(childSubjects)
   const subjectData = [
     {
-      subjectName: "Mathematics",
-      teacher_id: "teacher001",
+      subjectName: 'Mathematics',
+      teacher_id: 'teacher001',
     },
     {
-      subjectName: "Physics",
-      teacher_id: "teacher002",
+      subjectName: 'Physics',
+      teacher_id: 'teacher002',
     },
     {
-      subjectName: "History",
-      teacher_id: "teacher003",
+      subjectName: 'History',
+      teacher_id: 'teacher003',
     },
     {
-      subjectName: "Biology",
-      teacher_id: "teacher004",
+      subjectName: 'Biology',
+      teacher_id: 'teacher004',
     },
-  ];
+  ]
 
   // const subjectData = [
   //   {
@@ -100,13 +100,14 @@ const SubjectsPage = () => {
           <p>Sunday...</p>
           <p>Monday...</p>
         </div>
+        {/*  */}
         <div className="feedback-container">
           <h3>Feedback To Teacher:</h3>
           <input type="text" placeholder="Write your massage here.." />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SubjectsPage;
+export default SubjectsPage
