@@ -43,9 +43,9 @@ const AppLayout = () => {
     return <></>;
   }
   return (
-    <div className="h-full w-full flex flex-row gap-8 text-red-700">
-      <SideBar />
+    <div className="h-full w-full flex flex-row gap-8">
       <Navbar />
+      <SideBar />
     </div>
   );
 };
