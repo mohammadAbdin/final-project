@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import examsData from "../../../demoData/examsData";
 
 const TeacherAttendanceForm: React.FC = () => {
-  const [data] = useState(examsData)
+  const [data] = useState(examsData);
 
   return (
     <div className="overflow-x-auto p-4 bg-white shadow-md rounded-lg">
@@ -26,7 +27,7 @@ const TeacherAttendanceForm: React.FC = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {data['Teacher Evaluation on Exams'].map((exam, index) => (
+          {data["Teacher Evaluation on Exams"].map((exam, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap text-left">
                 {exam.exam_id}
@@ -45,7 +46,7 @@ const TeacherAttendanceForm: React.FC = () => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default TeacherAttendanceForm
+export default TeacherAttendanceForm;

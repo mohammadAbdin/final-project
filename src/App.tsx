@@ -19,11 +19,11 @@ import { UserContext } from "./Context/UserContext";
 
 import ParentCard from "./Components/ParentCard/ParentCard";
 
-import studentData from "./demoData/studentData.js";
+import studentData from "./demoData/studentData";
 
 import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
 import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
-import teacherExamsData from "../src/demoData/teacherExamsData";
+import teacherExamsData from "./demoData/teacherExamsData.js";
 import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 

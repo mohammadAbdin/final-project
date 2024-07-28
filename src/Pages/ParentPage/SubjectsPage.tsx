@@ -3,12 +3,18 @@ import SubjectsButtons from "../../Components/SubjectsButtons/SubjectsButtons";
 import AttendanceJournal from "../../Components/AttendanceJournal/AttendanceJournal";
 import ExamsTable from "../../Components/ExamsTable/ExamsTable";
 
+// import teacherReportData from "../../demoData/teacherReportData";
 import teacherReportData from "../../demoData/teacherReportData";
-import mathAttendanceData from "../../demoData/mathAttendanceData";
+// import mathAttendanceData from "../../demoData/mathAttendanceData";
+// import examsData from "../../demoData/examsData";
 import examsData from "../../demoData/examsData";
+import mathAttendanceData from "../../demoData/examsData";
 import TeacherReportCard from "../../Components/TeacherReportCard/TeacherReportCard";
+// import mathAttendanceData from './../../demoData/mathAttendanceData';
 
 const SubjectsPageReut = () => {
+  console.log(mathAttendanceData);
+
   const subjectData = [
     {
       subjectName: "Mathematics",
@@ -28,8 +34,8 @@ const SubjectsPageReut = () => {
     },
   ];
 
-  const [selectedSubject, setSelectedSubject] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedSubject, setSelectedSubject] = useState(subjectData[0]);
 
   return (
     <div className="subjects-container flex flex-col ">
