@@ -39,8 +39,10 @@ const StudentList = () => {
   const [expandedStudentId, setExpandedStudentId] = useState<number | null>(
     null
   );
-
   const [studentList, setStudentList] = useState(students);
+  const [interactedStudentIds, setInteractedStudentIds] = useState<Set<number>>(
+    new Set()
+  );
 
   const toggleDetails = (student_id: number) => {
     if (expandedStudentId === student_id) {
@@ -48,6 +50,21 @@ const StudentList = () => {
     } else {
       setExpandedStudentId(student_id); // Expand if not expanded
     }
+  };
+
+  const handleCheckboxChange = (student_id: number) => {
+    // Update the attendance state
+    const updatedStudents = studentList.map((s) =>
+      s.student_id === student_id ? { ...s, attendance: !s.attendance } : s
+    );
+    setStudentList(updatedStudents);
+
+    // Update interacted student IDs
+    setInteractedStudentIds((prev) => {
+      const newSet = new Set(prev);
+      newSet.add(student_id);
+      return newSet;
+    });
   };
 
   return (
@@ -66,14 +83,7 @@ const StudentList = () => {
                   id={`student_${student.student_id}`}
                   className="size-4 rounded border-gray-300"
                   checked={student.attendance}
-                  onChange={() => {
-                    const updatedStudents = studentList.map((s) =>
-                      s.student_id === student.student_id
-                        ? { ...s, attendance: !s.attendance }
-                        : s
-                    );
-                    setStudentList(updatedStudents);
-                  }}
+                  onChange={() => handleCheckboxChange(student.student_id)}
                 />
               </div>
 
