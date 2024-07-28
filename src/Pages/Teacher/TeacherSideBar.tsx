@@ -11,21 +11,21 @@ const TeacherSideBar: React.FC = () => {
     <ul className="mt-6 space-y-1">
       <li>
         <a
-          href="/"
+          href="/TeacherSchedule"
           className="block text-left rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
         >
-          Home
+          Schedule
         </a>
       </li>
       <li>
         <a
-          href="/CompletedProjects"
+          href="/Teacher-Classes"
           className="block text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
         >
-          Projects
+          Classes
         </a>
       </li>
-      <li>
+      {/* <li>
         <details className="group [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-start justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
             <span className="text-sm font-medium">Uploaded Projects</span>
@@ -66,24 +66,24 @@ const TeacherSideBar: React.FC = () => {
             </li>
           </ul>
         </details>
-      </li>
+      </li> */}
       <li>
         <a
-          href="#"
+          href="/EventCalendar"
           className="block text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
         >
-          Be an Admin
+          Events
         </a>
       </li>
-      <li>
+      {/* <li>
         <a
           href="#"
           className="block text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
         >
           Our Admins
         </a>
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <details className="group [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-start justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
             <span className="text-sm font-medium"> Account </span>
@@ -115,7 +115,7 @@ const TeacherSideBar: React.FC = () => {
             </li>
           </ul>
         </details>
-      </li>
+      </li> */}
     </ul>
   );
 };

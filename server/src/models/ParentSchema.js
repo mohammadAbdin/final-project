@@ -2,11 +2,8 @@ import mongoose from "mongoose";
 import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const childSchema = new mongoose.Schema({
-  // name: String,
   student_id: {
     type: String,
-    // required: true,
-    // unique: true, // Ensure the student_id is unique
   },
 });
 

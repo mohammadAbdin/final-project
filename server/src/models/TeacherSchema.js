@@ -10,12 +10,15 @@ const scheduleSchema = new mongoose.Schema({
 const teacherSchema = new mongoose.Schema({
   teacher_id: {
     type: String,
-    // required: true,
     unique: true,
   },
   name: String,
   age: Number,
   gender: String,
+  phone: {
+    type: String,
+    required: true,
+  },
   subject: String,
   schedule: [scheduleSchema],
 });

@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import TeacherSideBar from "../../Pages/Teacher/TeacherSideBar";
+import { UserContext } from "../../Context/UserContext";
+import ParentSideBar from "../../Pages/ParentProfilePage/ParentSideBar";
+import StudentSideBar from "../../Pages/Student/StudentSideBar";
 // import { UserContext } from "../Context/UserContext";
 // import UserSideBarSections from "./UserSideBarSections";
 // import useGetTokens from "../Hooks/UseGetTokens";
 // import AdminSideBarSections from "../Pages/Admin/Components/AdminSideBarSections";
 
 const Sidebar: React.FC = () => {
-  // const { user, isAdmin, setIsLogedIn, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  console.log(user, "sidebar");
+
   // const { isLoading } = useGetTokens(setIsLogedIn, setUser);
   // useEffect(() => {
   //   if (!isLoading) {
@@ -22,7 +27,9 @@ const Sidebar: React.FC = () => {
     <>
       <div className=" lg:flex flex-col h-full justify-between  hidden mr-32  xl:mr-0 border-e bg-white lg:w-40 w-20 items-start   relative left-0  top-32">
         <div className=" sticky px-1 py-6 w-32">
-          <TeacherSideBar />
+          {user?.userType == "Teacher" ? <TeacherSideBar /> : <></>}
+          {user?.userType == "Parent" ? <ParentSideBar /> : <></>}
+          {user?.userType == "Student" ? <StudentSideBar /> : <></>}
         </div>
 
         <div className="sticky inset-x-0 bottom-0 mr-12 border-t  border-gray-100">
@@ -39,10 +46,10 @@ const Sidebar: React.FC = () => {
             <div>
               <p className="text-xs w-20 relative ">
                 <strong className="block font-medium text-wrap">
-                  {/* {user ? user.name : "user not found"} */}
+                  {user ? user.userType : "user not found"}
                 </strong>
-                <span className="block text-wrap w-20 h-full">
-                  {/* {user ? user.email : ""} */}
+                <span className="block text-wrap w-20 ml-4 h-full">
+                  {user ? user.name : ""}
                 </span>
               </p>
             </div>

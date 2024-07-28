@@ -1,16 +1,11 @@
 // ParentInfo.js
 import React from "react";
-interface FormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  id: string;
-}
+import { FormDataType } from "../../../Types/FormDataType";
 
 interface ParentInfoProps {
-  formData: FormData;
+  formData: FormDataType;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  AddUserRequest: (userType: string, formData: FormData) => Promise<void>;
+  AddUserRequest: (userType: string, formData: FormDataType) => Promise<void>;
 }
 
 function ParentInfo({
@@ -97,7 +92,7 @@ function ParentInfo({
             className="text-left ml-5 bg-gray-500 p-2 rounded hover:bg-gray-700 text-white"
             onClick={(e) => {
               e.preventDefault();
-              //   console.log("formData", formData);
+              // console.log("formData", formData);
               AddUserRequest("Parent", formData);
             }}
           >

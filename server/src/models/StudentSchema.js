@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
-// const studentScheduleSchema = new mongoose.Schema({
-//   day: String, // e.g., 'Monday'
-//   period: String, // e.g., '09:00-10:00'
-//   subject: String,
-// });
-
+const reportSchema = new mongoose.Schema({
+  date: String, // e.g., 'Monday'
+  title: String, // e.g., '09:00-10:00'
+  description: String,
+});
 const studentSchema = new mongoose.Schema({
   student_id: {
     type: String,
@@ -16,7 +15,7 @@ const studentSchema = new mongoose.Schema({
   name: String,
   gender: String,
   class: String,
-  // schedule: [studentScheduleSchema],
+  report: [reportSchema],
 });
 let Student;
 

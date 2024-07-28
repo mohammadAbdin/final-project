@@ -3,12 +3,11 @@ import jwt from "jsonwebtoken";
 import process from "process";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
+
 export const LoginUser = async (req, res) => {
-  console.log("hi");
   const { email, password } = req.body;
   try {
     const User = await getUserModel();
-
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "Invalid email or password" });
@@ -30,7 +29,7 @@ export const LoginUser = async (req, res) => {
       res.status(200).json({
         message: "Login successful",
         user,
-        isAdmin: user.isAdmin,
+        userType: user.userType,
         token: token,
       });
     }

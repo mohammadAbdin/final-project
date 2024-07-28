@@ -1,14 +1,10 @@
 import axios from "axios";
 
-interface FormData {
-  fullName: string;
-  email: string;
-  phone: string;
-}
+import { FormDataType } from "../Types/FormDataType";
 
 async function AddUserRequest(
   userType: string,
-  formData: FormData
+  formData: FormDataType
 ): Promise<void> {
   try {
     const response = await axios.post("http://localhost:5001/user/Add-user", {

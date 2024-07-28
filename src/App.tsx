@@ -1,3 +1,19 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SideBar from "./Components/SideBar/SideBar";
+import Navbar from "./Components/Navbar/Navbar";
+import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
+import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
+import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
+import AddUser from "./Pages/Manager/AddUser/AddUser";
+import ParentPage from "./Pages/ParentProfilePage/ParentPage/ParentPage";
+import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
+import EventClanedar from "./Components/Calendar/EventCalendar";
+import StudentDetails from "./Pages/Student/StudentDetails/StudentDetails";
+import TeacherAbsentCalendar from "./Pages/Teacher/TeacherAbsentCalendar/TeacherAbsentCalendar";
+import LogIn from "./Pages/LogIn/LogIn";
+import useGetTokens from "./Hooks/UseGetTokens";
+import { useContext, useEffect } from "react";
+import { UserContext } from "./Context/UserContext";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import SideBar from './Components/SideBar/SideBar'
 import Navbar from './Components/Navbar/Navbar'
@@ -16,11 +32,25 @@ import teacherExamsData from '../src/demoData/teacherExamsData'
 import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 
 const AppLayout = () => {
+  const { user, setIsLogedIn, setUser } = useContext(UserContext);
+  const { isLoading } = useGetTokens(setIsLogedIn, setUser);
+  useEffect(() => {
+    if (!isLoading) {
+      console.log("User after fetch:", user);
+    }
+  }, [isLoading, user]);
+
+  if (isLoading) {
+    return <></>;
+  }
   return (
     <div className="h-full w-full flex flex-row gap-8">
       <Navbar />
       <SideBar />
     </div>
+  );
+};
+//
   )
 }
 const router = createBrowserRouter([
@@ -34,6 +64,10 @@ const router = createBrowserRouter([
       //   element: <Home />,
       // },
       {
+        path: "/LogIn",
+        element: <LogIn />,
+      },
+      {
         path: '/TeacherSchedule',
         element: <TeacherSchedule />,
       },
@@ -42,6 +76,7 @@ const router = createBrowserRouter([
         element: <ParentPage />,
       },
       {
+        path: "/SubjectsPage/:student_id",
         path: '/SubjectsPage',
         element: <SubjectsPage />,
       },
@@ -50,6 +85,16 @@ const router = createBrowserRouter([
         element: <StudentSchedule />,
       },
       {
+        path: "/EventCalendar",
+        element: <EventClanedar />,
+      },
+      {
+        path: "/TeacherAbsentCalendar",
+        element: <TeacherAbsentCalendar />,
+      },
+      {
+        path: "/AbsentCalendar",
+        element: <StudentDetails />,
         path: '/EventCalendar',
         element: <Calendar />,
       },

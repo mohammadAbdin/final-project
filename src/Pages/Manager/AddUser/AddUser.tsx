@@ -1,22 +1,69 @@
-import React, { useState } from "react";
+import { UserTypeOptions } from "./UserTypeOptions";
+import React, { useEffect, useState } from "react";
 import ParentInfo from "./ParentInfo";
 import AddUserRequest from "../../../Api/PostAddUserRequest";
+import { FormDataType } from "../../../Types/FormDataType";
+import StudentInfo from "./StudentInfo";
+import { getAllParentIds } from "../../../Api/GetAllParentsId";
+import { ParentOptionsType } from "../../../Types/ParentOptionsType";
+import TeacherInfo from "./TeacherInfo";
 
 function AddUser() {
   const [selectedOption, setSelectedOption] = useState("Student");
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     fullName: "",
     email: "",
-    phone: "",
     id: "",
+    age: 0,
+    schedule: [],
   });
+  const [parentOptions, setParentOptions] = useState<ParentOptionsType[]>([]);
+  useEffect(() => {
+    const fetchParentIds = async () => {
+      try {
+        const response = await getAllParentIds();
+        console.log("response");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+        setParentOptions(response);
+      } catch (err) {
+        console.error("Error fetching parent IDs" + err);
+      }
+    };
+
+    fetchParentIds();
+  }, []);
+
+  interface SyntheticEvent {
+    target: {
+      id: string;
+      value?: string;
+      textContent?: string;
+    };
+  }
+  const handleInputChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+      | React.MouseEvent<HTMLDivElement>
+      | SyntheticEvent
+  ) => {
+    const target = e.target as
+      | HTMLInputElement
+      | HTMLSelectElement
+      | HTMLDivElement
+      | { id: string; value?: string; textContent?: string };
+    const { id } = target;
+
+    if ("textContent" in target && id === "subject") {
+      setFormData((prevState) => ({
+        ...prevState,
+        [id]: target.textContent || "",
+      }));
+    } else if ("value" in target) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [id]: target.value,
+      }));
+    }
   };
 
   return (
@@ -24,43 +71,11 @@ function AddUser() {
       <div className="w-full">
         <div className="flex w-full">
           <div className="border-b border-gray-200 w-full">
-            <nav className="-mb-px flex flex-row justify-between w-full">
-              <a
-                href="#"
-                className={`shrink-0 border p-3 text-sm font-medium ${
-                  selectedOption === "Student"
-                    ? "rounded-t-lg border-gray-300 border-b-white text-sky-600"
-                    : "border-transparent"
-                }`}
-                onClick={() => setSelectedOption("Student")}
-              >
-                Student
-              </a>
-
-              <a
-                href="#"
-                className={`shrink-0 border p-3 text-sm font-medium ${
-                  selectedOption === "Parent"
-                    ? "rounded-t-lg border-gray-300 border-b-white text-sky-600"
-                    : "border-transparent"
-                }`}
-                onClick={() => setSelectedOption("Parent")}
-              >
-                Parent
-              </a>
-
-              <a
-                href="#"
-                className={`shrink-0 border p-3 text-sm font-medium ${
-                  selectedOption === "Teacher"
-                    ? "rounded-t-lg border-gray-300 border-b-white text-sky-600"
-                    : "border-transparent"
-                }`}
-                onClick={() => setSelectedOption("Teacher")}
-              >
-                Teacher
-              </a>
-            </nav>
+            <UserTypeOptions
+              selectedOption={selectedOption}
+              setFormData={setFormData}
+              setSelectedOption={setSelectedOption}
+            />
           </div>
         </div>
       </div>
@@ -72,11 +87,24 @@ function AddUser() {
           AddUserRequest={AddUserRequest}
         />
       )}
+      {selectedOption === "Student" && (
+        <StudentInfo
+          formData={formData}
+          handleInputChange={handleInputChange}
+          AddUserRequest={AddUserRequest}
+          parentOptions={parentOptions}
+        />
+      )}
+      {selectedOption === "Teacher" && (
+        <TeacherInfo
+          formData={formData}
+          setFormData={setFormData}
+          handleInputChange={handleInputChange}
+          AddUserRequest={AddUserRequest}
+        />
+      )}
 
-      {/* Display form data object for debugging purposes */}
-      <div className="mt-4">
-        {/* <pre>{JSON.stringify(formData, null, 2)}</pre> */}
-      </div>
+      <div className="mt-4"></div>
     </div>
   );
 }
