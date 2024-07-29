@@ -1,11 +1,12 @@
 import axios from "axios";
+import { ClassType } from "./../Types/ClassType";
 
 export const UseGetTeacherSubjectsRequest = async (
   id: string
-): Promise<string[] | null> => {
+): Promise<ClassType[] | null> => {
   try {
     const response = await axios.get<[]>(
-      `http://localhost:5001/teacher/Teacher-Subjects/${id}`,
+      `http://localhost:5001/teacher/Teacher-Classes/${id}`,
       {
         headers: {
           "Content-Type": "application/json",

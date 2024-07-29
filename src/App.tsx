@@ -19,7 +19,7 @@ import { UserContext } from "./Context/UserContext";
 
 import ParentCard from "./Components/ParentCard/ParentCard";
 
-import studentData from "./demoData/studentData";
+// import studentData from "./demoData/studentData";
 
 import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
 import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         element: <ClassesList />,
       },
       {
-        path: "class/:id",
+        path: "/class/:id",
         element: <ClassPage />,
       },
       // {
@@ -126,6 +126,10 @@ const router = createBrowserRouter([
       {
         path: "/student-profile",
         element: <StudentProfile />,
+      },
+      {
+        path: "/ClassesList",
+        element: <ClassesList />,
       },
 
       {
