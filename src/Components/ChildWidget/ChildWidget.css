@@ -46,7 +46,7 @@
   height: 100%;
 }
 
-.calendar-container,
+/* .calendar-container,
 .marks-container,
 .student-schedule-container,
 .feedback-container {
@@ -56,7 +56,7 @@
   margin: 1rem;
   border-radius: 2rem;
   box-shadow: "lg";
-}
+} */
 
 @media screen and (min-width: 576px) {
   .main-info-container {
