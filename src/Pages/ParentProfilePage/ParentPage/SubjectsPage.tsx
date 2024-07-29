@@ -1,16 +1,35 @@
+import teacherReportData from "../../../demoData/teacherReportData";
+import mathAttendanceData from "../../../demoData/mathAttendanceData";
+import examsData from "../../../demoData/examsData";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../../Context/UserContext";
 import UseGetChildSubjects from "../../../Hooks/UseGetChildSubjects";
 import Chart from "chart.js/auto";
-import { CategoryScale } from "chart.js";
 import LineChart from "../../../Components/StatsChart/StatsChart";
+import AttendanceJournal from "../../../Components/AttendanceJournal/AttendanceJournal";
+import ExamsTable from "../../../Components/ExamsTable/ExamsTable";
+import TeacherReportCard from "../../../Components/TeacherReportCard/TeacherReportCard";
+import VideoForm from "../../../Components/VideoForm/VideoForm";
 
-const SubjectsPage = () => {
-  const { student_id } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
+interface ChartData {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    fill: boolean;
+    backgroundColor: string;
+    borderColor: string;
+  }[];
+}
+
+const SubjectsPage: React.FC = () => {
+  const { student_id } = useParams<{ student_id: string }>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { user } = useContext(UserContext);
-  const [chartData, setChartData] = useState({
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [chartData, setChartData] = useState<ChartData>({
     labels: ["Exam1", "Exam2", "Midterm", "Final"],
     datasets: [
       {
@@ -22,22 +41,20 @@ const SubjectsPage = () => {
       },
     ],
   });
-  console.log;
   const { getChildSubjects, childSubjects } = UseGetChildSubjects(
     setIsLoading,
     student_id
   );
-  const [subject, setSubject] = useState<string | null>();
+  const [subject, setSubject] = useState<string | null>(null);
 
   useEffect(() => {
     if (isLoading && user && !childSubjects) {
-      if (user._id != undefined) getChildSubjects()
+      if (user._id !== undefined) getChildSubjects();
     }
     if (childSubjects) {
       setSubject(subject || childSubjects[0]);
-      console.log("hi");
     }
-  }, [isLoading, user, getChildSubjects, childSubjects]);
+  }, [isLoading, user, getChildSubjects, childSubjects, subject]);
 
   if (isLoading || childSubjects === null) {
     return (
@@ -47,29 +64,9 @@ const SubjectsPage = () => {
       >
         <span className="sr-only">Loading...</span>
       </div>
-    )
+    );
   }
-  // console.log(childSubjects);
-  // setSubject(childSubjects[0]);
 
-  // const subjectData = [
-  //   {
-  //     subjectName: "Mathematics",
-  //     teacher_id: "teacher001",
-  //   },
-  //   {
-  //     subjectName: "Physics",
-  //     teacher_id: "teacher002",
-  //   },
-  //   {
-  //     subjectName: "History",
-  //     teacher_id: "teacher003",
-  //   },
-  //   {
-  //     subjectName: "Biology",
-  //     teacher_id: "teacher004",
-  //   },
-  // ];
   return (
     <div className="main-subjects-container">
       <h2>You are watching: {subject}</h2>
@@ -89,30 +86,31 @@ const SubjectsPage = () => {
       </div>
       <div className="main-info-container">
         <div className="calendar-container">
-          <h3>Student's Attendance:</h3>
-          <div className="calender-div">
-            <p>Here will be the Attendance calendar</p>
+          <div className="app-container mt-2">
+            <AttendanceJournal
+              events={mathAttendanceData}
+              selectedDate={selectedDate}
+              onDateChange={setSelectedDate}
+            />
           </div>
         </div>
-        <div className="marks-container">
-          <p>Exam 1: Mark</p>
-          <p>Exam 2: Mark</p>
-          <p>Midterm: Mark</p>
+        <div className="exams-table-container  mt-2 ">
+          <ExamsTable
+            examsData={examsData}
+            subjectName={selectedSubject?.subjectName}
+          />
         </div>
         <div className="student-schedule-container">
           <p>Sunday...</p>
           <p>Monday...</p>
         </div>
-        {/*  */}
-        <div className="feedback-container">
-          <h3>Feedback To Teacher:</h3>
-          <input type="text" placeholder="Write your massage here.." />
-          {/*  */}
+        <div className="teacher-report-card-container mt-2">
+          <TeacherReportCard teacherReportData={teacherReportData} />
         </div>
         <LineChart chartData={chartData} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SubjectsPage
+export default SubjectsPage;

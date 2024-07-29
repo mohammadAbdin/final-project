@@ -1,110 +1,45 @@
-// import React, { useEffect, useRef } from "react";
-// import { Line } from "react-chartjs-2";
-// function LineChart({ chartData }) {
-//   const chartRef = useRef(null);
-
-//   useEffect(() => {
-//     return () => {
-//       if (chartRef.current) {
-//         chartRef.current.destroy();
-//       }
-//     };
-//   }, []);
-//   return (
-//     <div className="chart-container">
-//       <h2 style={{ textAlign: "center" }}>Line Chart</h2>
-//       <Line
-//         ref={chartRef}
-//         data={chartData}
-//         options={{
-//           plugins: {
-//             title: {
-//               display: true,
-//               text: "Student's Exams Statistics",
-//             },
-//             legend: {
-//               display: false,
-//             },
-//           },
-//         }}
-//       />
-//     </div>
-//   );
-// }
-// export default LineChart;
-// import React, { useEffect, useRef } from "react";
-// import { Line } from "react-chartjs-2";
-
-// function LineChart({ chartData }) {
-//   const chartRef = useRef(null);
-
-//   useEffect(() => {
-//     return () => {
-//       if (chartRef.current) {
-//         chartRef.current.destroy();
-//       }
-//     };
-//   }, []);
-
-//   return (
-//     <div className="chart-container">
-//       <h2 style={{ textAlign: "center" }}>Line Chart</h2>
-//       <Line
-//         ref={chartRef}
-//         data={chartData}
-//         options={{
-//           plugins: {
-//             title: {
-//               display: true,
-//               text: "Student's Exams Statistics",
-//             },
-//             legend: {
-//               display: false,
-//             },
-//           },
-//         }}
-//       />
-//     </div>
-//   );
-// }
-
-// export default LineChart;
 import React, { useEffect, useRef } from "react";
 import { Line } from "react-chartjs-2";
-import Chart from "chart.js/auto";
+import Chart, { ChartData, ChartOptions } from "chart.js/auto";
 
-function LineChart({ chartData }) {
-  const chartRef = useRef(null);
-  const canvasRef = useRef(null);
+interface LineChartProps {
+  chartData: ChartData<"line">;
+}
+
+const LineChart: React.FC<LineChartProps> = ({ chartData }) => {
+  const chartRef = useRef<Chart | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     if (chartRef.current) {
       chartRef.current.destroy();
     }
 
-    const newChartInstance = new Chart(canvasRef.current, {
-      type: "line",
-      data: chartData,
-      options: {
-        scales: {
-          y: {
-            min: 0,
-            max: 100,
+    if (canvasRef.current) {
+      const newChartInstance = new Chart(canvasRef.current, {
+        type: "line",
+        data: chartData,
+        options: {
+          scales: {
+            y: {
+              min: 0,
+              max: 100,
+            },
           },
-        },
-        plugins: {
-          title: {
-            display: true,
-            text: "Student's Exams Statistics",
+          plugins: {
+            title: {
+              display: true,
+              text: "Student's Exams Statistics",
+            },
+            legend: {
+              display: false,
+            },
           },
-          legend: {
-            display: false,
-          },
-        },
-      },
-    });
+        } as ChartOptions<"line">,
+      });
 
-    chartRef.current = newChartInstance;
+      chartRef.current = newChartInstance;
+    }
 
     return () => {
       if (chartRef.current) {
@@ -119,6 +54,6 @@ function LineChart({ chartData }) {
       <canvas ref={canvasRef} />
     </div>
   );
-}
+};
 
 export default LineChart;
