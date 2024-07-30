@@ -1,6 +1,6 @@
 import getclassModel from "../../models/ClassSchema.js";
 // import { restructureAllClasses } from "./restructureAllClasses.js";
-export const GetClassExams = async (req, res) => {
+export const GetClassDeatils = async (req, res) => {
   try {
     const { id, classNumber } = req.query;
     const Class = await getclassModel();
