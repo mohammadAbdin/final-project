@@ -15,6 +15,7 @@ const Video: React.FC<VideoType> = ({ id, title, description, url }) => {
     //   console.log(`Delete video ${id}`);
     //   setVideos(videos.filter((video) => id !== id));
   };
+  console.log(id);
 
   return (
     <div

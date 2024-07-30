@@ -139,7 +139,11 @@ const ClassPage: React.FC = () => {
       )}
 
       {view === "videos" && <Units topics={fetchTopics} />}
-      {view === "Attendance journal" && <div>absence</div>}
+      {view === "Attendance journal" && (
+        // <div>
+        <TeachersAttendanceJournal />
+        // </div>
+      )}
       {view === "feedback" && <div>feedback</div>}
     </div>
   );
