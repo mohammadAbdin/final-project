@@ -75,7 +75,10 @@ const VideoForm = ({ isEdit, data }) => {
                 className="input-field"
               />
 
-              <button type="submit" className="btn">
+              <button
+                type="submit"
+                className="text-white bg-blue-400 rounded-sm font-semibold  p-1"
+              >
                 Submit Video
               </button>
             </form>

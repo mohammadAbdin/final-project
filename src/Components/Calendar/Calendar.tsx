@@ -17,6 +17,11 @@ import {
 
 import Paper from "@mui/material/Paper";
 import classNames from "clsx";
+
+// const classes = {
+//   weekEndDayScaleCell: "bg-gray-200",
+//   weekEndCell: "bg-gray-100",
+// };
 interface CalendarComponentType {
   calendarData: {
     students: string;
@@ -33,38 +38,6 @@ const CalendarComponent = ({
   calendarData,
   Calendar1,
 }: CalendarComponentType) => {
-  // const calendarData1 = [
-  //   {
-  //     students: "Holiday",
-  //     allStudents: "",
-  //     startDate: new Date(2024, 6, 7, 12, 0),
-  //     endDate: new Date(2024, 6, 9, 12, 1),
-  //   },
-  //   {
-  //     students: 24,
-  //     allStudents: 24,
-  //     startDate: new Date(2024, 6, 17, 12, 0),
-  //     endDate: new Date(2024, 6, 17, 12, 1),
-  //   },
-  //   {
-  //     students: 22,
-  //     allStudents: 24,
-  //     startDate: new Date(2024, 6, 4, 12, 0),
-  //     endDate: new Date(2024, 6, 4, 12, 1),
-  //   },
-  // ];
-
-  // const attendanceRecords = [
-  //   {
-  //     date: "2024/07/24", // Format: 'year/month/day'
-  //     attendance: true,
-  //     students: "Holiday",
-  //     allStudents: "",
-  //     startDate: new Date(year, month, day, 12, 0),
-  //     endDate: new Date(2024, 6, 9, 12, 1),
-  //   },
-  // ];
-
   const isWeekEnd = (date: Date): boolean => date.getDay() === 6;
 
   const DayScaleCell = ({
