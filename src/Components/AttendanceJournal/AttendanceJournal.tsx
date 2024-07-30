@@ -1,18 +1,24 @@
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css'
-import './AttendanceJournal.css'
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "./AttendanceJournal.css";
 
-const AttendanceJournal = ({ events, selectedDate, onDateChange }) => {
+interface Props {
+  events?: any;
+  selectedDate: any;
+  onDateChange: any;
+}
+
+const AttendanceJournal = ({ events, selectedDate, onDateChange }: Props) => {
   const tileClassName = ({ date }) => {
-    const formattedDate = date.toISOString().split('T')[0]
-    const dayEvent = events.find((event) => event.date === formattedDate)
+    const formattedDate = date.toISOString().split("T")[0];
+    const dayEvent = events.find((event) => event.date === formattedDate);
 
     if (dayEvent) {
-      return `${dayEvent.status}`
+      return `${dayEvent.status}`;
     } else {
-      return ''
+      return "";
     }
-  }
+  };
 
   return (
     <div className="calendar-container p-4">
@@ -23,7 +29,7 @@ const AttendanceJournal = ({ events, selectedDate, onDateChange }) => {
         tileClassName={tileClassName}
       />
     </div>
-  )
-}
+  );
+};
 
-export default AttendanceJournal
+export default AttendanceJournal;

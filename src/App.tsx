@@ -57,11 +57,11 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/class",
+        path: "/classes",
         element: <ClassesList />,
       },
       {
-        path: "class/:id",
+        path: "classes/:id",
         element: <ClassPage />,
       },
       // {
@@ -128,15 +128,15 @@ const router = createBrowserRouter([
         // element: <StudentProfile student={studentData} />,
       },
 
-      {
-        // path: "/teacher-exam-reports",
-        // element: (
-        //   <TeacherReportsComponent
-        //     examsData={teacherExamsData}
-        //     isTeacher={true}
-        //   />
-        // ),
-      },
+      // {
+      // path: "/teacher-exam-reports",
+      // element: (
+      //   <TeacherReportsComponent
+      //     examsData={teacherExamsData}
+      //     isTeacher={true}
+      //   />
+      // ),
+      // },
       // {
       //   path: '/teacher-attendance',
       //   element: <TeacherAttendance />,

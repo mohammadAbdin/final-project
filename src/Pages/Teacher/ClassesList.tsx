@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TeacherReportsComponent from "./TeacherReportsComponent/TeacherReportsComponent";
 
 type Class = {
   id: number;
@@ -24,7 +25,7 @@ const ClassesList: React.FC = () => {
             className="flex justify-between items-center border-b py-2 last:border-b-0"
           >
             <Link
-              to={`/class/${classItem.id}`}
+              to={`/classes/${classItem.id}`}
               className="text-blue-500 hover:underline"
             >
               {classItem.name}
