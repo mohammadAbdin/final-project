@@ -1,54 +1,58 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 // Updated data with attendance and details
 const students = [
   {
     student_id: 1,
-    studentName: "John Doe",
+    studentName: 'John Doe',
     attendance: true,
-    details: "John is a diligent student.",
+    details: 'John is a diligent student.',
   },
   {
     student_id: 2,
-    studentName: "Jane Smith",
+    studentName: 'Jane Smith',
     attendance: false,
-    details: "Jane needs to improve attendance.",
+    details: 'Jane needs to improve attendance.',
   },
   {
     student_id: 3,
-    studentName: "Michael Johnson",
+    studentName: 'Michael Johnson',
     attendance: true,
-    details: "Michael is active in class discussions.",
+    details: 'Michael is active in class discussions.',
   },
   {
     student_id: 4,
-    studentName: "Emily Davis",
+    studentName: 'Emily Davis',
     attendance: true,
-    details: "Emily consistently submits quality assignments.",
+    details: 'Emily consistently submits quality assignments.',
   },
   {
     student_id: 5,
-    studentName: "William Brown",
+    studentName: 'William Brown',
     attendance: false,
-    details: "William missed the last group project deadline.",
+    details: 'William missed the last group project deadline.',
   },
-];
+]
 
 const StudentList = () => {
+  const location = useLocation()
+  const selectedDate = location.state.selectedDate
+
   const [expandedStudentId, setExpandedStudentId] = useState<number | null>(
     null
-  );
+  )
 
-  const [studentList, setStudentList] = useState(students);
+  const [studentList, setStudentList] = useState(students)
 
   const toggleDetails = (student_id: number) => {
     if (expandedStudentId === student_id) {
-      setExpandedStudentId(null); // Collapse if already expanded
+      setExpandedStudentId(null) // Collapse if already expanded
     } else {
-      setExpandedStudentId(student_id); // Expand if not expanded
+      setExpandedStudentId(student_id) // Expand if not expanded
     }
-  };
+  }
 
   return (
     <fieldset>
@@ -71,8 +75,8 @@ const StudentList = () => {
                       s.student_id === student.student_id
                         ? { ...s, attendance: !s.attendance }
                         : s
-                    );
-                    setStudentList(updatedStudents);
+                    )
+                    setStudentList(updatedStudents)
                   }}
                 />
               </div>
@@ -97,7 +101,7 @@ const StudentList = () => {
               <button
                 className="ml-auto bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded-lg focus:outline-none"
                 onClick={() => {
-                  console.log(student.student_id);
+                  console.log(student.student_id)
                 }}
               >
                 View Details
@@ -112,7 +116,7 @@ const StudentList = () => {
         </div>
       </div>
     </fieldset>
-  );
-};
+  )
+}
 
-export default StudentList;
+export default StudentList

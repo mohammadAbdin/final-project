@@ -1,6 +1,6 @@
 const ExamsTable = ({ examsData, subjectName }) => {
   return (
-    <div className="overflow-x-auto p-4 bg-white shadow-md rounded-lg">
+    <div className="border border-gray-300 rounded-md p-4 m-4 bg-white">
       <h2 className="text-lg font-semibold mb-2">{subjectName} Exams Scores</h2>
       <table className="min-w-full bg-white divide-y divide-gray-200">
         <thead className="bg-gray-50">

@@ -23,6 +23,7 @@ import ParentCard from "./Components/ParentCard/ParentCard";
 
 import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
 import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
+import teacherExamsData from "./demoData/teacherExamsData.js";
 import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 import Grades from "./Pages/Teacher/Grades";
@@ -42,7 +43,7 @@ const AppLayout = () => {
     return <></>;
   }
   return (
-    <div className="h-full w-full flex flex-row gap-8">
+    <div className="h-full w-full flex flex-row gap-8 bg-gray-50">
       <Navbar />
       <SideBar />
     </div>
@@ -118,7 +119,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/StudentList",
+        path: "/student-list",
         element: <StudentList />,
       },
 
