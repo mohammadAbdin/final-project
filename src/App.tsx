@@ -23,7 +23,6 @@ import ParentCard from "./Components/ParentCard/ParentCard";
 
 import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
 import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
-import teacherExamsData from "./demoData/teacherExamsData.js";
 import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 import Grades from "./Pages/Teacher/Grades";
