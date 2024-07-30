@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 // Updated data with attendance and details
 const students = [
   {
@@ -35,9 +36,16 @@ const students = [
 ];
 
 const StudentList = () => {
+{/* <AttendanceJournal
+  events={mathAttendanceData}
+  selectedDate={selectedDate}
+  onDateChange={setSelectedDate}
+/>; */}
+  
   const [expandedStudentId, setExpandedStudentId] = useState<number | null>(
     null
   );
+  
   const [studentList, setStudentList] = useState(students);
   const [attendanceReport, setAttendanceReport] = useState<string | null>(null);
 
@@ -141,3 +149,7 @@ const StudentList = () => {
 };
 
 export default StudentList;
+
+
+
+

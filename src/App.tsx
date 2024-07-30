@@ -29,6 +29,7 @@ import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
 import Grades from "./Pages/Teacher/Grades";
 import ClassesList from "./Pages/Teacher/ClassesList";
 import ClassPage from "./Pages/Teacher/ClassPage";
+import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
 
 const AppLayout = () => {
   const { user, setIsLogedIn, setUser } = useContext(UserContext);
@@ -129,6 +130,10 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "/StudentInfo",
+        element: <StudentInfo />,
+      }
+      
         // path: "/teacher-exam-reports",
         // element: (
         //   <TeacherReportsComponent
@@ -136,7 +141,7 @@ const router = createBrowserRouter([
         //     isTeacher={true}
         //   />
         // ),
-      },
+      
       // {
       //   path: '/teacher-attendance',
       //   element: <TeacherAttendance />,
