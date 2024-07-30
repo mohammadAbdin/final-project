@@ -57,7 +57,7 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/class",
+        path: "/classes",
         element: <ClassesList />,
       },
       {
@@ -122,10 +122,6 @@ const router = createBrowserRouter([
       {
         path: "/student-profile",
         element: <StudentProfile />,
-      },
-      {
-        path: "/ClassesList",
-        element: <ClassesList />,
       },
 
       {

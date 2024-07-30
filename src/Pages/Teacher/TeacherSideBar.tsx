@@ -2,6 +2,7 @@ import React from "react";
 // import { UserContext } from "../Context/UserContext";
 // import { useNavigate } from "react-router-dom";
 // import { showToastInfoMessage } from "./Toast/Toasts";
+import { Link } from "react-router-dom";
 
 const TeacherSideBar: React.FC = () => {
   // const navigate = useNavigate();
@@ -10,20 +11,20 @@ const TeacherSideBar: React.FC = () => {
   return (
     <ul className="mt-6 space-y-1">
       <li>
-        <a
-          href="/TeacherSchedule"
+        <Link
+          to="/TeacherSchedule"
           className="block text-left rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
         >
           Schedule
-        </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="/class"
-          className="block text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+        <Link
+          to="/class"
+          className="block text-left rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
         >
           Classes
-        </a>
+        </Link>
       </li>
       {/* <li>
         <details className="group [&_summary::-webkit-details-marker]:hidden">
