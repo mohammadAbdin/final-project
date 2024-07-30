@@ -29,6 +29,7 @@ import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
 import Grades from "./Pages/Teacher/Grades";
 import ClassesList from "./Pages/Teacher/ClassesList";
 import ClassPage from "./Pages/Teacher/ClassPage";
+import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
 
 const AppLayout = () => {
   const { user, setIsLogedIn, setUser } = useContext(UserContext);
@@ -57,18 +58,14 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/class",
+        path: "/classes",
         element: <ClassesList />,
       },
       {
-        path: "/class/:id",
+        path: "/class/:classNumber",
         element: <ClassPage />,
       },
-      // {
-      //   index: true,
-      //   path: "/",
-      //   element: <Home />,
-      // },
+
       {
         path: "/LogIn",
         element: <LogIn />,
@@ -127,12 +124,12 @@ const router = createBrowserRouter([
         path: "/student-profile",
         element: <StudentProfile />,
       },
-      {
-        path: "/ClassesList",
-        element: <ClassesList />,
-      },
 
       {
+        path: "/StudentInfo",
+        element: <StudentInfo />,
+      }
+      
         // path: "/teacher-exam-reports",
         // element: (
         //   <TeacherReportsComponent
@@ -140,7 +137,7 @@ const router = createBrowserRouter([
         //     isTeacher={true}
         //   />
         // ),
-      },
+      
       // {
       //   path: '/teacher-attendance',
       //   element: <TeacherAttendance />,

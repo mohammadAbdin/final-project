@@ -1,15 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-const TeacherReportsComponent = ({ examsData, isTeacher }) => {
-  const [searchTerm, setSearchTerm] = useState('')
+interface Student {
+  id: number;
+  name: string;
+}
+interface Exam {
+  id: number;
+  title: string;
+  students: Student[];
+}
+
+const TeacherReportsComponent = ({
+  examsData,
+  isTeacher,
+}: {
+  examsData: Exam[];
+  isTeacher: boolean;
+}) => {
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (event) => {
-    setSearchTerm(event.target.value)
-  }
+    setSearchTerm(event.target.value);
+  };
 
-  const filteredExamsData = examsData.filter((exam) =>
-    exam.studentName.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  // const filteredExamsData = examsData.filter((exam) =>
+  //   exam.studentName.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   return (
     <div className="overflow-x-auto p-4 bg-white shadow-md rounded-lg">
@@ -68,7 +84,7 @@ const TeacherReportsComponent = ({ examsData, isTeacher }) => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default TeacherReportsComponent
+export default TeacherReportsComponent;

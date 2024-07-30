@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const reportSchema = new mongoose.Schema({
-  teacher_id: String,
-  date: String, // e.g., 'Monday'
-  title: String, // e.g., '09:00-10:00'
+  reportType: String,
+  writer_id: String,
+  date: String,
+  title: String,
   description: String,
 });
 // {
