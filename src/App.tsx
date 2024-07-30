@@ -61,14 +61,10 @@ const router = createBrowserRouter([
         element: <ClassesList />,
       },
       {
-        path: "/class/:id",
+        path: "/class/:classNumber",
         element: <ClassPage />,
       },
-      // {
-      //   index: true,
-      //   path: "/",
-      //   element: <Home />,
-      // },
+
       {
         path: "/LogIn",
         element: <LogIn />,

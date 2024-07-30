@@ -1,119 +1,136 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import 'react-calendar/dist/Calendar.css'
-import { TeachersAttendanceJournal } from '../../Components/TeachersAttendanceJournal/TeachersAttendanceJournal'
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import "react-calendar/dist/Calendar.css";
+import { TeachersAttendanceJournal } from "../../Components/TeachersAttendanceJournal/TeachersAttendanceJournal";
 
 type Exam = {
-  id: number
-  name: string
-}
+  id: number;
+  name: string;
+};
 
 interface Topic {
-  id: number
-  title: string
-  videos: Video1[]
+  id: number;
+  title: string;
+  videos: Video1[];
 }
 
 interface Video1 {
-  id: number
-  title: string
-  url: string
+  id: number;
+  title: string;
+  description: string;
+  url: string;
 }
 
 type Video = {
-  id: number
-  name: string
-  title: string
-  link: string
-}
+  id: number;
+  name: string;
+  description: string;
+  title: string;
+  link: string;
+};
 
 const fetchTopics: Topic[] = [
   {
     id: 1,
-    title: 'Duplicate',
+    title: "Duplicate",
     videos: [
       {
         id: 1,
-        title: 'video1',
-        url: 'https://www.youtube.com/embed/jhiY62jG45o',
+        title: "video1",
+        description: "video",
+        url: "https://www.youtube.com/embed/jhiY62jG45o",
       },
       {
         id: 2,
-        title: 'video2',
-        url: 'https://www.youtube.com/embed/jhiY62jG45o',
+        title: "video2",
+        description: "video",
+
+        url: "https://www.youtube.com/embed/jhiY62jG45o",
       },
       {
         id: 3,
-        title: 'video3',
-        url: 'https://www.youtube.com/embed/jhiY62jG45o',
+        title: "video3",
+        description: "video",
+
+        url: "https://www.youtube.com/embed/jhiY62jG45o",
       },
     ],
   },
   {
     id: 2,
-    title: 'Divided',
+    title: "Divided",
     videos: [
       {
         id: 1,
-        title: 'video1',
-        url: 'https://www.youtube.com/embed/jhiY62jG45o',
+        title: "video1",
+        description: "video",
+
+        url: "https://www.youtube.com/embed/jhiY62jG45o",
       },
       {
         id: 2,
-        title: 'video2',
-        url: 'https://www.youtube.com/embed/jhiY62jG45o',
+        title: "video2",
+        description: "video",
+
+        url: "https://www.youtube.com/embed/jhiY62jG45o",
       },
       {
         id: 3,
-        title: 'video3',
-        url: 'https://www.youtube.com/embed/jhiY62jG45o',
+        title: "video3",
+        description: "video",
+        url: "https://www.youtube.com/embed/jhiY62jG45o",
       },
     ],
   },
-]
+];
 
 const ClassPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  const [view, setView] = useState<'exams' | 'videos' | 'Attendance journal'>(
-    'exams'
-  )
-  const [exams, setExams] = useState<Exam[]>([
-    { id: 1, name: 'Exam 1' },
-    { id: 2, name: 'Exam 2' },
-  ])
+  const { classNumber } = useParams<{ classNumber: string }>();
 
-  const [topics, setTopics] = useState<Topic[]>(fetchTopics)
+  const [view, setView] = useState<"exams" | "videos" | "Attendance journal">(
+    "exams"
+  );
+  const [exams, setExams] = useState<Exam[]>([
+    { id: 1, name: "Exam 1" },
+    { id: 2, name: "Exam 2" },
+  ]);
+
+  const [topics, setTopics] = useState<Topic[]>(fetchTopics);
 
   const [videos, setVideos] = useState<Video[]>([
     {
       id: 1,
-      name: 'Video 1',
-      title: 'Video Title 1',
-      link: 'https://example.com/video1',
+      name: "Video 1",
+      title: "Video Title 1",
+      description: "description",
+      link: "https://example.com/video1",
     },
     {
       id: 2,
-      name: 'Video 2',
-      title: 'Video Title 2',
-      link: 'https://example.com/video2',
+      name: "Video 2",
+      title: "Video Title 2",
+      description: "description",
+      link: "https://example.com/video2",
     },
-  ])
-  const [expandedTopicId, setExpandedTopicId] = useState<number | null>(null)
+  ]);
+  const [expandedTopicId, setExpandedTopicId] = useState<number | null>(null);
 
   const addExam = () => {
-    const newExam = { id: exams.length + 1, name: `Exam ${exams.length + 1}` }
-    setExams([...exams, newExam])
-  }
+    const newExam = { id: exams.length + 1, name: `Exam ${exams.length + 1}` };
+    setExams([...exams, newExam]);
+  };
 
   const addVideo = () => {
     const newVideo = {
       id: videos.length + 1,
       name: `Video ${videos.length + 1}`,
       title: `Video Title ${videos.length + 1}`,
-      link: 'https://example.com/newvideo',
-    }
-    setVideos([...videos, newVideo])
-  }
+      description: "video",
+
+      link: "https://example.com/newvideo",
+    };
+    setVideos([...videos, newVideo]);
+  };
 
   const addTopic = () => {
     //  const newVideo = {
@@ -123,67 +140,67 @@ const ClassPage: React.FC = () => {
     //    link: "https://example.com/newvideo",
     //  };
     //  setVideos([...videos, newVideo]);
-  }
+  };
 
   const toggleVideoDetails = (id: number) => {
-    setExpandedTopicId(expandedTopicId === id ? null : id)
-  }
+    setExpandedTopicId(expandedTopicId === id ? null : id);
+  };
 
   const editTopic = (id: number) => {
     // Logic to edit video
-    console.log(`Edit Topic ${id}`)
-  }
+    console.log(`Edit Topic ${id}`);
+  };
 
   const deleteTopic = (id: number) => {
-    console.log(`Delete Topic ${id}`)
+    console.log(`Delete Topic ${id}`);
     // setVideos(videos.filter((video) => video.id !== id));
-  }
+  };
 
   const editVideo = (id: number) => {
     // Logic to edit video
-    console.log(`Edit video ${id}`)
-  }
+    console.log(`Edit video ${id}`);
+  };
 
   const deleteVideo = (id: number) => {
-    console.log(`Delete video ${id}`)
-    setVideos(videos.filter((video) => video.id !== id))
-  }
+    console.log(`Delete video ${id}`);
+    setVideos(videos.filter((video) => video.id !== id));
+  };
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Class {id}</h1>
+      <h1 className="text-2xl font-bold mb-4">Class {classNumber}</h1>
 
       <div className="mb-4">
         <button
           className={`px-4 py-2 mr-2 ${
-            view === 'exams' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+            view === "exams" ? "bg-blue-500 text-white" : "bg-gray-200"
           }`}
-          onClick={() => setView('exams')}
+          onClick={() => setView("exams")}
         >
           Exams
         </button>
         <button
           className={`px-4 py-2 ${
-            view === 'videos' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+            view === "videos" ? "bg-blue-500 text-white" : "bg-gray-200"
           }`}
-          onClick={() => setView('videos')}
+          onClick={() => setView("videos")}
         >
           Videos
         </button>
 
         <button
           className={`px-4 py-2 ${
-            view === 'Attendance journal'
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-200'
+            view === "Attendance journal"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200"
           }`}
-          onClick={() => setView('Attendance journal')}
+          onClick={() => setView("Attendance journal")}
         >
           Attendance journal
         </button>
       </div>
 
-      {view === 'exams' && (
+      {view === "exams" && (
         <div>
           <ul className="bg-white shadow-md rounded-lg p-4 mb-4">
             {exams.map((exam) => (
@@ -201,7 +218,7 @@ const ClassPage: React.FC = () => {
         </div>
       )}
 
-      {view === 'videos' && (
+      {view === "videos" && (
         <div>
           <ul className="bg-white shadow-md rounded-lg p-4 mb-4">
             {topics.map((topic) => (
@@ -291,14 +308,14 @@ const ClassPage: React.FC = () => {
         </div>
       )}
 
-      {view === 'Attendance journal' && (
+      {view === "Attendance journal" && (
         <div>
           <h2 className="text-lg font-semibold mb-2">Attendance Journal</h2>
           <TeachersAttendanceJournal />
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ClassPage
+export default ClassPage;
