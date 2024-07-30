@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { ClassExams } from "./ClassesPage/ClassExams";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Units from "./Units";
 import "react-calendar/dist/Calendar.css";
 import { TeachersAttendanceJournal } from "../../Components/TeachersAttendanceJournal/TeachersAttendanceJournal";
-
-type Exam = {
-  id: number;
-  name: string;
-};
+import AddNewExam from "../../Api/PostNewExam";
+import { UserContext } from "./../../Context/UserContext";
+import UseGetClassDetails from "../../Hooks/UseGetClassExams";
+import { ExamType } from "../../Types/ExamType";
 
 const fetchTopics = [
   {
@@ -61,21 +61,44 @@ const fetchTopics = [
 ];
 
 const ClassPage: React.FC = () => {
-  const { classNumber } = useParams<{ classNumber: string }>();
-
+  const { classNumber } = useParams();
   const [view, setView] = useState<
     "exams" | "videos" | "Attendance journal" | "feedback"
   >("exams");
-  const [exams, setExams] = useState<Exam[]>([
-    { id: 1, name: "Exam 1" },
-    { id: 2, name: "Exam 2" },
-  ]);
+  const [exams, setExams] = useState<ExamType[]>([]);
+  const [newExamName, setNewExamName] = useState("");
+  const [isAddingExam, setIsAddingExam] = useState(false);
+  const { user } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // const [topics, setTopics] = useState<Topic[]>(fetchTopics);
+  // console.log("user", user);
+  const { getClassDetails, classDetails } = UseGetClassDetails(
+    setIsLoading,
+    classNumber
+  );
+
+  useEffect(() => {
+    if (isLoading && user && !classDetails) {
+      if (user._id != undefined) getClassDetails(user._id);
+    }
+  }, [isLoading, user, getClassDetails, classDetails]);
+  useEffect(() => {
+    if (classDetails) setExams(classDetails.exams);
+  }, [classDetails]);
+
+  if (isLoading || classDetails === null) {
+    return (
+      <div
+        className="spinner mt-20 inline-block h-8 w-8 animate-spin rounded-full border-4 border-t-4 border-red-200 border-t-black"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
+    );
+  }
 
   const addExam = () => {
-    const newExam = { id: exams.length + 1, name: `Exam ${exams.length + 1}` };
-    setExams([...exams, newExam]);
+    setIsAddingExam(true);
   };
 
   return (
@@ -121,29 +144,20 @@ const ClassPage: React.FC = () => {
       </div>
 
       {view === "exams" && (
-        <div>
-          <ul className="bg-white shadow-md rounded-lg p-4 mb-4">
-            {exams.map((exam) => (
-              <li key={exam.id} className="border-b py-2 last:border-b-0">
-                {exam.name}
-              </li>
-            ))}
-          </ul>
-          <button
-            className="px-4 py-2 bg-green-500 text-white rounded"
-            onClick={addExam}
-          >
-            Add Exam
-          </button>
-        </div>
+        <ClassExams
+          exams={exams}
+          isAddingExam={isAddingExam}
+          newExamName={newExamName}
+          setNewExamName={setNewExamName}
+          classNumber={classNumber}
+          user={user}
+          AddNewExam={AddNewExam}
+          addExam={addExam}
+        />
       )}
 
       {view === "videos" && <Units topics={fetchTopics} />}
-      {view === "Attendance journal" && (
-        // <div>
-        <TeachersAttendanceJournal />
-        // </div>
-      )}
+      {view === "Attendance journal" && <TeachersAttendanceJournal />}
       {view === "feedback" && <div>feedback</div>}
     </div>
   );
