@@ -43,6 +43,7 @@ const StudentList = () => {
   const [expandedStudentId, setExpandedStudentId] = useState<number | null>(
     null
   );
+
   const [studentList, setStudentList] = useState(students);
   const [attendanceReport, setAttendanceReport] = useState<string | null>(null);
 
