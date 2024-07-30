@@ -85,7 +85,7 @@ const StudentList = () => {
         {studentList.map((student) => (
           <div
             key={student.student_id}
-            className="flex items-start gap-4 p-6 border border-gray-300 rounded-xl bg-white shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105"
+            className="flex items-start gap-4 p-6 border border-gray-300 rounded-md bg-white shadow-sm hover:shadow-md transition-transform transform hover:scale-105"
           >
             <input
               type="checkbox"
@@ -114,7 +114,7 @@ const StudentList = () => {
               </label>
             </div>
             <button
-              className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-150 ease-in-out"
+              className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-sm shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-150 ease-in-out"
               onClick={() => toggleDetails(student.student_id)}
             >
               {expandedStudentId === student.student_id
@@ -125,14 +125,14 @@ const StudentList = () => {
         ))}
         <div className="flex justify-center mt-8">
           <button
-            className="bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-full shadow-lg hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-150 ease-in-out"
+            className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-sm shadow-lg hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-150 ease-in-out"
             onClick={handleSubmit}
           >
             Submit
           </button>
         </div>
         {attendanceReport && (
-          <div className="mt-6 p-6 border border-gray-300 rounded-lg bg-white shadow-lg">
+          <div className="mt-6 p-6 border border-gray-300 rounded-lg bg-white shadow-sm">
             <h3 className="text-lg font-semibold mb-3 text-gray-800">
               Attendance Report
             </h3>
