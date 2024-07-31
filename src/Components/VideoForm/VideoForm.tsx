@@ -16,17 +16,35 @@ const style = {
   p: 4,
 };
 
-const VideoForm = ({ isEdit, data }) => {
+interface VideoFormProps {
+  isEdit: boolean;
+  data?: {
+    title: string;
+    description: string;
+    url: string;
+  };
+  action: (videoData: any) => void;
+}
+
+const VideoForm = ({ isEdit, data, action }: VideoFormProps) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [vTitle, setVTitle] = React.useState(data.title);
-  const [vDesc, setVDesc] = React.useState(data.description);
-  const [vUrl, setVUrl] = React.useState(data.url);
+  const [vTitle, setVTitle] = React.useState(
+    data && data.title ? data.title : ""
+  );
+  const [vDesc, setVDesc] = React.useState(
+    data && data.description ? data.description : ""
+  );
+  const [vUrl, setVUrl] = React.useState(data && data.url ? data.url : "");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    action({
+      title: vTitle,
+      description: vDesc,
+      url: vUrl,
+    });
     handleClose();
   };
 

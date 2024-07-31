@@ -101,7 +101,7 @@ const ClassPage: React.FC = () => {
         </button>
 
         <button
-          className={`px-4 py-2 ${
+          className={`mr-2 px-4 py-2 ${
             view === "Attendance journal"
               ? "bg-blue-500 text-white"
               : "bg-gray-200"
