@@ -31,6 +31,7 @@ import ClassesList from "./Pages/Teacher/ClassesList";
 import ClassPage from "./Pages/Teacher/ClassPage";
 import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
 import FeedbackDrop from "./Components/Feedback/FeedbackDrop.js";
+import StudentResourcesPage from "./Pages/StudentResourcesPage/StudentResourcesPage.js";
 
 const AppLayout = () => {
   const { user, setIsLogedIn, setUser } = useContext(UserContext);
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "/SubjectsPage/:student_id",
         element: <SubjectsPage />,
+      },
+      {
+        path: "/StudentResourcesPage/:student_id",
+        element: <StudentResourcesPage />,
       },
       {
         path: "/StudentSchedule",
