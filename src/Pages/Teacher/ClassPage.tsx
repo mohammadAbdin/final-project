@@ -65,7 +65,8 @@ const ClassPage: React.FC = () => {
   const [view, setView] = useState<
     "exams" | "videos" | "Attendance journal" | "feedback"
   >("exams");
-  const [exams, setExams] = useState<ExamType[]>([]);
+  // const [exams, setExams] = useState<ExamType[]>([]);
+  // const [students, setStudents] = useState<string[]>([]);
   const [newExamName, setNewExamName] = useState("");
   const [isAddingExam, setIsAddingExam] = useState(false);
   const { user } = useContext(UserContext);
@@ -83,7 +84,10 @@ const ClassPage: React.FC = () => {
     }
   }, [isLoading, user, getClassDetails, classDetails]);
   useEffect(() => {
-    if (classDetails) setExams(classDetails.exams);
+    if (classDetails) {
+      // setExams(classDetails.exams);
+      // setStudents(classDetails.students);
+    }
   }, [classDetails]);
 
   if (isLoading || classDetails === null) {
@@ -100,6 +104,7 @@ const ClassPage: React.FC = () => {
   const addExam = () => {
     setIsAddingExam(true);
   };
+  console.log(classDetails);
 
   return (
     <div className="container mx-auto p-4">
@@ -145,7 +150,8 @@ const ClassPage: React.FC = () => {
 
       {view === "exams" && (
         <ClassExams
-          exams={exams}
+          students={classDetails.students}
+          exams={classDetails.exams}
           isAddingExam={isAddingExam}
           newExamName={newExamName}
           setNewExamName={setNewExamName}

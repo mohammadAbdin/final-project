@@ -5,4 +5,5 @@ export interface ClassInfoDetails {
       examName: string;
     }
   ];
+  students: [];
 }
