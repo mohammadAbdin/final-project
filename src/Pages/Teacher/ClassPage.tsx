@@ -112,7 +112,7 @@ const ClassPage: React.FC = () => {
 
       <div className="mb-4">
         <button
-          className={`px-4 py-2 mr-2 ${
+          className={`px-4 py-2 mr-2 rounded-sm ${
             view === "exams" ? "bg-blue-500 text-white" : "bg-gray-200"
           }`}
           onClick={() => setView("exams")}
@@ -120,7 +120,7 @@ const ClassPage: React.FC = () => {
           Exams
         </button>
         <button
-          className={`px-4 py-2 mr-2 ${
+          className={`px-4 py-2 mr-2 rounded-sm ${
             view === "videos" ? "bg-blue-500 text-white" : "bg-gray-200"
           }`}
           onClick={() => setView("videos")}
@@ -129,7 +129,7 @@ const ClassPage: React.FC = () => {
         </button>
 
         <button
-          className={`px-4 py-2 ${
+          className={`px-4 py-2 rounded-sm ${
             view === "Attendance journal"
               ? "bg-blue-500 text-white"
               : "bg-gray-200"
@@ -139,7 +139,7 @@ const ClassPage: React.FC = () => {
           Attendance journal
         </button>
         <button
-          className={`px-4 py-2 ${
+          className={`px-4 py-2 rounded-sm ${
             view === "feedback" ? "bg-blue-500 text-white" : "bg-gray-200"
           }`}
           onClick={() => setView("feedback")}

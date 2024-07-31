@@ -82,13 +82,16 @@ export function ClassExams({
 
   return (
     <div>
-      <ul className="bg-white shadow-md rounded-lg p-4 mb-4">
+      <ul className="border border-gray-300 bg-white rounded-md p-4 mb-4">
         {exams.map((exam) => (
-          <li key={exam._id} className="border-b py-2 last:border-b-0">
+          <li
+            key={exam._id}
+            className="border-b py-2 last:border-b-0 hover:bg-gray-100"
+          >
             <div className="flex justify-between items-center">
               <span
                 onClick={() => toggleExamDetails(exam._id)}
-                className="cursor-pointer text-blue-500 hover:underline"
+                className="cursor-pointer text-blue-500"
               >
                 {exam.examName}
               </span>
@@ -177,7 +180,7 @@ export function ClassExams({
             placeholder="Enter exam name"
           />
           <button
-            className="px-4 py-2 bg-green-500 text-white rounded-r"
+            className="px-4 py-2 bg-green-500 text-white rounded-sm"
             onClick={async () => {
               // console.log(newExamName);
 
@@ -192,7 +195,7 @@ export function ClassExams({
         </div>
       ) : (
         <button
-          className="px-4 py-2 bg-green-500 text-white rounded"
+          className="px-4 py-2 bg-green-500 text-white rounded-sm"
           onClick={addExam}
         >
           Add Exam

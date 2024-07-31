@@ -69,21 +69,16 @@ const Units = ({ topics }: TopicsProps) => {
 
   return (
     <div className="mt-10">
-      <div className="flex">
-        <button
-          className="px-4 py-2 mb-3  bg-green-500 text-white rounded"
-          onClick={addTopic}
-        >
-          Add Topic
-        </button>
-      </div>
-      <ul className="bg-white shadow-md rounded-lg p-4 mb-4">
+      <ul className="bg-white border border-gray-300 rounded-md p-4 mb-4">
         {topics.map((topic, index) => (
-          <li key={topic.id} className="border-b py-2 last:border-b-0">
+          <li
+            key={topic.id}
+            className="border-b py-2 last:border-b-0 hover:bg-gray-100"
+          >
             <div className="flex justify-between items-center">
               <span
                 onClick={() => toggleVideoDetails(topic.id)}
-                className="cursor-pointer text-blue-500 hover:underline"
+                className="cursor-pointer text-blue-500"
               >
                 Unit {index + 1} : {topic.title}
               </span>
@@ -126,6 +121,14 @@ const Units = ({ topics }: TopicsProps) => {
           </li>
         ))}
       </ul>
+      <div className="flex justify-center">
+        <button
+          className="px-4 py-2 mb-3  bg-green-500 text-white rounded-sm"
+          onClick={addTopic}
+        >
+          Add Topic
+        </button>
+      </div>
     </div>
   );
 };
