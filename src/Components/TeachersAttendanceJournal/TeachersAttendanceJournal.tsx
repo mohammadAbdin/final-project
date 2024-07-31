@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const TeachersAttendanceJournal = ({
   classNumber,
 }: {
-  classNumber: string;
+  classNumber: string | undefined;
 }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const navigate = useNavigate();
