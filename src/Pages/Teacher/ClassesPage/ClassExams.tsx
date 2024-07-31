@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ExamType } from "../../../Types/ExamType";
 import UserType from "../../../Types/UserType";
+
 interface ClassExamsProps {
-  students: string[];
+  students: any[];
   exams: ExamType[];
   isAddingExam: boolean;
   newExamName: string;
@@ -16,6 +17,7 @@ interface ClassExamsProps {
   ) => Promise<void>;
   addExam: () => void;
 }
+
 export function ClassExams({
   students,
   exams,
@@ -27,62 +29,43 @@ export function ClassExams({
   AddNewExam,
   addExam,
 }: ClassExamsProps) {
-  const [expandedExam, setExpandedExam] = useState<number | null>(null);
-  const [mergedStudents, setMergedStudents] = useState([]);
-  const [modifiedStudents, setModifiedStudents] = useState([]);
+  const [expandedExam, setExpandedExam] = useState<string | null>(null);
+  const [modifiedStudents, setModifiedStudents] = useState<any[]>([]);
+  const [editingStudent, setEditingStudent] = useState<string | null>(null);
+  const [newGrade, setNewGrade] = useState<string>("");
 
-  useEffect(() => {
-    const merged = students.map((student) => {
-      let studentGrade = 0;
-      let hasGrade = false;
-
-      exams.forEach((exam) => {
-        exam.studentGrades.forEach((grade) => {
-          if (grade.student_id === student.student_id) {
-            studentGrade = grade.Grade;
-            hasGrade = true;
-          }
-        });
-      });
-
-      return {
-        ...student,
-        Grade: hasGrade ? studentGrade : 0,
-        isEditing: false,
-      };
-    });
-    // console.log(merged);
-
-    setMergedStudents(merged);
-  }, []);
-
-  const handleGradeChange = (id, value) => {
-    setMergedStudents(
-      mergedStudents.map((student) =>
-        student.student_id === id
-          ? { ...student, grade: value, isEditing: true }
-          : student
-      )
-    );
-  };
-
-  const handleSave = () => {
-    // Save the updated students
-    console.log("Saving updated students:", mergedStudents);
-    // You can send this data to your backend here
-  };
-
-  const handleToggleExpand = (examId) => {
+  const toggleExamDetails = (examId: string) => {
     setExpandedExam(expandedExam === examId ? null : examId);
   };
 
-  const toggleExamDetails = (id: number) => {
-    setExpandedExam(expandedExam === id ? null : id);
+  const handleInputChange = (
+    studentId: string,
+    examName: string,
+    newGrade: string
+  ) => {
+    setModifiedStudents((prev) => {
+      const existing = prev.find(
+        (mod) => mod.student_id === studentId && mod.examName === examName
+      );
+      if (existing) {
+        return prev.map((mod) =>
+          mod.student_id === studentId && mod.examName === examName
+            ? { ...mod, Grade: newGrade }
+            : mod
+        );
+      } else {
+        return [...prev, { student_id: studentId, examName, Grade: newGrade }];
+      }
+    });
+  };
+
+  const handleSave = () => {
+    console.log(modifiedStudents);
   };
 
   return (
     <div>
-      <ul className="border border-gray-300 bg-white rounded-md p-4 mb-4">
+      <ul>
         {exams.map((exam) => (
           <li
             key={exam._id}
@@ -98,58 +81,56 @@ export function ClassExams({
             </div>
             {expandedExam === exam._id && (
               <div>
-                {mergedStudents.map((student) => {
-                  // console.log("student", student);
+                {students.map((student) => {
+                  // Find the grade either from the exam or modifiedStudents state
+                  const studentGrade = exam.studentGrades.find(
+                    (sg) => sg.student_id === student.student_id
+                  );
+                  const modifiedStudent = modifiedStudents.find(
+                    (mod) =>
+                      mod.student_id === student.student_id &&
+                      mod.examName === exam.examName
+                  );
+                  const Grade = modifiedStudent
+                    ? modifiedStudent.Grade
+                    : studentGrade
+                    ? studentGrade.Grade
+                    : 0;
 
                   return (
                     <div
                       key={student.student_id}
-                      className="my-2 flex flex-row justify-between"
+                      className="flex items-center my-2 justify-between"
                     >
-                      <p className="w-1/3 text-left">{student.name}</p>
-                      {student.Grade === 0 ? (
-                        <div>
-                          <input
-                            className="px-4  border rounded-l  bg-white"
-                            value={student.grade}
-                            onChange={(e) => {
-                              // handleGradeChange(
-                              //   student.student_id,
-                              //   e.target.value
-                              // );
-                            }}
-                          />
-                        </div>
+                      <span className="w-1/3 text-left">{student.name}</span>
+                      {editingStudent === student.student_id ? (
+                        <input
+                          type="number"
+                          className="bg-white"
+                          value={newGrade}
+                          onChange={(e) => setNewGrade(e.target.value)}
+                          onBlur={() => {
+                            handleInputChange(
+                              student.student_id,
+                              exam.examName,
+                              newGrade
+                            );
+                            setEditingStudent(null);
+                          }}
+                          autoFocus
+                        />
                       ) : (
                         <>
-                          <div>
-                            <p>{student.Grade}</p>
-                          </div>
-                          {student.isEditing ? (
-                            <input
-                              className="px-4  border rounded-l  bg-white"
-                              value={student.Grade}
-                              onChange={(e) => {
-                                // handleGradeChange(
-                                //   student.student_id,
-                                //   e.target.value
-                                // );
-                              }}
-                            />
-                          ) : (
-                            <button
-                              onClick={() => {
-                                // student.isEditing = true;
-                                // console.log(student);
-                                handleGradeChange(
-                                  student.student_id,
-                                  student.grade
-                                );
-                              }}
-                            >
-                              Edit
-                            </button>
-                          )}
+                          <span className="mx-2">{Grade}</span>
+                          <button
+                            onClick={() => {
+                              setEditingStudent(student.student_id);
+                              setNewGrade(Grade.toString());
+                            }}
+                            className="px-2 bg-blue-500 text-white rounded"
+                          >
+                            Edit
+                          </button>
                         </>
                       )}
                     </div>
@@ -169,23 +150,19 @@ export function ClassExams({
         ))}
       </ul>
       {isAddingExam ? (
-        <div className="flex justify-center mb-4 ">
+        <div className="flex justify-center mb-4">
           <input
             type="text"
             className="px-4 py-2 border rounded-l w-1/2 bg-white"
             value={newExamName}
-            onChange={(e) => {
-              setNewExamName(e.target.value);
-            }}
+            onChange={(e) => setNewExamName(e.target.value)}
             placeholder="Enter exam name"
           />
           <button
             className="px-4 py-2 bg-green-500 text-white rounded-sm"
             onClick={async () => {
-              // console.log(newExamName);
-
               if (classNumber && user && user._id) {
-                await AddNewExam(newExamName, classNumber, user?._id);
+                await AddNewExam(newExamName, classNumber, user._id);
                 window.location.reload();
               }
             }}
