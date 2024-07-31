@@ -51,7 +51,7 @@ export function ClassExams({
         isEditing: false,
       };
     });
-    console.log(merged);
+    // console.log(merged);
 
     setMergedStudents(merged);
   }, []);
@@ -99,7 +99,7 @@ export function ClassExams({
             {expandedExam === exam._id && (
               <div>
                 {mergedStudents.map((student) => {
-                  console.log("student", student);
+                  // console.log("student", student);
 
                   return (
                     <div
@@ -182,7 +182,7 @@ export function ClassExams({
           <button
             className="px-4 py-2 bg-green-500 text-white rounded-sm"
             onClick={async () => {
-              console.log(newExamName);
+              // console.log(newExamName);
 
               if (classNumber && user && user._id) {
                 await AddNewExam(newExamName, classNumber, user?._id);

@@ -30,6 +30,7 @@ import Grades from "./Pages/Teacher/Grades";
 import ClassesList from "./Pages/Teacher/ClassesList";
 import ClassPage from "./Pages/Teacher/ClassPage";
 import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
+import FeedbackDrop from "./Components/Feedback/FeedbackDrop.js";
 
 const AppLayout = () => {
   const { user, setIsLogedIn, setUser } = useContext(UserContext);
@@ -128,8 +129,12 @@ const router = createBrowserRouter([
       {
         path: "/StudentInfo",
         element: <StudentInfo />,
-      }
-      
+      },
+
+      {
+        path: "/FeedbackDrop",
+        element: <FeedbackDrop />,
+      },
         // path: "/teacher-exam-reports",
         // element: (
         //   <TeacherReportsComponent
