@@ -7,7 +7,7 @@ import { TeachersAttendanceJournal } from "../../Components/TeachersAttendanceJo
 import AddNewExam from "../../Api/PostNewExam";
 import { UserContext } from "./../../Context/UserContext";
 import UseGetClassDetails from "../../Hooks/UseGetClassExams";
-import { ExamType } from "../../Types/ExamType";
+// import { ExamType } from "../../Types/ExamType";
 
 const fetchTopics = [
   {
