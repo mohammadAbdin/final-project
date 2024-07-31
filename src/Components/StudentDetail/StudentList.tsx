@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-// Updated data with attendance and details
 const students = [
   {
     student_id: 1,
@@ -39,13 +38,13 @@ const students = [
 const StudentList = () => {
   const location = useLocation();
   const selectedDate = location.state.selectedDate;
+  console.log(selectedDate);
 
   const [expandedStudentId, setExpandedStudentId] = useState<number | null>(
     null
   );
 
   const [studentList, setStudentList] = useState(students);
-  const [attendanceReport, setAttendanceReport] = useState<string | null>(null);
 
   const toggleDetails = (student_id: number) => {
     setExpandedStudentId(expandedStudentId === student_id ? null : student_id);
@@ -61,21 +60,12 @@ const StudentList = () => {
   };
 
   const handleSubmit = () => {
-    const presentStudents = studentList
-      .filter((student) => student.attendance)
-      .map((student) => `${student.studentName} (ID: ${student.student_id})`)
-      .join(", ");
+    console.log(selectedDate);
+    const studentsWithAttendanceTrue = studentList.filter(
+      (student) => student.attendance
+    );
 
-    const absentStudents = studentList
-      .filter((student) => !student.attendance)
-      .map((student) => `${student.studentName} (ID: ${student.student_id})`)
-      .join(", ");
-
-    const report = `
-      Present Students: ${presentStudents || "None"}
-      Absent Students: ${absentStudents || "None"}
-    `;
-    setAttendanceReport(report);
+    console.log(studentsWithAttendanceTrue);
   };
 
   return (
@@ -131,7 +121,7 @@ const StudentList = () => {
             Submit
           </button>
         </div>
-        {attendanceReport && (
+        {/* {attendanceReport && (
           <div className="mt-6 p-6 border border-gray-300 rounded-lg bg-white shadow-sm">
             <h3 className="text-lg font-semibold mb-3 text-gray-800">
               Attendance Report
@@ -140,7 +130,7 @@ const StudentList = () => {
               {attendanceReport}
             </pre>
           </div>
-        )}
+        )} */}
       </div>
     </fieldset>
   );
