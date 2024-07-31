@@ -37,7 +37,7 @@ const ChildWidget = () => {
         <div
           onClick={() => naviagte(`/SubjectsPage/${singleChild.student_id}`)}
           key={singleChild.student_id}
-          className="child-widget-container"
+          className="bg-white border border-gray-300 rounded-md p-2 m-4  hover:bg-gray-300"
         >
           <h3>Child's name: {singleChild.studentName} </h3>
           <p>Class: {singleChild.class}</p>

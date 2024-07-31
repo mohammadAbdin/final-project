@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import TeacherSideBar from "../../Pages/Teacher/TeacherSideBar";
 import { UserContext } from "../../Context/UserContext";
 import ParentSideBar from "../../Pages/ParentPage/ParentSideBar";
@@ -42,9 +42,17 @@ const Sidebar: React.FC = () => {
                 <strong className="block font-medium text-wrap">
                   {user ? user.userType : "user not found"}
                 </strong>
-                <span className="block text-wrap w-20 ml-4 h-full">
-                  {user ? user.name : ""}
-                </span>
+                <Link
+                  to={
+                    user?.userType === "Parent"
+                      ? "/parent-card"
+                      : "/student-profile"
+                  }
+                >
+                  <span className="block text-wrap w-20 ml-4 h-full">
+                    {user ? user.name : ""}
+                  </span>
+                </Link>
               </p>
             </div>
           </a>

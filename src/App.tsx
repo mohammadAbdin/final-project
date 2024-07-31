@@ -84,10 +84,6 @@ const router = createBrowserRouter([
         element: <SubjectsPage />,
       },
       {
-        path: "/SubjectsPageReut",
-        element: <SubjectsPageReut />,
-      },
-      {
         path: "/StudentSchedule",
         element: <StudentSchedule />,
       },
@@ -135,14 +131,14 @@ const router = createBrowserRouter([
         path: "/FeedbackDrop",
         element: <FeedbackDrop />,
       },
-        // path: "/teacher-exam-reports",
-        // element: (
-        //   <TeacherReportsComponent
-        //     examsData={teacherExamsData}
-        //     isTeacher={true}
-        //   />
-        // ),
-      
+      // path: "/teacher-exam-reports",
+      // element: (
+      //   <TeacherReportsComponent
+      //     examsData={teacherExamsData}
+      //     isTeacher={true}
+      //   />
+      // ),
+
       // {
       //   path: '/teacher-attendance',
       //   element: <TeacherAttendance />,
