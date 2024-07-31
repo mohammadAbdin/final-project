@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Units from "./Units";
 import "react-calendar/dist/Calendar.css";
 import { TeachersAttendanceJournal } from "../../Components/TeachersAttendanceJournal/TeachersAttendanceJournal";
+import StudentInfo from "../../Components/StudentInfo/StudentInfo";
 import AddNewExam from "../../Api/PostNewExam";
 import { UserContext } from "./../../Context/UserContext";
 import UseGetClassDetails from "../../Hooks/UseGetClassExams";
@@ -163,7 +164,11 @@ const ClassPage: React.FC = () => {
       {view === "Attendance journal" && (
         <TeachersAttendanceJournal classNumber={classNumber} />
       )}
-      {view === "feedback" && <div>feedback</div>}
+      {view === "feedback" && (
+        <div>
+          <StudentInfo />
+        </div>
+      )}
     </div>
   );
 };
