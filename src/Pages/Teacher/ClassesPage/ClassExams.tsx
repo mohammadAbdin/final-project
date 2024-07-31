@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ExamType } from "../../../Types/ExamType";
 import UserType from "../../../Types/UserType";
 interface ClassExamsProps {
+  students: string[];
   exams: ExamType[];
   isAddingExam: boolean;
   newExamName: string;
@@ -16,6 +17,7 @@ interface ClassExamsProps {
   addExam: () => void;
 }
 export function ClassExams({
+  students,
   exams,
   isAddingExam,
   newExamName,
@@ -26,6 +28,53 @@ export function ClassExams({
   addExam,
 }: ClassExamsProps) {
   const [expandedExam, setExpandedExam] = useState<number | null>(null);
+  const [mergedStudents, setMergedStudents] = useState([]);
+  const [modifiedStudents, setModifiedStudents] = useState([]);
+
+  useEffect(() => {
+    const merged = students.map((student) => {
+      let studentGrade = 0;
+      let hasGrade = false;
+
+      exams.forEach((exam) => {
+        exam.studentGrades.forEach((grade) => {
+          if (grade.student_id === student.student_id) {
+            studentGrade = grade.Grade;
+            hasGrade = true;
+          }
+        });
+      });
+
+      return {
+        ...student,
+        Grade: hasGrade ? studentGrade : 0,
+        isEditing: false,
+      };
+    });
+    console.log(merged);
+
+    setMergedStudents(merged);
+  }, []);
+
+  const handleGradeChange = (id, value) => {
+    setMergedStudents(
+      mergedStudents.map((student) =>
+        student.student_id === id
+          ? { ...student, grade: value, isEditing: true }
+          : student
+      )
+    );
+  };
+
+  const handleSave = () => {
+    // Save the updated students
+    console.log("Saving updated students:", mergedStudents);
+    // You can send this data to your backend here
+  };
+
+  const handleToggleExpand = (examId) => {
+    setExpandedExam(expandedExam === examId ? null : examId);
+  };
 
   const toggleExamDetails = (id: number) => {
     setExpandedExam(expandedExam === id ? null : id);
@@ -42,16 +91,73 @@ export function ClassExams({
                 className="cursor-pointer text-blue-500 hover:underline"
               >
                 {exam.examName}
-                {/* Unit {index + 1} : {topic.title} */}
               </span>
             </div>
             {expandedExam === exam._id && (
               <div>
-                <div></div>
+                {mergedStudents.map((student) => {
+                  console.log("student", student);
 
+                  return (
+                    <div
+                      key={student.student_id}
+                      className="my-2 flex flex-row justify-between"
+                    >
+                      <p className="w-1/3 text-left">{student.name}</p>
+                      {student.Grade === 0 ? (
+                        <div>
+                          <input
+                            className="px-4  border rounded-l  bg-white"
+                            value={student.grade}
+                            onChange={(e) => {
+                              // handleGradeChange(
+                              //   student.student_id,
+                              //   e.target.value
+                              // );
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <>
+                          <div>
+                            <p>{student.Grade}</p>
+                          </div>
+                          {student.isEditing ? (
+                            <input
+                              className="px-4  border rounded-l  bg-white"
+                              value={student.Grade}
+                              onChange={(e) => {
+                                // handleGradeChange(
+                                //   student.student_id,
+                                //   e.target.value
+                                // );
+                              }}
+                            />
+                          ) : (
+                            <button
+                              onClick={() => {
+                                // student.isEditing = true;
+                                // console.log(student);
+                                handleGradeChange(
+                                  student.student_id,
+                                  student.grade
+                                );
+                              }}
+                            >
+                              Edit
+                            </button>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  );
+                })}
                 <div className="flex justify-center items-center my-3">
-                  <button className="px-4 py-2 bg-green-500 text-white rounded">
-                    save
+                  <button
+                    className="px-4 py-2 bg-green-500 text-white rounded"
+                    onClick={handleSave}
+                  >
+                    Save
                   </button>
                 </div>
               </div>
