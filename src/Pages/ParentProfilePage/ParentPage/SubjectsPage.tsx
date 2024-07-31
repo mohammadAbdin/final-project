@@ -68,9 +68,9 @@ const SubjectsPage: React.FC = () => {
   }
 
   return (
-    <div className="main-subjects-container ">
-      <h2>You are watching: {subject}</h2>
-      <div className="subjects-container">
+    <div className="main-div">
+      <h2 className="h2">You are watching: {subject}</h2>
+      <div>
         {childSubjects.map((subjectItem, index) => (
           <button
             key={index}
@@ -84,30 +84,23 @@ const SubjectsPage: React.FC = () => {
           </button>
         ))}
       </div>
-      <div className="main-info-container">
-        <div className="calendar-container">
-          <div className="app-container mt-2">
-            <AttendanceJournal
-              events={mathAttendanceData}
-              selectedDate={selectedDate}
-              onDateChange={setSelectedDate}
-            />
-          </div>
-        </div>
-        <div className="exams-table-container  mt-2 ">
-          <ExamsTable
-            examsData={examsData}
-            subjectName={selectedSubject?.subjectName}
-          />
-        </div>
-        <div className="student-schedule-container">
-          <p>Sunday...</p>
-          <p>Monday...</p>
-        </div>
-        <div className="teacher-report-card-container mt-2">
-          <TeacherReportCard teacherReportData={teacherReportData} />
-        </div>
+
+      <div className="cols2-div-s">
+        <AttendanceJournal
+          events={mathAttendanceData}
+          selectedDate={selectedDate}
+          onDateChange={setSelectedDate}
+        />
         <LineChart chartData={chartData} />
+      </div>
+      <div className="secondery-div-s">
+        <TeacherReportCard teacherReportData={teacherReportData} />
+      </div>
+      <div className="secondery-div-s flex ">
+        <ExamsTable
+          examsData={examsData}
+          subjectName={selectedSubject?.subjectName}
+        />
       </div>
     </div>
   )

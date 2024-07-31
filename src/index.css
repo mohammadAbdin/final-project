@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,3 +17,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* main-div */
+  .main-div-s {
+    @apply m-2 p-2 space-x-4 w-full flex flex-wrap;
+  }
+  .secondery-div-s {
+    @apply grid grid-cols-1  m-2 p-2 space-x-4 w-full flex flex-col items-center;
+  }
+  /* main div with 2cols */
+  .cols2-div-s {
+    @apply grid grid-cols-1 m-2 p-2 sm:grid-cols-2 gap-x-3 gap-y-3 flex justify-items-center;
+  }
+
+  /* component div */
+  .c-div-s {
+    @apply border border-gray-300 rounded-md p-4 bg-white flex-auto w-full min-w-[250px];
+  }
+
+  .h2-s {
+    @apply text-lg font-semibold mb-2 text-center py-2;
+  }
+  .table-s {
+    @apply min-w-full bg-white divide-y divide-gray-200;
+  }
+  .thead-s {
+    @apply bg-gray-50;
+  }
+
+  .th-s {
+    @apply bg-gray-50 border-b-2 border-gray-300 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+
+  .td-s {
+    @apply px-6 py-4 whitespace-nowrap text-left;
+  }
+
+  .table-action-s {
+    @apply px-6 py-4 whitespace-nowrap text-left;
+  }
+
+  .expanded-row-s {
+    @apply px-6 py-4 bg-gray-50 text-gray-700;
+  }
+
+  .expand-button-s {
+    @apply relative text-blue-900 hover:text-white hover:bg-gray-200 rounded-full p-1;
+  }
+
+  /* .nav-items {
+  @apply relative flex h-full items-center p-4 cursor-pointer font-normal text-[15px] text-white hover:text-white hover:bg-orange-50/5 transition-colors ease-in-out
+  } */
+}

@@ -18,44 +18,30 @@ const TeacherReportCard: React.FC<TeacherReportCardProps> = ({
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <div className="overflow-x-auto p-4 bg-white shadow-md rounded-lg">
-      <h2 className="text-lg font-semibold mb-2">Teacher Reports</h2>
-      <table className="min-w-full bg-white divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+    <div className="c-div-s overflow-x-auto">
+      <h2 className="h2-s">Teacher Reports</h2>
+      <table className="table-s">
+        <thead className="thead-s">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Teacher Name
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Date
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Title
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Action
-            </th>
+            <th className="th-s">Teacher Name</th>
+            <th className="th-s">Date</th>
+            <th className="th-s">Title</th>
+            <th className="th-s">Action</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="tbody">
           {teacherReportData.map((report, index) => (
             <React.Fragment key={index}>
-              <tr>
-                <td className="px-6 py-4 whitespace-nowrap text-left">
-                  {report.teacher_name}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-left">
-                  {report.date}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-left">
-                  {report.title}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-left">
+              <tr className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}>
+                <td className="td-s">{report.teacher_name}</td>
+                <td className="td-s">{report.date}</td>
+                <td className="td-s">{report.title}</td>
+                <td className="td-s">
                   <button
                     onClick={() =>
                       setOpenIndex(openIndex === index ? null : index)
                     }
-                    className="relative text-blue-900 hover:text-white hover:bg-gray-200 rounded-full p-1"
+                    className="expand-button"
                   >
                     {openIndex === index ? <FaChevronUp /> : <FaChevronDown />}
                   </button>
@@ -65,7 +51,7 @@ const TeacherReportCard: React.FC<TeacherReportCardProps> = ({
                 <tr>
                   <td
                     colSpan={4}
-                    className="px-6 py-4 bg-gray-50 text-gray-700"
+                    className="expanded-row px-6 py-4 bg-gray-50 text-gray-700"
                   >
                     {report.description}
                   </td>
