@@ -65,11 +65,11 @@ const CalendarComponent = ({
       {...restProps}
     />
   );
-  const error = console.error;
-  console.error = (...args: string[]) => {
-    if (/defaultProps/.test(args[0])) return;
-    error(...args);
-  };
+  // const error = console.error;
+  // console.error = (...args: string[]) => {
+  //   if (/defaultProps/.test(args[0])) return;
+  //   error(...args);
+  // };
 
   return (
     <>

@@ -31,24 +31,6 @@ const ChildWidget = () => {
   }
   console.log(parentChildren);
 
-  // const childData: Child[] = [
-  //   { student_id: "S001", studentName: "John Doe", class: 10, average: 85 },
-  //   { student_id: "S002", studentName: "Jane Smith", class: 9, average: 92 },
-  //   {
-  //     student_id: "S003",
-  //     studentName: "Michael Johnson",
-  //     class: 11,
-  //     average: 78,
-  //   },
-  //   { student_id: "S004", studentName: "Emily Davis", class: 12, average: 88 },
-  //   {
-  //     student_id: "S005",
-  //     studentName: "William Brown",
-  //     class: 10,
-  //     average: 91,
-  //   },
-  // ];
-
   return (
     <div>
       {parentChildren?.map((singleChild) => (
