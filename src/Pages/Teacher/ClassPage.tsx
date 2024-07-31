@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Units from "./Units";
 import "react-calendar/dist/Calendar.css";
 import { TeachersAttendanceJournal } from "../../Components/TeachersAttendanceJournal/TeachersAttendanceJournal";
+import StudentInfo from "../../Components/StudentInfo/StudentInfo";
 
 type Exam = {
   id: number;
@@ -144,7 +145,7 @@ const ClassPage: React.FC = () => {
         <TeachersAttendanceJournal />
         // </div>
       )}
-      {view === "feedback" && <div>feedback</div>}
+      {view === "feedback" && <div><StudentInfo/></div>}
     </div>
   );
 };
