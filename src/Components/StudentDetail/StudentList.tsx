@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
+import UseGetClassStudentsAttendance from "../../Hooks/UseGetClassStudentsAttendance";
 
 const students = [
   {
@@ -43,8 +45,32 @@ const StudentList = () => {
   const [expandedStudentId, setExpandedStudentId] = useState<number | null>(
     null
   );
+  const { classNumber } = useParams();
+  console.log(classNumber);
 
   const [studentList, setStudentList] = useState(students);
+  const { user } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { getClassStudentsAttendance, classStudentsAttendance } =
+    UseGetClassStudentsAttendance(setIsLoading, selectedDate, classNumber);
+
+  useEffect(() => {
+    if (isLoading && user && !classStudentsAttendance) {
+      if (user._id != undefined) getClassStudentsAttendance(user._id);
+    }
+  }, [isLoading, user, getClassStudentsAttendance, classStudentsAttendance]);
+
+  if (isLoading || classStudentsAttendance === null) {
+    return (
+      <div
+        className="spinner mt-20 inline-block h-8 w-8 animate-spin rounded-full border-4 border-t-4 border-red-200 border-t-black"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
+    );
+  }
 
   const toggleDetails = (student_id: number) => {
     setExpandedStudentId(expandedStudentId === student_id ? null : student_id);

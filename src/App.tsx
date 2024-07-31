@@ -117,7 +117,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/student-list",
+        path: "/student-list/:classNumber",
         element: <StudentList />,
       },
 
@@ -135,14 +135,14 @@ const router = createBrowserRouter([
         path: "/FeedbackDrop",
         element: <FeedbackDrop />,
       },
-        // path: "/teacher-exam-reports",
-        // element: (
-        //   <TeacherReportsComponent
-        //     examsData={teacherExamsData}
-        //     isTeacher={true}
-        //   />
-        // ),
-      
+      // path: "/teacher-exam-reports",
+      // element: (
+      //   <TeacherReportsComponent
+      //     examsData={teacherExamsData}
+      //     isTeacher={true}
+      //   />
+      // ),
+
       // {
       //   path: '/teacher-attendance',
       //   element: <TeacherAttendance />,

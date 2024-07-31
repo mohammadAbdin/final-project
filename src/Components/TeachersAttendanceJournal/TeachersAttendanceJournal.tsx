@@ -3,7 +3,11 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 
-export const TeachersAttendanceJournal = () => {
+export const TeachersAttendanceJournal = ({
+  classNumber,
+}: {
+  classNumber: string;
+}) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const navigate = useNavigate();
 
@@ -19,7 +23,9 @@ export const TeachersAttendanceJournal = () => {
     if (date instanceof Date) {
       setSelectedDate(date);
       const formattedDate = formatDate(date);
-      navigate("/student-list", { state: { selectedDate: formattedDate } });
+      navigate(`/student-list/${classNumber}`, {
+        state: { selectedDate: formattedDate },
+      });
     }
   };
 
