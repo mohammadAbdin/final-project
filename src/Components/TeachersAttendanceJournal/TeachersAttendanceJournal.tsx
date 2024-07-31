@@ -32,7 +32,6 @@ export const TeachersAttendanceJournal = ({
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Teachers Attendance Journal</h1>
-
       <div className="border border-gray-300 rounded-md p-4 m-4 bg-white calendar-container">
         <h2 className="text-lg font-semibold mb-2">Attendance Journal</h2>
         <Calendar onClickDay={handleDateChange} value={selectedDate} />
