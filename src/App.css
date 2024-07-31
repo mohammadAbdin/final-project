@@ -1,12 +1,20 @@
-#root {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {}
+
+/* #root {
   font-size: 16px;
   margin: 0 0;
   padding: 0px 8rem;
   text-align: center;
   height: 100%;
   width: 100%;
-}
-
+} */
+/* 
 @media (max-width: 1024px) {
   #root {
     padding: 0px 1rem;
@@ -19,10 +27,12 @@
 
 .myNavbar {
   /* background-color: #34485f; */
-  width: 100vw;
+width: 100vw;
 }
 
 .verticle-menu-container {
   margin-left: -8rem;
   z-index: 10;
 }
+
+*/

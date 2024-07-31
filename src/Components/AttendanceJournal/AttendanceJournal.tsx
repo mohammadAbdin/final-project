@@ -1,12 +1,5 @@
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "./AttendanceJournal.css";
-
-interface Props {
-  events?: any;
-  selectedDate: any;
-  onDateChange: any;
-}
 
 const AttendanceJournal = ({ events, selectedDate, onDateChange }: Props) => {
   const tileClassName = ({ date }) => {
@@ -14,19 +7,35 @@ const AttendanceJournal = ({ events, selectedDate, onDateChange }: Props) => {
     const dayEvent = events.find((event) => event.date === formattedDate);
 
     if (dayEvent) {
-      return `${dayEvent.status}`;
+      return `border border-gray-300 rounded-md p-4 m-4 bg-white ${getColorClass(
+        dayEvent.status
+      )}`;
     } else {
-      return "";
+      return "border border-gray-300 rounded-md p-4 m-4 bg-white";
+    }
+  };
+
+  const getColorClass = (status) => {
+    switch (status) {
+      case "present":
+        return "bg-green-200";
+      case "late":
+        return "bg-blue-200";
+      case "absent":
+        return "bg-red-200";
+      default:
+        return "";
     }
   };
 
   return (
-    <div className="border border-gray-300 rounded-md p-4 m-4 bg-white calendar-container">
-      <h2 className="text-lg font-semibold mb-2">Attendance Journal</h2>
+    <div className="c-div-s">
+      <h2 className="h2-s">Attendance Journal</h2>
       <Calendar
         onChange={onDateChange}
         value={selectedDate}
         tileClassName={tileClassName}
+        className="border-none w-full"
       />
     </div>
   );
