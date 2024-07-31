@@ -65,14 +65,11 @@ const ClassPage: React.FC = () => {
   const [view, setView] = useState<
     "exams" | "videos" | "Attendance journal" | "feedback"
   >("exams");
-  // const [exams, setExams] = useState<ExamType[]>([]);
-  // const [students, setStudents] = useState<string[]>([]);
   const [newExamName, setNewExamName] = useState("");
   const [isAddingExam, setIsAddingExam] = useState(false);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  // console.log("user", user);
   const { getClassDetails, classDetails } = UseGetClassDetails(
     setIsLoading,
     classNumber
@@ -104,7 +101,7 @@ const ClassPage: React.FC = () => {
   const addExam = () => {
     setIsAddingExam(true);
   };
-  console.log(classDetails);
+  // console.log(classDetails);
 
   return (
     <div className="container mx-auto p-4">

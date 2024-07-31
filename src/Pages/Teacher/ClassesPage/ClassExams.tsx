@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { ExamType } from "../../../Types/ExamType";
 import UserType from "../../../Types/UserType";
+import { PutExamMarks } from "../../../Api/PutExamGrades";
 
 interface ClassExamsProps {
-  students: any[];
+  students: Student[];
   exams: ExamType[];
   isAddingExam: boolean;
   newExamName: string;
@@ -17,7 +18,21 @@ interface ClassExamsProps {
   ) => Promise<void>;
   addExam: () => void;
 }
-
+interface Student {
+  class: string;
+  gender: string;
+  name: string;
+  parent_id: string;
+  report: any[]; // or you can define a specific type if you know what `report` contains
+  student_id: string;
+  __v: number;
+  _id: string;
+}
+interface modifiedStudent {
+  Grade: string;
+  examName: string;
+  student_id: string;
+}
 export function ClassExams({
   students,
   exams,
@@ -29,10 +44,15 @@ export function ClassExams({
   AddNewExam,
   addExam,
 }: ClassExamsProps) {
+  console.log(exams);
+
   const [expandedExam, setExpandedExam] = useState<string | null>(null);
-  const [modifiedStudents, setModifiedStudents] = useState<any[]>([]);
+  const [modifiedStudents, setModifiedStudents] = useState<modifiedStudent[]>(
+    []
+  );
   const [editingStudent, setEditingStudent] = useState<string | null>(null);
   const [newGrade, setNewGrade] = useState<string>("");
+  // const { user } = useContext(UserContext);
 
   const toggleExamDetails = (examId: string) => {
     setExpandedExam(expandedExam === examId ? null : examId);
@@ -60,7 +80,9 @@ export function ClassExams({
   };
 
   const handleSave = () => {
-    console.log(modifiedStudents);
+    PutExamMarks(modifiedStudents, user?._id, classNumber);
+
+    console.log(modifiedStudents, user?._id, classNumber);
   };
 
   return (
