@@ -140,6 +140,7 @@ const SubjectsPage: React.FC = () => {
           </div>
         </div>
         <LineChart chartData={chartData} />
+      </div>
 
       <div className="cols2-div-s">
         <AttendanceJournal
