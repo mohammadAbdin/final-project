@@ -12,6 +12,8 @@ import ExamsTable from "../../../Components/ExamsTable/ExamsTable";
 import TeacherReportCard from "../../../Components/TeacherReportCard/TeacherReportCard";
 import VideoForm from "../../../Components/VideoForm/VideoForm";
 import { FeedbackToTeacher } from "../../../Components/FeedbackToTeacher/FeedbackToTeacher";
+import Schedule from "../../../Components/ClassSchedule/Schedule";
+import StudentSchedule from "../../Student/StudentSchedule/StudentSchedule";
 
 interface ChartData {
   labels: string[];
@@ -57,6 +59,34 @@ const SubjectsPage: React.FC = () => {
     }
   }, [isLoading, user, getChildSubjects, childSubjects, subject]);
 
+  const schedule = [
+    { day: "Sunday", period: "08:00-09:00", class: "Social Studies" },
+    { day: "Sunday", period: "09:00-10:00", class: "Break" },
+    { day: "Sunday", period: "10:00-11:00", class: "Break" },
+    { day: "Sunday", period: "11:00-12:00", class: "Break" },
+    { day: "Sunday", period: "12:00-13:00", class: "Break" },
+    { day: "Monday", period: "08:00-09:00", class: "Social Studies" },
+    { day: "Monday", period: "09:00-10:00", class: "Break" },
+    { day: "Monday", period: "10:00-11:00", class: "Break" },
+    { day: "Monday", period: "11:00-12:00", class: "Break" },
+    { day: "Monday", period: "12:00-13:00", class: "Break" },
+    { day: "Tuesday", period: "08:00-09:00", class: "Break" },
+    { day: "Tuesday", period: "09:00-10:00", class: "Break" },
+    { day: "Tuesday", period: "10:00-11:00", class: "Break" },
+    { day: "Tuesday", period: "11:00-12:00", class: "Break" },
+    { day: "Tuesday", period: "12:00-13:00", class: "Break" },
+    { day: "Wednesday", period: "08:00-09:00", class: "Break" },
+    { day: "Wednesday", period: "09:00-10:00", class: "Break" },
+    { day: "Wednesday", period: "10:00-11:00", class: "Break" },
+    { day: "Wednesday", period: "11:00-12:00", class: "Break" },
+    { day: "Wednesday", period: "12:00-13:00", class: "Break" },
+    { day: "Thursday", period: "08:00-09:00", class: "Break" },
+    { day: "Thursday", period: "09:00-10:00", class: "Break" },
+    { day: "Thursday", period: "10:00-11:00", class: "Break" },
+    { day: "Thursday", period: "11:00-12:00", class: "Break" },
+    { day: "Thursday", period: "12:00-13:00", class: "Break" },
+  ];
+
   if (isLoading || childSubjects === null) {
     return (
       <div
@@ -70,6 +100,7 @@ const SubjectsPage: React.FC = () => {
 
   return (
     <div className="main-subjects-container ">
+      {user?.userType === "Parent" && <Schedule schedule={schedule} />}
       <h2>You are watching: {subject}</h2>
       <div className="subjects-container">
         {childSubjects.map((subjectItem, index) => (
@@ -101,15 +132,12 @@ const SubjectsPage: React.FC = () => {
             subjectName={selectedSubject?.subjectName}
           />
         </div>
-        <div className="student-schedule-container">
-          <p>Sunday...</p>
-          <p>Monday...</p>
-        </div>
+
         <div className="teacher-report-card-container mt-2">
           <TeacherReportCard teacherReportData={teacherReportData} />
-        </div>
-        <div className="feedbackToTeacher-container">
-          <FeedbackToTeacher />
+          <div className="feedbackToTeacher-container">
+            <FeedbackToTeacher />
+          </div>
         </div>
         <LineChart chartData={chartData} />
       </div>

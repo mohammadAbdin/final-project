@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScheduleEntry } from "../../Types/ScheduleEntry";
+import { UserContext } from "../../Context/UserContext";
 
 const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
   const generateScheduleJSX = (schedule: ScheduleEntry[]): JSX.Element[] => {
@@ -42,12 +43,11 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
 
   const scheduleJSX = generateScheduleJSX(schedule);
 
+  const { user } = useContext(UserContext);
+
   return (
     <div className="border border-gray-300 rounded-md p-4 m-4 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl font-semibold mb-4 text-grey-900 ">
-          The schedule
-        </h1>
+      <div className={user?.userType === "Parent" ? "w-5/10" : "w-full"}>
         <div className="flex flex-row  gap-10   mb-6 ml-7 w-full overflow-x-auto whitespace-nowrap text-xs"></div>
         {/* <div className="flex flex-row  gap-24 mb-6 ml-14 w-full overflow-x-auto whitespace-nowrap">
           {Object.keys(

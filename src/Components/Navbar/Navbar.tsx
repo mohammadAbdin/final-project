@@ -19,6 +19,8 @@ const Navbar: React.FC = () => {
   //   return <></>;
   // }
 
+  const handleLogout = () => {};
+
   return (
     <>
       <header className="bg-gray-800 ">
@@ -70,6 +72,12 @@ const Navbar: React.FC = () => {
                     </div>
                   </div>
                 )} */}
+                <button
+                  className="rounded-md bg-gray-100 px-5 py-2.5 hidden lg:block text-sm font-medium text-gray-600"
+                  onClick={handleLogout}
+                >
+                  Log Out
+                </button>
                 {/* <HamburgerMenu /> */}
               </div>
             </div>
