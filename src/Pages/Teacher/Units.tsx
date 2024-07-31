@@ -13,28 +13,19 @@ const Units = ({ topics }: TopicsProps) => {
   };
 
   const addVideo = (videoData: any) => {
-    // const [currentTopicData] = topicsData.filter(topic => topic.id === currentTopicId);
     const updateTopicsData = [...topicsData];
     for (let i = 0; i < updateTopicsData.length; i++) {
       if (updateTopicsData[i].id === currentTopicId) {
         const newVideo = {
           ...videoData,
           id: updateTopicsData[i].videos.length + 1,
+          url: `https://www.youtube.com/embed/${videoData.url}`,
         };
         updateTopicsData[i].videos.push(newVideo);
         break;
       }
     }
     setTopicsData(updateTopicsData);
-    // const newVideoId = topics.currentTopicId
-
-    // const newVideo = {
-    //   id: videos.length + 1,
-    //   name: `Video ${videos.length + 1}`,
-    //   title: `Video Title ${videos.length + 1}`,
-    //   link: "https://example.com/newvideo",
-    // };
-    // setVideos([...videos, newVideo]);
   };
 
   //   const editVideo = (id: number) => {
@@ -66,28 +57,39 @@ const Units = ({ topics }: TopicsProps) => {
             {currentTopicId === topic.id && (
               <div>
                 {topic.videos.map((video) => (
-                  <Video
-                    id={video.id}
-                    title={video.title}
-                    description={video.description}
-                    url={video.url}
-                  />
+                  <div className="flex justify-between items-center mt-2 p-2 bg-gray-100 rounded">
+                    <Video
+                      id={video.id}
+                      title={video.title}
+                      description={video.description}
+                      url={video.url}
+                    />
+                    <div className="flex">
+                      <VideoForm isEdit={true} action={addVideo} />
+                      <button
+                        className="px-2 py-1 text-sm text-white bg-red-500 rounded"
+                        // onClick={() => deleteVideo(id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
                 ))}
 
                 <div className="flex justify-center items-center my-3">
-                  <button
+                  {/* <button
                     className="px-4 py-2 bg-green-500 text-white rounded"
                     onClick={() => addVideo(topic.id)}
                   >
                     Add Video
-                  </button>
+                  </button> */}
+                  <VideoForm isEdit={false} action={addVideo} />
                 </div>
               </div>
             )}
           </li>
         ))}
       </ul>
-      <VideoForm isEdit={false} action={addVideo} />
     </div>
   );
 };

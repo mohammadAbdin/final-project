@@ -38,7 +38,7 @@ const Video: React.FC<VideoType> = ({ id, title, description, url }) => {
       </div>
       <p>{description}</p>
       <div>
-        <button
+        {/* <button
           className="px-2 py-1 text-sm text-white bg-purple-500 rounded mr-2 mb-2"
           onClick={() => editVideo(id)}
         >
@@ -49,7 +49,7 @@ const Video: React.FC<VideoType> = ({ id, title, description, url }) => {
           onClick={() => deleteVideo(id)}
         >
           Delete
-        </button>
+        </button> */}
       </div>
     </div>
   );

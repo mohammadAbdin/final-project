@@ -60,8 +60,13 @@ const VideoForm = ({ isEdit, data, action }: VideoFormProps) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {isEdit ? "Edit Video" : "Add A Video"}
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{ color: `${isEdit ? "green" : ""}` }}
+          >
+            {isEdit ? "Edit" : "Add A Video"}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <form onSubmit={handleSubmit}>
@@ -83,10 +88,10 @@ const VideoForm = ({ isEdit, data, action }: VideoFormProps) => {
                 onChange={(e) => setVDesc(e.target.value)}
                 className="input-field"
               />
-              <label htmlFor="">Video URL</label>
+              <label htmlFor="">Video URL ID</label>
               <input
                 type="text"
-                placeholder="Add URL"
+                placeholder="Add URL ID"
                 name="vUrl"
                 value={vUrl}
                 onChange={(e) => setVUrl(e.target.value)}
@@ -94,7 +99,7 @@ const VideoForm = ({ isEdit, data, action }: VideoFormProps) => {
               />
 
               <button type="submit" className="btn">
-                Submit Video
+                {isEdit ? "Edit Video" : "Add A Video"}
               </button>
             </form>
           </Typography>
