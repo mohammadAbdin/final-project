@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom' // אם נדרש, יש להתאים לה
 import { FiLogOut } from 'react-icons/fi' // דוגמה לאייקון, ניתן להשתמש בכל סט של אייקונים
 import { UserContext } from '../../Context/UserContext'
 
-const Navbar = ({ onLogout }) => {
+const Navbar = () => {
   const { user } = useContext(UserContext)
 
   return (
@@ -18,7 +18,10 @@ const Navbar = ({ onLogout }) => {
         <div className="text-white text-lg font-bold">EDUtracker</div>
         <div>
           {user && (
-            <button onClick={onLogout} className="flex items-center text-white">
+            <button
+              onClick={() => console.log('')}
+              className="flex items-center text-white"
+            >
               <FiLogOut className="mr-2" />
               Logout
             </button>
