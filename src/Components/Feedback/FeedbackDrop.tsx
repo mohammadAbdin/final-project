@@ -1,57 +1,55 @@
-import React, { useState } from "react";
-
-interface Feedback {
-  reportType: "Teacher" | "Parent";
-  writer_id: string;
-  date: string;
-  title: string;
-  description: string;
-}
+import { FeedBackModal } from "./FeedBackModal";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
+import AddNewReport from "../../Api/PostReportRequest";
+import { FeedbackContent } from "../../Types/FeedbackContent";
+import UseGetStudentReports from "../../Hooks/UseGetStudentReports";
 
 interface FeedbackFormData {
   title: string;
   description: string;
 }
 
-const user = { id: "12345" }; // Simulating user ID for demo purposes
-
-const reports: Feedback[] = [
-  {
-    reportType: "Teacher",
-    writer_id: "12345",
-    date: "2024-07-25",
-    title: "Math Exam Report",
-    description:
-      "The math exam for Class 10 was conducted smoothly. The majority of students performed well.",
-  },
-  {
-    reportType: "Parent",
-    writer_id: "67890",
-    date: "2024-07-26",
-    title: "PTA Meeting Feedback",
-    description:
-      "Parents expressed concerns about the recent changes in the curriculum. They appreciated the teachers' efforts.",
-  },
-  {
-    reportType: "Teacher",
-    writer_id: "54321",
-    date: "2024-07-27",
-    title: "Field Trip Update",
-    description:
-      "The planned field trip to the science museum has been postponed due to unforeseen weather conditions.",
-  },
-  {
-    reportType: "Parent",
-    writer_id: "98765",
-    date: "2024-07-28",
-    title: "Student Progress Inquiry",
-    description:
-      "Inquiring about the academic progress of my child, particularly in science and mathematics subjects.",
-  },
-];
+// const reports: FeedbackContent[] = [
+//   {
+//     reportType: "Teacher",
+//     writer_id: "12345",
+//     date: "2024-07-25",
+//     title: "Math Exam Report",
+//     description:
+//       "The math exam for Class 10 was conducted smoothly. The majority of students performed well.",
+//   },
+//   {
+//     reportType: "Parent",
+//     writer_id: "67890",
+//     date: "2024-07-26",
+//     title: "PTA Meeting Feedback",
+//     description:
+//       "Parents expressed concerns about the recent changes in the curriculum. They appreciated the teachers' efforts.",
+//   },
+//   {
+//     reportType: "Teacher",
+//     writer_id: "54321",
+//     date: "2024-07-27",
+//     title: "Field Trip Update",
+//     description:
+//       "The planned field trip to the science museum has been postponed due to unforeseen weather conditions.",
+//   },
+//   {
+//     reportType: "Parent",
+//     writer_id: "98765",
+//     date: "2024-07-28",
+//     title: "Student Progress Inquiry",
+//     description:
+//       "Inquiring about the academic progress of my child, particularly in science and mathematics subjects.",
+//   },
+// ];
 
 const FeedbackDrop: React.FC = () => {
-  const [feedbackData, setFeedbackData] = useState<Feedback[]>(reports);
+  const { student_id } = useParams();
+
+  const [feedbackData, setFeedbackData] = useState<FeedbackContent[]>();
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState<FeedbackFormData>({
     title: "",
@@ -60,7 +58,36 @@ const FeedbackDrop: React.FC = () => {
   const [feedbackType, setFeedbackType] = useState<"Teacher" | "Parent">(
     "Teacher"
   );
+  const { user } = useContext(UserContext);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { getStudentReports, studentReports } = UseGetStudentReports(
+    setIsLoading,
+    student_id
+  );
+
+  useEffect(() => {
+    if (isLoading && user && !studentReports) {
+      if (user._id != undefined) getStudentReports();
+    }
+  }, [isLoading, user, getStudentReports, studentReports]);
+  useEffect(() => {
+    if (studentReports) {
+      setFeedbackData(studentReports);
+    }
+  }, [studentReports, feedbackData]);
+
+  if (isLoading || studentReports === null || feedbackData == null) {
+    return (
+      <div
+        className="spinner mt-20 inline-block h-8 w-8 animate-spin rounded-full border-4 border-t-4 border-red-200 border-t-black"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
+    );
+  }
   const handleFeedbackTypeChange = (type: "Teacher" | "Parent") => {
     setFeedbackType(type);
   };
@@ -82,14 +109,21 @@ const FeedbackDrop: React.FC = () => {
   };
 
   const handleFormSubmit = () => {
-    const newFeedback: Feedback = {
+    const newFeedback: FeedbackContent = {
       reportType: feedbackType,
-      writer_id: user.id,
-      date: new Date().toISOString().split("T")[0], // ISO date format (YYYY-MM-DD)
+      writer_id: user?._id,
+      date: new Date().toISOString().split("T")[0].split("-").join("/"), // ISO date format (YYYY-MM-DD)
       title: formData.title,
       description: formData.description,
     };
-    setFeedbackData((prevData) => [...prevData, newFeedback]);
+    setFeedbackData((prevData) => {
+      if (prevData) {
+        return [...prevData, newFeedback];
+      } else {
+        return [newFeedback];
+      }
+    });
+    AddNewReport(newFeedback, student_id);
     handleModalClose();
   };
 
@@ -135,45 +169,12 @@ const FeedbackDrop: React.FC = () => {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-            <h2 className="text-xl font-semibold mb-4">Add New Feedback</h2>
-            <label className="block mb-2">
-              Title:
-              <input
-                type="text"
-                name="title"
-                value={formData.title}
-                onChange={handleFormChange}
-                className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-              />
-            </label>
-            <label className="block mb-4">
-              Description:
-              <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleFormChange}
-                className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                rows={4}
-              />
-            </label>
-            <div className="flex justify-end space-x-2">
-              <button
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                onClick={handleFormSubmit}
-              >
-                Submit
-              </button>
-              <button
-                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300"
-                onClick={handleModalClose}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
+        <FeedBackModal
+          handleFormChange={handleFormChange}
+          handleFormSubmit={handleFormSubmit}
+          handleModalClose={handleModalClose}
+          formData={formData}
+        />
       )}
     </div>
   );

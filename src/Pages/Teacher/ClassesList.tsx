@@ -36,12 +36,9 @@ const ClassesList: React.FC = () => {
         {teacherClass.map((classItem) => (
           <li
             key={classItem.id}
-            className="flex justify-between items-center border-b py-2 last:border-b-0"
+            className="flex justify-between items-center border-b p-2 last:border-b-0 hover:bg-blue-100"
           >
-            <Link
-              to={`/class/${classItem.name}`}
-              className="text-blue-500 hover:underline"
-            >
+            <Link to={`/class/${classItem.name}`} className="text-gray-700">
               {classItem.name}th Class
             </Link>
           </li>

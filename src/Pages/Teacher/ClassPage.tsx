@@ -19,19 +19,19 @@ const fetchTopics = [
         id: 1,
         title: "video1",
         description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/embed/jhiY62jG45o",
+        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
       },
       {
         id: 2,
         title: "video2",
         description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/embed/jhiY62jG45o",
+        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
       },
       {
         id: 3,
         title: "video3",
         description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/embed/jhiY62jG45o",
+        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
       },
     ],
   },
@@ -43,19 +43,19 @@ const fetchTopics = [
         id: 1,
         title: "video1",
         description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/embed/jhiY62jG45o",
+        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
       },
       {
         id: 2,
         title: "video2",
         description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/embed/jhiY62jG45o",
+        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
       },
       {
         id: 3,
         title: "video3",
         description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/embed/jhiY62jG45o",
+        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
       },
     ],
   },
@@ -102,10 +102,10 @@ const ClassPage: React.FC = () => {
   const addExam = () => {
     setIsAddingExam(true);
   };
-  // console.log(classDetails);
+  console.log(classDetails.students);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Class {classNumber}</h1>
 
       <div className="mb-4">
@@ -127,7 +127,7 @@ const ClassPage: React.FC = () => {
         </button>
 
         <button
-          className={`px-4 py-2 rounded-sm ${
+          className={`mr-2 px-4 py-2 ${
             view === "Attendance journal"
               ? "bg-blue-500 text-white"
               : "bg-gray-200"
@@ -166,7 +166,7 @@ const ClassPage: React.FC = () => {
       )}
       {view === "feedback" && (
         <div>
-          <StudentInfo />
+          <StudentInfo students={classDetails.students} />
         </div>
       )}
     </div>

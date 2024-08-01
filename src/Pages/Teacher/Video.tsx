@@ -5,17 +5,14 @@ interface VideoType {
   url: string;
 }
 
-const Video: React.FC<VideoType> = ({ id, title, description, url }) => {
-  const editVideo = (id: number) => {
-    // Logic to edit video
-    console.log(`Edit video ${id}`);
-  };
+function extractVideoId(url: string): string | null {
+  const regex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
+}
 
-  const deleteVideo = (id: number) => {
-    //   console.log(`Delete video ${id}`);
-    //   setVideos(videos.filter((video) => id !== id));
-  };
-  console.log(id);
+const Video: React.FC<VideoType> = ({ id, title, description, url }) => {
+  const videoId = extractVideoId(url);
 
   return (
     <div
@@ -27,7 +24,7 @@ const Video: React.FC<VideoType> = ({ id, title, description, url }) => {
 
         <div className="w-1/2 aspect-square">
           <iframe
-            src={url}
+            src={`https://www.youtube.com/embed/${videoId}`}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -37,20 +34,7 @@ const Video: React.FC<VideoType> = ({ id, title, description, url }) => {
         </div>
       </div>
       <p>{description}</p>
-      <div>
-        <button
-          className="px-2 py-1 text-sm text-white bg-purple-500 rounded mr-2 mb-2"
-          onClick={() => editVideo(id)}
-        >
-          Edit
-        </button>
-        <button
-          className="px-2 py-1 text-sm text-white bg-red-500 rounded"
-          onClick={() => deleteVideo(id)}
-        >
-          Delete
-        </button>
-      </div>
+      <div></div>
     </div>
   );
 };
