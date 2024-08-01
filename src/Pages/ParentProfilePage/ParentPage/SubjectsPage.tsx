@@ -117,7 +117,6 @@ const SubjectsPage: React.FC = () => {
           </button>
         ))}
       </div>
-<<<<<<< HEAD
 
       {/* <div className="main-info-container">
         <div className="calendar-container">
@@ -144,10 +143,7 @@ const SubjectsPage: React.FC = () => {
         </div>
         <LineChart chartData={chartData} />
       </div> */}
-=======
->>>>>>> e43b69f0f21957712b58d1a9a82c14860f15aa8e
 
-      <FeedbackToTeacher />
       <div className="secondery-div-s">
         {user?.userType === 'Parent' && <Schedule schedule={schedule} />}
       </div>
