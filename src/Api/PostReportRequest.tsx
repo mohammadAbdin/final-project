@@ -9,11 +9,11 @@ async function AddNewReport(
     console.log(newFeedback);
     console.log(student_id);
 
-    // const response = await axios.post(
-    //   "http://localhost:5001/student/add-report ",
-    //   { newFeedback }
-    // );
-    // return response.data;
+    const response = await axios.post(
+      "http://localhost:5001/student/add-report",
+      { newFeedback, student_id }
+    );
+    return response.data;
   } catch (error) {
     console.error("There was an error adding the user:", error);
     throw error;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import { FeedbackToTeacher } from '../FeedbackToTeacher/FeedbackToTeacher'
 
 interface TeacherReport {
   teacher_name: string
@@ -61,6 +62,9 @@ const TeacherReportCard: React.FC<TeacherReportCardProps> = ({
           ))}
         </tbody>
       </table>
+      <div className="flex justify-item">
+        <FeedbackToTeacher />
+      </div>
     </div>
   )
 }

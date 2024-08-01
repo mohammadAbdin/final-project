@@ -25,13 +25,12 @@ import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
 import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
 import teacherExamsData from "./demoData/teacherExamsData.js";
 import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
-// import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
-import Grades from "./Pages/Teacher/Grades";
-import ClassesList from "./Pages/Teacher/ClassesList";
-import ClassPage from "./Pages/Teacher/ClassPage";
+import ClassesList from "./Pages/Teacher/ClassesList.js";
+import ClassPage from "./Pages/Teacher/ClassPage.js";
+import StudentResourcesPage from "./Pages/StudentResourcesPage/StudentResourcesPage.js";
 import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
 import FeedbackDrop from "./Components/Feedback/FeedbackDrop.js";
-import StudentResourcesPage from "./Pages/StudentResourcesPage/StudentResourcesPage.js";
+// import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 
 const AppLayout = () => {
   const { user, setIsLogedIn, setUser } = useContext(UserContext);
@@ -46,7 +45,7 @@ const AppLayout = () => {
     return <></>;
   }
   return (
-    <div className="h-full w-full flex flex-row gap-8 bg-gray-50">
+    <div className="flex flex-col">
       <Navbar />
       <SideBar />
     </div>

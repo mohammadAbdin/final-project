@@ -1,3 +1,27 @@
+.react-calendar {
+  width: 100%;
+  border: none;
+  font-family: 'Arial', sans-serif;
+}
+
+.react-calendar__tile {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.present {
+  background-color: #a0d6a5;
+}
+
+.late {
+  background-color: #a0c4ff;
+}
+
+.absent {
+  background-color: #fbb6ce;
+}
+
 /* .react-calendar {
   width: 100%;
   border: none;
