@@ -78,12 +78,12 @@ export function ClassExams({
   };
 
   return (
-    <div>
+    <div className="bg-white p-4 rounded-md">
       <ul>
         {exams.map((exam) => (
           <li
             key={exam._id}
-            className="border-b p-2 last:border-b-0 hover:bg-blue-100"
+            className="border-b p-2 last:border-b-0 hover:bg-blue-100 rounded-md"
           >
             <div className="flex justify-between items-center">
               <span

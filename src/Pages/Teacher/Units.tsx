@@ -73,12 +73,12 @@ const Units = ({ topics }: TopicsProps) => {
         {topics.map((topic, index) => (
           <li
             key={topic.id}
-            className="border-b py-2 last:border-b-0 hover:bg-gray-100"
+            className="border-b py-2 last:border-b-0 hover:bg-blue-100 rounded-md"
           >
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center ">
               <span
                 onClick={() => toggleVideoDetails(topic.id)}
-                className="cursor-pointer text-blue-500"
+                className="cursor-pointer text-gray-700 "
               >
                 Unit {index + 1} : {topic.title}
               </span>
