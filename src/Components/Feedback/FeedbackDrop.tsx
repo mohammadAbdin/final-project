@@ -1,54 +1,54 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import AddNewReport from "../../Api/PostReportRequest";
 import { FeedbackContent } from "../../Types/FeedbackContent";
+import UseGetStudentReports from "../../Hooks/UseGetStudentReports";
 
 interface FeedbackFormData {
   title: string;
   description: string;
 }
 
-const reports: FeedbackContent[] = [
-  {
-    reportType: "Teacher",
-    writer_id: "12345",
-    date: "2024-07-25",
-    title: "Math Exam Report",
-    description:
-      "The math exam for Class 10 was conducted smoothly. The majority of students performed well.",
-  },
-  {
-    reportType: "Parent",
-    writer_id: "67890",
-    date: "2024-07-26",
-    title: "PTA Meeting Feedback",
-    description:
-      "Parents expressed concerns about the recent changes in the curriculum. They appreciated the teachers' efforts.",
-  },
-  {
-    reportType: "Teacher",
-    writer_id: "54321",
-    date: "2024-07-27",
-    title: "Field Trip Update",
-    description:
-      "The planned field trip to the science museum has been postponed due to unforeseen weather conditions.",
-  },
-  {
-    reportType: "Parent",
-    writer_id: "98765",
-    date: "2024-07-28",
-    title: "Student Progress Inquiry",
-    description:
-      "Inquiring about the academic progress of my child, particularly in science and mathematics subjects.",
-  },
-];
+// const reports: FeedbackContent[] = [
+//   {
+//     reportType: "Teacher",
+//     writer_id: "12345",
+//     date: "2024-07-25",
+//     title: "Math Exam Report",
+//     description:
+//       "The math exam for Class 10 was conducted smoothly. The majority of students performed well.",
+//   },
+//   {
+//     reportType: "Parent",
+//     writer_id: "67890",
+//     date: "2024-07-26",
+//     title: "PTA Meeting Feedback",
+//     description:
+//       "Parents expressed concerns about the recent changes in the curriculum. They appreciated the teachers' efforts.",
+//   },
+//   {
+//     reportType: "Teacher",
+//     writer_id: "54321",
+//     date: "2024-07-27",
+//     title: "Field Trip Update",
+//     description:
+//       "The planned field trip to the science museum has been postponed due to unforeseen weather conditions.",
+//   },
+//   {
+//     reportType: "Parent",
+//     writer_id: "98765",
+//     date: "2024-07-28",
+//     title: "Student Progress Inquiry",
+//     description:
+//       "Inquiring about the academic progress of my child, particularly in science and mathematics subjects.",
+//   },
+// ];
 
 const FeedbackDrop: React.FC = () => {
   const { student_id } = useParams();
-  console.log(student_id);
 
-  const [feedbackData, setFeedbackData] = useState<FeedbackContent[]>(reports);
+  const [feedbackData, setFeedbackData] = useState<FeedbackContent[]>();
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState<FeedbackFormData>({
     title: "",
@@ -59,6 +59,34 @@ const FeedbackDrop: React.FC = () => {
   );
   const { user } = useContext(UserContext);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { getStudentReports, studentReports } = UseGetStudentReports(
+    setIsLoading,
+    student_id
+  );
+
+  useEffect(() => {
+    if (isLoading && user && !studentReports) {
+      if (user._id != undefined) getStudentReports();
+    }
+  }, [isLoading, user, getStudentReports, studentReports]);
+  useEffect(() => {
+    if (studentReports) {
+      setFeedbackData(studentReports);
+    }
+  }, [studentReports, feedbackData]);
+
+  if (isLoading || studentReports === null || feedbackData == null) {
+    return (
+      <div
+        className="spinner mt-20 inline-block h-8 w-8 animate-spin rounded-full border-4 border-t-4 border-red-200 border-t-black"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
+    );
+  }
   const handleFeedbackTypeChange = (type: "Teacher" | "Parent") => {
     setFeedbackType(type);
   };
@@ -87,8 +115,13 @@ const FeedbackDrop: React.FC = () => {
       title: formData.title,
       description: formData.description,
     };
-    setFeedbackData((prevData) => [...prevData, newFeedback]);
-    console.log(newFeedback);
+    setFeedbackData((prevData) => {
+      if (prevData) {
+        return [...prevData, newFeedback];
+      } else {
+        return [newFeedback];
+      }
+    });
     AddNewReport(newFeedback, student_id);
     handleModalClose();
   };
