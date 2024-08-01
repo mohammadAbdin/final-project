@@ -1,38 +1,40 @@
+import { useContext, useEffect, useState } from "react";
 import Schedule from "../../../Components/ClassSchedule/Schedule";
-
 import { ScheduleEntry } from "../../../Types/ScheduleEntry";
+import { UserContext } from "../../../Context/UserContext";
+import UseGetStudentSchedule from "../../../Hooks/UseGetStudentSchedule";
+import { addBreaksToSchedule } from "../../../Functions/refactorStudentSchedule";
 function StudentSchedule() {
-  const exampleScheduleData: ScheduleEntry[] = [
-    { day: "Sunday", period: "08:00-09:00", class: "1" },
-    { day: "Sunday", period: "09:00-10:00", class: "2" },
-    { day: "Sunday", period: "10:00-11:00", class: "3" },
-    { day: "Sunday", period: "11:00-12:00", class: "Break" },
-    { day: "Sunday", period: "12:00-13:00", class: "4" },
+  const { user } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
 
-    { day: "Monday", period: "08:00-09:00", class: "1" },
-    { day: "Monday", period: "09:00-10:00", class: "2" },
-    { day: "Monday", period: "10:00-11:00", class: "Break" },
-    { day: "Monday", period: "11:00-12:00", class: "3" },
-    { day: "Monday", period: "12:00-13:00", class: "4" },
+  const { getStudentSchedule, studentSchedule } = UseGetStudentSchedule(
+    isLoading,
+    setIsLoading
+  );
 
-    { day: "Tuesday", period: "08:00-09:00", class: "Math" },
-    { day: "Tuesday", period: "09:00-10:00", class: "History" },
-    { day: "Tuesday", period: "10:00-11:00", class: "GYM" },
-    { day: "Tuesday", period: "11:00-12:00", class: "English" },
-    { day: "Tuesday", period: "12:00-13:00", class: "Break" },
+  useEffect(() => {
+    if (isLoading && user && !studentSchedule) {
+      if (user._id != undefined) getStudentSchedule(user._id);
+    }
+  }, [isLoading, user, getStudentSchedule, studentSchedule]);
 
-    { day: "Wednesday", period: "08:00-09:00", class: "Break" },
-    { day: "Wednesday", period: "09:00-10:00", class: "Two" },
-    { day: "Wednesday", period: "10:00-11:00", class: "3" },
-    { day: "Wednesday", period: "11:00-12:00", class: "4" },
-    { day: "Wednesday", period: "12:00-13:00", class: "1" },
+  if (isLoading || studentSchedule === null) {
+    return (
+      <div
+        className="spinner mt-20 inline-block h-8 w-8 animate-spin rounded-full border-4 border-t-4 border-red-200 border-t-black"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
+    );
+  }
 
-    { day: "Thursday", period: "08:00-09:00", class: "1" },
-    { day: "Thursday", period: "09:00-10:00", class: "Break" },
-    { day: "Thursday", period: "10:00-11:00", class: "2" },
-    { day: "Thursday", period: "11:00-12:00", class: "3" },
-    { day: "Thursday", period: "12:00-13:00", class: "4" },
-  ];
+  const exampleScheduleData: ScheduleEntry[] =
+    addBreaksToSchedule(studentSchedule);
+
+  console.log(exampleScheduleData);
+
   return (
     <div>
       <Schedule schedule={exampleScheduleData} />

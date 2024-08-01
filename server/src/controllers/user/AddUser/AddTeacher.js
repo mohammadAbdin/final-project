@@ -23,22 +23,3 @@ export const AddTeacher = async (formData, newUser, fullName, email, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
-//   {
-//     fullName: 'mohammad abdin',
-//     email: 'm7md3bdeen132@gmail.com',
-//     id: '3456789',
-//     age: '45',
-// {
-//     schedule: [
-//       { day: 'Monday', period: '09:00-10:00', class: '2' },
-//       { day: 'Tuesday', period: '10:00-11:00', class: '2' },
-//       { day: 'Wednesday', period: '11:00-12:00', class: '2' },
-//       { day: 'Thursday', period: '12:00-13:00', class: '2' },
-//       { day: 'Thursday', period: '08:00-09:00', class: '4' },
-//       { day: 'Wednesday', period: '08:00-09:00', class: '4' }
-//     ],
-//     subject:"English"}
-//     phone: '0525615707',
-//     gender: 'male',
-//   }

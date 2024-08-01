@@ -19,10 +19,12 @@ const Navbar: React.FC = () => {
   //   return <></>;
   // }
 
+  const handleLogout = () => {};
+
   return (
     <>
       <header className="bg-gray-800 ">
-        <div className="myNavbar verticle-menu-container bg-gray-800 fixed w-full sm:mr-28 lg:justify-between text-white px-4  sm:px-6 top-0 lg:px-8 ">
+        <div className="myNavbar verticle-menu-container bg-grey-300 fixed w-full sm:mr-28 lg:justify-between text-white px-4 sm:px-6 top-0 lg:px-8 border-b border-gray-300">
           <div className=" flex h-16 items-center justify-between mr-32">
             <img className="mr-2 h-6 md:h-12 w-auto" alt="logo" />
 
@@ -70,6 +72,12 @@ const Navbar: React.FC = () => {
                     </div>
                   </div>
                 )} */}
+                <button
+                  className="rounded-md bg-gray-100 px-5 py-2.5 hidden lg:block text-sm font-medium text-gray-600"
+                  onClick={handleLogout}
+                >
+                  Log Out
+                </button>
                 {/* <HamburgerMenu /> */}
               </div>
             </div>

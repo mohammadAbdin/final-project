@@ -3,10 +3,6 @@ import { dbConnectionPromise } from "../utils/mongoUtil.js";
 // specific date a specific subject a specific class
 
 const studentSchema = new mongoose.Schema({
-  // name: {
-  //   type: String,
-  //   required: true,
-  // },
   student_id: {
     type: String,
     required: true,

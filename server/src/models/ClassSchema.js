@@ -52,19 +52,6 @@ const classSchema = new mongoose.Schema({
   },
   schedule: { type: [scheduleSchema], required: true },
   subjects: { type: [subjectSchema], required: true },
-  // validate: {
-  //   validator: function (subjects) {
-  //     const subjectNames = new Set();
-  //     for (const subject of subjects) {
-  //       if (subjectNames.has(subject.subjectName)) {
-  //         return false;
-  //       }
-  //       subjectNames.add(subject.subjectName);
-  //     }
-  //     return true;
-  //   },
-  //   message: "Each class must have unique subject names.",
-  // },
 });
 
 let Class;
