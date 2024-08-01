@@ -1,26 +1,28 @@
 import axios from "axios";
-import { ScheduleEntry } from "../Types/ScheduleEntry";
+import { StudentsAttendanceType } from "../Types/StudentsAttendanceType";
 
 export const UseGetClassStudentsAttendanceRequest = async (
   id: string,
   selectedDate: string,
   classNumber: string | undefined
-): Promise<void> => {
-  console.log(selectedDate);
-  console.log(classNumber);
-  console.log(id);
-
+): Promise<StudentsAttendanceType[] | null> => {
   try {
-    // const response = await axios.get<[]>(
-    //   `http://localhost:5001/teacher/Teacher-Schedule/${id}`,
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     withCredentials: true,
-    //   }
-    // );
-    // return response.data;
+    const response = await axios.get<StudentsAttendanceType[]>(
+      `http://localhost:5001/class/attendance-date`,
+      {
+        params: {
+          selectedDate,
+          classNumber,
+          id,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+
+    return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {

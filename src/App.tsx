@@ -26,11 +26,20 @@ import TeacherReportsComponent from './Pages/Teacher/TeacherReportsComponent/Tea
 import teacherExamsData from './demoData/teacherExamsData.js'
 import SubjectsPageReut from './Pages/ParentPage/SubjectsPage.js'
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
+<<<<<<< HEAD
 import Grades from './Pages/Teacher/Grades'
 import ClassesList from './Pages/Teacher/ClassesList'
 import ClassPage from './Pages/Teacher/ClassPage'
 import StudentInfo from './Components/StudentInfo/StudentInfo.js'
 import FeedbackDrop from './Components/Feedback/FeedbackDrop.js'
+=======
+import Grades from "./Pages/Teacher/Grades";
+import ClassesList from "./Pages/Teacher/ClassesList";
+import ClassPage from "./Pages/Teacher/ClassPage";
+import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
+import FeedbackDrop from "./Components/Feedback/FeedbackDrop.js";
+import StudentResourcesPage from "./Pages/StudentResourcesPage/StudentResourcesPage.js";
+>>>>>>> e43b69f0f21957712b58d1a9a82c14860f15aa8e
 
 const AppLayout = () => {
   const { user, setIsLogedIn, setUser } = useContext(UserContext)
@@ -84,7 +93,15 @@ const router = createBrowserRouter([
         element: <SubjectsPage />,
       },
       {
+<<<<<<< HEAD
         path: '/StudentSchedule',
+=======
+        path: "/StudentResourcesPage/:student_id",
+        element: <StudentResourcesPage />,
+      },
+      {
+        path: "/StudentSchedule",
+>>>>>>> e43b69f0f21957712b58d1a9a82c14860f15aa8e
         element: <StudentSchedule />,
       },
       {
