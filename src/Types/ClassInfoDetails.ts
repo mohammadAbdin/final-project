@@ -1,9 +1,6 @@
+import { ExamType } from "./ExamType";
+
 export interface ClassInfoDetails {
-  exams: [
-    {
-      _id: number;
-      examName: string;
-    }
-  ];
+  exams: ExamType[];
   students: [];
 }

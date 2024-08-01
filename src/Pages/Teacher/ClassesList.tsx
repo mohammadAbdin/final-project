@@ -3,14 +3,6 @@ import { Link } from "react-router-dom";
 import TeacherReportsComponent from "./TeacherReportsComponent/TeacherReportsComponent";
 import { UserContext } from "../../Context/UserContext";
 import UseGetTeacherCLass from "../../Hooks/UseGetTeacherCLass";
-// import { ClassType } from "../../Types/ClassType";
-// import { classNames } from "clsx";
-
-// const classes: ClassType[] = [
-//   { id: 1, name: "Class A" },
-//   { id: 2, name: "Class B" },
-//   { id: 3, name: "Class C" },
-// ];
 
 const ClassesList: React.FC = () => {
   const { user } = useContext(UserContext);

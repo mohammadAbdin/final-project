@@ -1,12 +1,7 @@
 import mongoose from "mongoose";
 import { dbConnectionPromise } from "../utils/mongoUtil.js";
-// specific date a specific subject a specific class
 
 const studentSchema = new mongoose.Schema({
-  // name: {
-  //   type: String,
-  //   required: true,
-  // },
   student_id: {
     type: String,
     required: true,
@@ -16,23 +11,24 @@ const studentSchema = new mongoose.Schema({
     default: false,
   },
 });
-
-const attendanceSchema = new mongoose.Schema({
+const dateSchema = new mongoose.Schema({
   date: {
     type: String, // Format: 'year/month/day'
-    required: true,
   },
+  students: [studentSchema],
+});
+const subjectSchema = new mongoose.Schema({
+  subject: { type: String, required: true },
+  date: [dateSchema],
+});
+const attendanceSchema = new mongoose.Schema({
   class: {
     type: String,
     required: true,
   },
-  subject: {
-    type: String,
-    required: true,
-  },
-  students: [studentSchema],
+  subjects: { type: [subjectSchema], required: true },
 });
-attendanceSchema.index({ date: 1, class: 1, subject: 1 }, { unique: true });
+// attendanceSchema.index({ date: 1, class: 1, subject: 1 }, { unique: true });
 
 let Attendance;
 

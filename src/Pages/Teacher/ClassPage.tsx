@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Units from "./Units";
 import "react-calendar/dist/Calendar.css";
 import { TeachersAttendanceJournal } from "../../Components/TeachersAttendanceJournal/TeachersAttendanceJournal";
+import StudentInfo from "../../Components/StudentInfo/StudentInfo";
 import AddNewExam from "../../Api/PostNewExam";
 import { UserContext } from "./../../Context/UserContext";
 import UseGetClassDetails from "../../Hooks/UseGetClassExams";
@@ -65,14 +66,11 @@ const ClassPage: React.FC = () => {
   const [view, setView] = useState<
     "exams" | "videos" | "Attendance journal" | "feedback"
   >("exams");
-  // const [exams, setExams] = useState<ExamType[]>([]);
-  // const [students, setStudents] = useState<string[]>([]);
   const [newExamName, setNewExamName] = useState("");
   const [isAddingExam, setIsAddingExam] = useState(false);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  // console.log("user", user);
   const { getClassDetails, classDetails } = UseGetClassDetails(
     setIsLoading,
     classNumber
@@ -104,7 +102,7 @@ const ClassPage: React.FC = () => {
   const addExam = () => {
     setIsAddingExam(true);
   };
-  console.log(classDetails);
+  // console.log(classDetails);
 
   return (
     <div className="container mx-auto p-4">
@@ -163,8 +161,14 @@ const ClassPage: React.FC = () => {
       )}
 
       {view === "videos" && <Units topics={fetchTopics} />}
-      {view === "Attendance journal" && <TeachersAttendanceJournal />}
-      {view === "feedback" && <div>feedback</div>}
+      {view === "Attendance journal" && (
+        <TeachersAttendanceJournal classNumber={classNumber} />
+      )}
+      {view === "feedback" && (
+        <div>
+          <StudentInfo />
+        </div>
+      )}
     </div>
   );
 };

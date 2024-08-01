@@ -4,25 +4,10 @@ import TeacherSideBar from "../../Pages/Teacher/TeacherSideBar";
 import { UserContext } from "../../Context/UserContext";
 import ParentSideBar from "../../Pages/ParentPage/ParentSideBar";
 import StudentSideBar from "../../Pages/Student/StudentSideBar";
-// import { UserContext } from "../Context/UserContext";
-// import UserSideBarSections from "./UserSideBarSections";
-// import useGetTokens from "../Hooks/UseGetTokens";
-// import AdminSideBarSections from "../Pages/Admin/Components/AdminSideBarSections";
 
 const Sidebar: React.FC = () => {
   const { user } = useContext(UserContext);
   console.log(user, "sidebar");
-
-  // const { isLoading } = useGetTokens(setIsLogedIn, setUser);
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     console.log("User after fetch:", user);
-  //   }
-  // }, [isLoading, user]);
-
-  // if (isLoading) {
-  //   return <></>;
-  // }
   return (
     <>
       <div className=" lg:flex flex-col h-full justify-between  hidden mr-32  xl:mr-0 border-e bg-white lg:w-40 w-20 items-start   relative left-0  top-32">
@@ -58,7 +43,7 @@ const Sidebar: React.FC = () => {
           </a>
         </div>
       </div>
-      <main className="mt-16 flex-grow home">
+      <main className="mt-16 flex-grow home bg-red-700">
         <Outlet />
       </main>
     </>
