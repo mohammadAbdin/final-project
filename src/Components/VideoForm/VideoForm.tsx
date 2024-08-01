@@ -51,7 +51,6 @@ const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
       url: vUrl,
     };
     if (updateVideo) {
-      console.log("________");
       updateVideo(videoData);
     }
     if (addVideo) {

@@ -10,22 +10,21 @@ const AddTopicBtn = ({
 }) => {
   const [addTopicStatus, setAddTopicStatus] = useState<boolean>(false);
   const [newTopicTitle, setNewTopicTitle] = useState<string>("");
+  const [isCancel, setIsCancel] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   const placeholderText = "Enter Topic";
 
   const addNewTopic = () => {
-    if (!newTopicTitle.trim()) {
-      alert("sorry");
-      return;
-    }
     const newTopic = {
       id: topicsData.length + 1,
-      title: newTopicTitle,
+      title: newTopicTitle.trim(),
       videos: [],
     };
     setTopicsData([...topicsData, newTopic]);
     setNewTopicTitle("");
     setAddTopicStatus(false);
+    setIsCancel(true);
   };
 
   return (
@@ -47,14 +46,31 @@ const AddTopicBtn = ({
             type="text"
             placeholder={placeholderText}
             autoFocus
-            onChange={(event) => setNewTopicTitle(event.target.value)}
+            onChange={(event) => {
+              setNewTopicTitle(event.target.value);
+              if (!event.target.value.trim()) {
+                setIsCancel(true);
+                return;
+              }
+              setIsCancel(false);
+            }}
           />
-          <button
-            className="px-4 py-2 mb-3 ml-2 text-green-500 rounded hover:bg-green-100 placeholder-gray-500 placeholder-opacity-75"
-            onClick={addNewTopic}
-          >
-            Create
-          </button>
+
+          {isCancel ? (
+            <button
+              onClick={() => setAddTopicStatus(false)}
+              className="px-4 py-2 mb-3 ml-2 text-red-500 rounded hover:bg-green-100 placeholder-gray-500 placeholder-opacity-75"
+            >
+              Cancel
+            </button>
+          ) : (
+            <button
+              className="px-4 py-2 mb-3 ml-2 text-green-500 rounded hover:bg-green-100 placeholder-gray-500 placeholder-opacity-75"
+              onClick={addNewTopic}
+            >
+              Create
+            </button>
+          )}
         </>
       )}
     </>
