@@ -8,13 +8,7 @@ const reportSchema = new mongoose.Schema({
   title: String,
   description: String,
 });
-// {
-// teacher_name: 'Mia Levy',
-//   date: '2024-07-25',
-//   title: 'General Progress Report',
-//   description:
-//     'The student has shown significant progress in general subjects. However, there is a need for improvement in homework preparation.',
-// },
+
 const studentSchema = new mongoose.Schema({
   student_id: {
     type: String,

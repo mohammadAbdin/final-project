@@ -20,7 +20,6 @@ const UseGetTeacherCLass = (
         id
       );
       setTeacherClass(response);
-      //   determineSearchData({ data: response });
     } catch (error) {
       console.error("Error fetching user projects:", error);
       setTeacherClass(null);

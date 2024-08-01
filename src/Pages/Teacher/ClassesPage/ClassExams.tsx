@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { ExamType } from "../../../Types/ExamType";
 import UserType from "../../../Types/UserType";
 import { PutExamMarks } from "../../../Api/PutExamGrades";
+import { StudentFeedbackDetailsType } from "../../../Types/StudentFeedbackDetailsType";
 
 interface ClassExamsProps {
-  students: Student[];
+  students: StudentFeedbackDetailsType[];
   exams: ExamType[];
   isAddingExam: boolean;
   newExamName: string;
@@ -18,16 +19,7 @@ interface ClassExamsProps {
   ) => Promise<void>;
   addExam: () => void;
 }
-interface Student {
-  class: string;
-  gender: string;
-  name: string;
-  parent_id: string;
-  report: any[]; // or you can define a specific type if you know what `report` contains
-  student_id: string;
-  __v: number;
-  _id: string;
-}
+
 interface modifiedStudent {
   Grade: string;
   examName: string;
@@ -44,7 +36,7 @@ export function ClassExams({
   AddNewExam,
   addExam,
 }: ClassExamsProps) {
-  console.log(exams);
+  // console.log(exams);
 
   const [expandedExam, setExpandedExam] = useState<string | null>(null);
   const [modifiedStudents, setModifiedStudents] = useState<modifiedStudent[]>(

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import { UseGetClassStudentsAttendanceRequest } from "./../Api/UseGetClassStudentsAttendanceRequest";
-import { ClassType } from "../Types/ClassType";
+import { StudentsAttendanceType } from "../Types/StudentsAttendanceType";
 
 interface UseGetClassStudentsAttendanceReturn {
   getClassStudentsAttendance: (id: string) => Promise<void>;
-  classStudentsAttendance: ClassType[] | null;
+  classStudentsAttendance: StudentsAttendanceType[] | null;
 }
 
 const UseGetClassStudentsAttendance = (
@@ -13,8 +13,9 @@ const UseGetClassStudentsAttendance = (
   selectedDate: string,
   classNumber: string | undefined
 ): UseGetClassStudentsAttendanceReturn => {
-  const [classStudentsAttendance, setClassStudentsAttendance] =
-    useState<any>(null);
+  const [classStudentsAttendance, setClassStudentsAttendance] = useState<
+    StudentsAttendanceType[] | null
+  >(null);
 
   const getClassStudentsAttendance = async (id: string) => {
     try {

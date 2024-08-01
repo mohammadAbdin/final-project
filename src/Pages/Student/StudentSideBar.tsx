@@ -31,14 +31,17 @@ const StudentSideBar: React.FC = () => {
           My details
         </button>
       </li>
-
       <li>
-        <a
-          href="/EventCalendar"
+        <button
+          onClick={() => {
+            console.log(user?._id);
+
+            navigate(`/StudentResourcesPage/${user?._id}`);
+          }}
           className="block text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
         >
-          resources
-        </a>
+          Resources
+        </button>
       </li>
       <li>
         <a

@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { Child } from "../Types/ChildType";
 
 import { UseGetChildSubjectsRequest } from "../Api/UseGetChildSubjectsRequest";
 

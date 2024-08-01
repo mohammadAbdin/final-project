@@ -1,4 +1,4 @@
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -21,12 +21,11 @@ html {
   width: 100%;
 }
 
-
-/* @media (max-width: 1024px) {
+@media (max-width: 1024px) {
   #root {
     padding: 0px 1rem;
   }
-} */
+}
 
 .home {
   width: 100%;
@@ -41,4 +40,4 @@ html {
 .verticle-menu-container {
   margin-left: -8rem;
   z-index: 10;
-}
+} */

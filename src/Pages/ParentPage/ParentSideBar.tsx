@@ -1,32 +1,48 @@
-import React from "react";
-// import { UserContext } from "../Context/UserContext";
-// import { useNavigate } from "react-router-dom";
-// import { showToastInfoMessage } from "./Toast/Toasts";
+import React from 'react'
+import { FaCalendarAlt, FaUsers } from 'react-icons/fa'
+import { NavLink } from 'react-router-dom'
 
-const ParentSideBar: React.FC = () => {
-  // const navigate = useNavigate();
-  // const { isLogedIn } = useContext(UserContext);
-
+const ParentSideBar: React.FC<{ onItemClick: () => void }> = ({
+  onItemClick,
+}) => {
   return (
-    <ul className="mt-6 space-y-1">
+    <ul className="mt-6 space-y-1 bg-gray-50 dark:bg-gray-800">
       <li>
-        <a
-          href="/ParentPage"
-          className="block text-left rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
-        >
-          Children
-        </a>
+        <button onClick={onItemClick} className="w-full text-left">
+          <NavLink
+            to="/ParentPage"
+            className={({ isActive }) =>
+              `flex items-center p-2 text-gray-900 rounded-lg dark:text-white ${
+                isActive
+                  ? 'bg-gray-100 dark:bg-gray-700'
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+              } group`
+            }
+          >
+            <FaUsers className="w-5 h-5 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white" />
+            <span className="flex-1 ms-3 whitespace-nowrap">Children</span>
+          </NavLink>
+        </button>
       </li>
       <li>
-        <a
-          href="/EventCalendar"
-          className="block text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-        >
-          Events
-        </a>
+        <button onClick={onItemClick} className="w-full text-left">
+          <NavLink
+            to="/EventCalendar"
+            className={({ isActive }) =>
+              `flex items-center p-2 text-gray-900 rounded-lg dark:text-white ${
+                isActive
+                  ? 'bg-gray-100 dark:bg-gray-700'
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+              } group`
+            }
+          >
+            <FaCalendarAlt className="w-5 h-5 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white" />
+            <span className="flex-1 ms-3 whitespace-nowrap">Events</span>
+          </NavLink>
+        </button>
       </li>
     </ul>
-  );
-};
+  )
+}
 
-export default ParentSideBar;
+export default ParentSideBar

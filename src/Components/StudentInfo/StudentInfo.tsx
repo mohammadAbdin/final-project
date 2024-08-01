@@ -1,43 +1,11 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { StudentFeedbackDetailsType } from "../../Types/StudentFeedbackDetailsType";
 
-interface StudentFeedBacktype {
-  student_id: number;
-  studentName: string;
-
-  details: string;
-}
-
-const students: StudentFeedBacktype[] = [
-  {
-    student_id: 1,
-    studentName: "John Doe",
-    details: "John is a diligent student.",
-  },
-  {
-    student_id: 2,
-    studentName: "Jane Smith",
-    details: "Jane needs to improve attendance.",
-  },
-  {
-    student_id: 3,
-    studentName: "Michael Johnson",
-    details: "Michael is active in class discussions.",
-  },
-  {
-    student_id: 4,
-    studentName: "Emily Davis",
-    details: "Emily consistently submits quality assignments.",
-  },
-  {
-    student_id: 5,
-    studentName: "William Brown",
-    details: "William missed the last group project deadline.",
-  },
-];
-
-const StudentInfo: React.FC = () => {
-  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+const StudentInfo = ({
+  students,
+}: {
+  students: StudentFeedbackDetailsType[];
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -48,18 +16,13 @@ const StudentInfo: React.FC = () => {
           key={student.student_id}
           className="flex justify-between items-center bg-white border rounded-lg p-4 shadow mb-2"
         >
-          <span className="text-lg">{student.studentName}</span>
+          <span className="text-lg">{student.name}</span>
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded"
-            onClick={() => navigate("/FeedbackDrop")}
+            onClick={() => navigate(`/FeedbackDrop/${student.student_id}`)}
           >
             Go Feedback
           </button>
-          {openDropdown === student.student_id && (
-            <div className="mt-2 p-2 border border-gray-300 rounded bg-gray-100">
-              <p className="text-gray-700">{student.details}</p>
-            </div>
-          )}
         </div>
       ))}
     </div>
