@@ -1,47 +1,47 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 interface FeedbackFormData {
-  title: string;
-  description: string;
+  title: string
+  description: string
 }
 export const FeedbackToTeacher = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
   const [formData, setFormData] = useState<FeedbackFormData>({
-    title: "",
-    description: "",
-  });
-  const [feedbackData, setFeedbackData] = useState("");
+    title: '',
+    description: '',
+  })
+  const [feedbackData, setFeedbackData] = useState('')
   const handleAddFeedbackClick = () => {
-    setShowModal(true);
-  };
+    setShowModal(true)
+  }
 
   const handleModalClose = () => {
-    setShowModal(false);
-    setFormData({ title: "", description: "" }); // Reset form data
-  };
+    setShowModal(false)
+    setFormData({ title: '', description: '' }) // Reset form data
+  }
 
   const handleFormChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prevData) => ({ ...prevData, [name]: value }))
+  }
 
   const handleFormSubmit = () => {
     const newFeedback = {
-      date: new Date().toISOString().split("T")[0], // ISO date format (YYYY-MM-DD)
+      date: new Date().toISOString().split('T')[0], // ISO date format (YYYY-MM-DD)
       title: formData.title,
       description: formData.description,
-    };
-    setFeedbackData((prevData) => [...prevData, newFeedback]);
-    handleModalClose();
-  };
+    }
+    setFeedbackData((prevData) => [...prevData, newFeedback])
+    handleModalClose()
+  }
 
   return (
     <div>
       {!showModal ? (
         <div>
-          {" "}
+          {' '}
           <button
             className="mt-4 bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-300"
             onClick={handleAddFeedbackClick}
@@ -93,5 +93,5 @@ export const FeedbackToTeacher = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
