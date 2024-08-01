@@ -96,10 +96,10 @@ const router = createBrowserRouter([
         path: "/EventCalendar",
         element: <EventClanedar />,
       },
-      {
-        path: "/TeacherAbsentCalendar",
-        element: <TeacherAbsentCalendar />,
-      },
+      // {
+      //   path: "/TeacherAbsentCalendar",
+      //   element: <TeacherAbsentCalendar />,
+      // },
       {
         path: "/AbsentCalendar",
         element: <StudentDetails />,

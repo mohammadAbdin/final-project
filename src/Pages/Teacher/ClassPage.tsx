@@ -105,7 +105,7 @@ const ClassPage: React.FC = () => {
   console.log(classDetails.students);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Class {classNumber}</h1>
 
       <div className="mb-4">
