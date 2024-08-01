@@ -1,5 +1,5 @@
 interface VideoType {
-  id: number;
+  id: string | undefined;
   title: string;
   description: string;
   url: string;

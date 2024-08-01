@@ -3,9 +3,10 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { VideoType } from "../../Types/TopicsTypes";
 
 const style = {
-  position: "absolute" as "absolute",
+  position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
@@ -17,7 +18,7 @@ const style = {
 };
 
 interface DataVideo {
-  id?: number | null;
+  _id?: string | null;
   title: string;
   description: string;
   url: string;
@@ -26,8 +27,9 @@ interface DataVideo {
 interface VideoFormProps {
   isEdit: boolean;
   data?: DataVideo;
-  updateVideo?: (videoData: DataVideo) => void;
-  addVideo?: (videoData: DataVideo) => void;
+  updateVideo?: (videoData: VideoType) => void;
+  addVideo?: (videoData: VideoType) => void;
+  // currentTopicId: string | null;
 }
 
 const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
@@ -45,11 +47,12 @@ const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const videoData = {
-      id: data ? data.id : null,
       title: vTitle,
       description: vDesc,
       url: vUrl,
     };
+    console.log(videoData);
+
     if (updateVideo) {
       updateVideo(videoData);
     }
@@ -81,7 +84,12 @@ const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
             {isEdit ? "Edit Video" : "Add A Video"}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form
+              onSubmit={(e) => {
+                handleSubmit(e);
+              }}
+              className="space-y-4"
+            >
               <div className="flex flex-col">
                 <label
                   htmlFor="vTitle"

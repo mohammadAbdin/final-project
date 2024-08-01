@@ -10,56 +10,56 @@ import { UserContext } from "./../../Context/UserContext";
 import UseGetClassDetails from "../../Hooks/UseGetClassExams";
 // import { ExamType } from "../../Types/ExamType";
 
-const fetchTopics = [
-  {
-    id: 1,
-    title: "Duplicate",
-    videos: [
-      {
-        id: 1,
-        title: "video1",
-        description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-      },
-      {
-        id: 2,
-        title: "video2",
-        description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-      },
-      {
-        id: 3,
-        title: "video3",
-        description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "Divided",
-    videos: [
-      {
-        id: 1,
-        title: "video1",
-        description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-      },
-      {
-        id: 2,
-        title: "video2",
-        description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-      },
-      {
-        id: 3,
-        title: "video3",
-        description: "Lorem ipsum dolor sit amet.",
-        url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-      },
-    ],
-  },
-];
+// const fetchTopics = [
+//   {
+//     _id: "1",
+//     title: "Duplicate",
+//     videos: [
+//       {
+//         _id: "1",
+//         title: "video1",
+//         description: "Lorem ipsum dolor sit amet.",
+//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
+//       },
+//       {
+//         _id: "2",
+//         title: "video2",
+//         description: "Lorem ipsum dolor sit amet.",
+//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
+//       },
+//       {
+//         _id: "3",
+//         title: "video3",
+//         description: "Lorem ipsum dolor sit amet.",
+//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
+//       },
+//     ],
+//   },
+//   {
+//     _id: "2",
+//     title: "Divided",
+//     videos: [
+//       {
+//         _id: "1",
+//         title: "video1",
+//         description: "Lorem ipsum dolor sit amet.",
+//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
+//       },
+//       {
+//         _id: "2",
+//         title: "video2",
+//         description: "Lorem ipsum dolor sit amet.",
+//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
+//       },
+//       {
+//         _id: "3",
+//         title: "video3",
+//         description: "Lorem ipsum dolor sit amet.",
+//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
+//       },
+//     ],
+//   },
+// ];
 
 const ClassPage: React.FC = () => {
   const { classNumber } = useParams();
@@ -160,7 +160,9 @@ const ClassPage: React.FC = () => {
         />
       )}
 
-      {view === "videos" && <Units topics={fetchTopics} />}
+      {view === "videos" && (
+        <Units classNumber={classNumber} topics={classDetails.resources} />
+      )}
       {view === "Attendance journal" && (
         <TeachersAttendanceJournal classNumber={classNumber} />
       )}

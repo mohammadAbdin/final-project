@@ -1,34 +1,26 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Video from "./Video";
-import { Topic, TopicsProps } from "../../Types/TopicsTypes";
+import { Topic, TopicsProps, VideoType } from "../../Types/TopicsTypes";
 import AddTopicBtn from "../../Components/AddTopicBtn/AddTopicBtn";
 import VideoForm from "../../Components/VideoForm/VideoForm";
+import AddNewVideoResource from "../../Api/PostNewVideoResource";
+import { UserContext } from "../../Context/UserContext";
 
-interface DataVideo {
-  title: string;
-  description: string;
-  url: string;
-}
-
-// interface DataVideoForUpdate {
-//   id: number;
-//   title: string;
-//   description: string;
-//   url: string;
-// }
-
-const Units = ({ topics }: TopicsProps) => {
-  const [currentTopicId, setCurrentTopicId] = useState<number | null>(null);
+const Units = ({ topics, classNumber }: TopicsProps) => {
+  const { user } = useContext(UserContext);
+  const [currentTopicId, setCurrentTopicId] = useState<string | null>(null);
   const [topicsData, setTopicsData] = useState<Topic[]>(topics);
 
-  const toggleTopicDetails = (id: number) => {
+  const toggleTopicDetails = (id: string) => {
     setCurrentTopicId(currentTopicId === id ? null : id);
   };
 
-  const addVideo = (videoData: any) => {
+  const addVideo = (videoData: VideoType) => {
+    console.log(videoData, currentTopicId, classNumber);
+    AddNewVideoResource(videoData, currentTopicId, classNumber, user?._id);
     const updateTopicsData = [...topicsData];
     for (let i = 0; i < updateTopicsData.length; i++) {
-      if (updateTopicsData[i].id === currentTopicId) {
+      if (updateTopicsData[i]._id === currentTopicId) {
         const newVideo = {
           ...videoData,
           id: updateTopicsData[i].videos.length + 1,
@@ -40,12 +32,12 @@ const Units = ({ topics }: TopicsProps) => {
     setTopicsData(updateTopicsData);
   };
 
-  const updateVideo = (videoData: any) => {
+  const updateVideo = (videoData: VideoType) => {
     const updateTopicsData = [...topicsData];
     for (let i = 0; i < updateTopicsData.length; i++) {
-      if (updateTopicsData[i].id === currentTopicId) {
+      if (updateTopicsData[i]._id === currentTopicId) {
         const updateVideosArray = updateTopicsData[i].videos.map((video) =>
-          video.id === videoData.id ? videoData : video
+          video._id === videoData._id ? videoData : video
         );
         updateTopicsData[i].videos = updateVideosArray;
         break;
@@ -54,12 +46,12 @@ const Units = ({ topics }: TopicsProps) => {
     setTopicsData(updateTopicsData);
   };
 
-  const deleteVideos = (videoId: any) => {
+  const deleteVideos = (videoId: string) => {
     const updateTopicsData = [...topicsData];
     for (let i = 0; i < updateTopicsData.length; i++) {
-      if (updateTopicsData[i].id === currentTopicId) {
+      if (updateTopicsData[i]._id === currentTopicId) {
         const updateVideosArray = updateTopicsData[i].videos.filter(
-          (video) => video.id !== videoId
+          (video) => video._id !== videoId
         );
         updateTopicsData[i].videos = updateVideosArray;
         break;
@@ -71,25 +63,38 @@ const Units = ({ topics }: TopicsProps) => {
   return (
     <div className="mt-10">
       <div className="flex">
-        <AddTopicBtn topicsData={topicsData} setTopicsData={setTopicsData} />
+        <AddTopicBtn
+          classNumber={classNumber}
+          topicsData={topicsData}
+          setTopicsData={setTopicsData}
+        />
       </div>
       <ul className="bg-white shadow-md rounded-lg p-4 mb-4">
         {topicsData.map((topic, index) => (
-          <li key={topic.id} className="border-b py-2 last:border-b-0">
-            <div className="flex justify-between items-center">
+          <li
+            key={index}
+            className="border-b py-2 last:border-b-0 hover:bg-blue-100 rounded-md"
+          >
+            <div key={topic._id} className="flex justify-between items-center">
               <span
-                onClick={() => toggleTopicDetails(topic.id)}
-                className="cursor-pointer text-blue-500 hover:underline"
+                key={topic._id}
+                onClick={() => {
+                  if (topic._id) toggleTopicDetails(topic._id);
+                }}
+                className="cursor-pointer text-gray-700  hover:underline"
               >
                 Unit {index + 1} : {topic.title}
               </span>
             </div>
-            {currentTopicId === topic.id && (
+            {currentTopicId === topic._id && (
               <div>
-                {topic.videos.map((video) => (
-                  <div className="flex justify-between items-center mt-2 p-2 bg-gray-100 rounded">
+                {topic.videos.map((video, index2) => (
+                  <div
+                    key={index2}
+                    className="flex justify-between items-center mt-2 p-2 bg-gray-100 rounded"
+                  >
                     <Video
-                      id={video.id}
+                      id={video._id}
                       title={video.title}
                       description={video.description}
                       url={video.url}
@@ -102,15 +107,18 @@ const Units = ({ topics }: TopicsProps) => {
                         //   updateVideo(id, data)
                         // }
                         data={{
-                          id: video.id,
+                          _id: video._id,
                           title: video.title,
                           description: video.description,
                           url: video.url,
                         }}
+                        // currentTopicId={currentTopicId}
                       />
                       <button
                         className="px-2 py-1 text-sm text-white bg-red-500 rounded"
-                        onClick={() => deleteVideos(video.id)}
+                        onClick={() => {
+                          if (video._id) deleteVideos(video._id);
+                        }}
                       >
                         Delete
                       </button>
@@ -119,13 +127,11 @@ const Units = ({ topics }: TopicsProps) => {
                 ))}
 
                 <div className="flex justify-center items-center my-3">
-                  {/* <button
-                    className="px-4 py-2 bg-green-500 text-white rounded"
-                    onClick={() => addVideo(topic.id)}
-                  >
-                    Add Video
-                  </button> */}
-                  <VideoForm isEdit={false} addVideo={addVideo} />
+                  <VideoForm
+                    isEdit={false}
+                    addVideo={addVideo}
+                    // currentTopicId={currentTopicId}
+                  />
                 </div>
               </div>
             )}
@@ -133,12 +139,12 @@ const Units = ({ topics }: TopicsProps) => {
         ))}
       </ul>
       <div className="flex justify-center">
-        <button
+        {/* <button
           className="px-4 py-2 mb-3  bg-green-500 text-white rounded-sm"
-          onClick={addTopic}
+          // onClick={() => addTopic()}
         >
           Add Topic
-        </button>
+        </button> */}
       </div>
     </div>
   );
