@@ -127,13 +127,13 @@ const router = createBrowserRouter([
         element: <StudentProfile />,
       },
 
-      {
-        path: "/StudentInfo",
-        element: <StudentInfo />,
-      },
+      // {
+      //   path: "/StudentInfo",
+      //   element: <StudentInfo />,
+      // },
 
       {
-        path: "/FeedbackDrop",
+        path: "/FeedbackDrop/:student_id",
         element: <FeedbackDrop />,
       },
       // path: "/teacher-exam-reports",

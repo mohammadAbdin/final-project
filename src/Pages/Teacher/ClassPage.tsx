@@ -102,7 +102,7 @@ const ClassPage: React.FC = () => {
   const addExam = () => {
     setIsAddingExam(true);
   };
-  // console.log(classDetails);
+  console.log(classDetails.students);
 
   return (
     <div className="container mx-auto p-4">
@@ -166,7 +166,7 @@ const ClassPage: React.FC = () => {
       )}
       {view === "feedback" && (
         <div>
-          <StudentInfo />
+          <StudentInfo students={classDetails.students} />
         </div>
       )}
     </div>

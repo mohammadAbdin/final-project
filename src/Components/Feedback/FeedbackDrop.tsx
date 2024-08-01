@@ -1,21 +1,15 @@
-import React, { useState } from "react";
-
-interface Feedback {
-  reportType: "Teacher" | "Parent";
-  writer_id: string;
-  date: string;
-  title: string;
-  description: string;
-}
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
+import AddNewReport from "../../Api/PostReportRequest";
+import { FeedbackContent } from "../../Types/FeedbackContent";
 
 interface FeedbackFormData {
   title: string;
   description: string;
 }
 
-const user = { id: "12345" }; // Simulating user ID for demo purposes
-
-const reports: Feedback[] = [
+const reports: FeedbackContent[] = [
   {
     reportType: "Teacher",
     writer_id: "12345",
@@ -51,7 +45,10 @@ const reports: Feedback[] = [
 ];
 
 const FeedbackDrop: React.FC = () => {
-  const [feedbackData, setFeedbackData] = useState<Feedback[]>(reports);
+  const { student_id } = useParams();
+  console.log(student_id);
+
+  const [feedbackData, setFeedbackData] = useState<FeedbackContent[]>(reports);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState<FeedbackFormData>({
     title: "",
@@ -60,6 +57,7 @@ const FeedbackDrop: React.FC = () => {
   const [feedbackType, setFeedbackType] = useState<"Teacher" | "Parent">(
     "Teacher"
   );
+  const { user } = useContext(UserContext);
 
   const handleFeedbackTypeChange = (type: "Teacher" | "Parent") => {
     setFeedbackType(type);
@@ -82,14 +80,16 @@ const FeedbackDrop: React.FC = () => {
   };
 
   const handleFormSubmit = () => {
-    const newFeedback: Feedback = {
+    const newFeedback: FeedbackContent = {
       reportType: feedbackType,
-      writer_id: user.id,
-      date: new Date().toISOString().split("T")[0], // ISO date format (YYYY-MM-DD)
+      writer_id: user?._id,
+      date: new Date().toISOString().split("T")[0].split("-").join("/"), // ISO date format (YYYY-MM-DD)
       title: formData.title,
       description: formData.description,
     };
     setFeedbackData((prevData) => [...prevData, newFeedback]);
+    console.log(newFeedback);
+    AddNewReport(newFeedback, student_id);
     handleModalClose();
   };
 
