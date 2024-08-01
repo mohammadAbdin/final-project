@@ -133,12 +133,12 @@ const Units = ({ topics }: TopicsProps) => {
         ))}
       </ul>
       <div className="flex justify-center">
-        <button
+        {/* <button
           className="px-4 py-2 mb-3  bg-green-500 text-white rounded-sm"
           onClick={addTopic}
         >
           Add Topic
-        </button>
+        </button> */}
       </div>
     </div>
   );
