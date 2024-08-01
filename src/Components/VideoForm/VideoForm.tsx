@@ -16,17 +16,21 @@ const style = {
   p: 4,
 };
 
-interface VideoFormProps {
-  isEdit: boolean;
-  data?: {
-    title: string;
-    description: string;
-    url: string;
-  };
-  action: (videoData: any) => void;
+interface DataVideo {
+  id?: number | null;
+  title: string;
+  description: string;
+  url: string;
 }
 
-const VideoForm = ({ isEdit, data, action }: VideoFormProps) => {
+interface VideoFormProps {
+  isEdit: boolean;
+  data?: DataVideo;
+  updateVideo?: (videoData: DataVideo) => void;
+  addVideo?: (videoData: DataVideo) => void;
+}
+
+const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -40,18 +44,32 @@ const VideoForm = ({ isEdit, data, action }: VideoFormProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    action({
+    const videoData = {
+      id: data ? data.id : null,
       title: vTitle,
       description: vDesc,
       url: vUrl,
-    });
+    };
+    if (updateVideo) {
+      console.log("________");
+      updateVideo(videoData);
+    }
+    if (addVideo) {
+      addVideo(videoData);
+    }
+
+    // action({
+    //   title: vTitle,
+    //   description: vDesc,
+    //   url: vUrl,
+    // });
     handleClose();
   };
 
   return (
     <div className="video-form-container">
-      <Button onClick={handleOpen}>
-        {isEdit ? "Edit Video" : "Add a video"}
+      <Button onClick={handleOpen} sx={{ color: `${isEdit ? "green" : ""}` }}>
+        {isEdit ? "Edit" : "Add a video"}
       </Button>
       <Modal
         open={open}
@@ -60,46 +78,67 @@ const VideoForm = ({ isEdit, data, action }: VideoFormProps) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            sx={{ color: `${isEdit ? "green" : ""}` }}
-          >
-            {isEdit ? "Edit" : "Add A Video"}
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {isEdit ? "Edit Video" : "Add A Video"}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="">Video Title</label>
-              <input
-                type="text"
-                placeholder="Add a Title"
-                name="vTitle"
-                value={vTitle}
-                onChange={(e) => setVTitle(e.target.value)}
-                className="input-field"
-              />
-              <label htmlFor="">Video Description</label>
-              <input
-                type="text"
-                placeholder="Add a Description"
-                name="vDesc"
-                value={vDesc}
-                onChange={(e) => setVDesc(e.target.value)}
-                className="input-field"
-              />
-              <label htmlFor="">Video URL ID</label>
-              <input
-                type="text"
-                placeholder="Add URL ID"
-                name="vUrl"
-                value={vUrl}
-                onChange={(e) => setVUrl(e.target.value)}
-                className="input-field"
-              />
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="flex flex-col">
+                <label
+                  htmlFor="vTitle"
+                  className="text-sm font-medium text-gray-700 mb-1"
+                >
+                  Video Title
+                </label>
+                <input
+                  type="text"
+                  placeholder="Add a Title"
+                  name="vTitle"
+                  value={vTitle}
+                  onChange={(e) => setVTitle(e.target.value)}
+                  className="input-field p-2 bg-white border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
 
-              <button type="submit" className="btn">
-                {isEdit ? "Edit Video" : "Add A Video"}
+              <div className="flex flex-col">
+                <label
+                  htmlFor="vDesc"
+                  className="text-sm font-medium text-gray-700 mb-1"
+                >
+                  Video Description
+                </label>
+                <input
+                  type="text"
+                  placeholder="Add a Description"
+                  name="vDesc"
+                  value={vDesc}
+                  onChange={(e) => setVDesc(e.target.value)}
+                  className="input-field p-2 bg-white border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label
+                  htmlFor="vUrl"
+                  className="text-sm font-medium text-gray-700 mb-1"
+                >
+                  Video URL
+                </label>
+                <input
+                  type="text"
+                  placeholder="Add youtube url"
+                  name="vUrl"
+                  value={vUrl}
+                  onChange={(e) => setVUrl(e.target.value)}
+                  className="input-field p-2 bg-white border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="btn w-full py-2 px-4 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                {isEdit ? "Save" : "Add A Video"}
               </button>
             </form>
           </Typography>

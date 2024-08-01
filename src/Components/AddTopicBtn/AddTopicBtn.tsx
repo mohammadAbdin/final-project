@@ -14,12 +14,17 @@ const AddTopicBtn = ({
   const placeholderText = "Enter Topic";
 
   const addNewTopic = () => {
+    if (!newTopicTitle.trim()) {
+      alert("sorry");
+      return;
+    }
     const newTopic = {
       id: topicsData.length + 1,
       title: newTopicTitle,
       videos: [],
     };
     setTopicsData([...topicsData, newTopic]);
+    setNewTopicTitle("");
     setAddTopicStatus(false);
   };
 

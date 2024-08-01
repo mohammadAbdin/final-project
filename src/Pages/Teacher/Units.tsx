@@ -4,6 +4,19 @@ import { Topic, TopicsProps } from "../../Types/TopicsTypes";
 import AddTopicBtn from "../../Components/AddTopicBtn/AddTopicBtn";
 import VideoForm from "../../Components/VideoForm/VideoForm";
 
+interface DataVideo {
+  title: string;
+  description: string;
+  url: string;
+}
+
+// interface DataVideoForUpdate {
+//   id: number;
+//   title: string;
+//   description: string;
+//   url: string;
+// }
+
 const Units = ({ topics }: TopicsProps) => {
   const [currentTopicId, setCurrentTopicId] = useState<number | null>(null);
   const [topicsData, setTopicsData] = useState<Topic[]>(topics);
@@ -19,7 +32,6 @@ const Units = ({ topics }: TopicsProps) => {
         const newVideo = {
           ...videoData,
           id: updateTopicsData[i].videos.length + 1,
-          url: `https://www.youtube.com/embed/${videoData.url}`,
         };
         updateTopicsData[i].videos.push(newVideo);
         break;
@@ -28,15 +40,33 @@ const Units = ({ topics }: TopicsProps) => {
     setTopicsData(updateTopicsData);
   };
 
-  //   const editVideo = (id: number) => {
-  //     // Logic to edit video
-  //     console.log(`Edit video ${id}`);
-  //   };
+  const updateVideo = (videoData: any) => {
+    const updateTopicsData = [...topicsData];
+    for (let i = 0; i < updateTopicsData.length; i++) {
+      if (updateTopicsData[i].id === currentTopicId) {
+        const updateVideosArray = updateTopicsData[i].videos.map((video) =>
+          video.id === videoData.id ? videoData : video
+        );
+        updateTopicsData[i].videos = updateVideosArray;
+        break;
+      }
+    }
+    setTopicsData(updateTopicsData);
+  };
 
-  //   const deleteVideo = (id: number) => {
-  //     console.log(`Delete video ${id}`);
-  //     setVideos(videos.filter((video) => video.id !== id));
-  //   };
+  const deleteVideos = (videoId: any) => {
+    const updateTopicsData = [...topicsData];
+    for (let i = 0; i < updateTopicsData.length; i++) {
+      if (updateTopicsData[i].id === currentTopicId) {
+        const updateVideosArray = updateTopicsData[i].videos.filter(
+          (video) => video.id !== videoId
+        );
+        updateTopicsData[i].videos = updateVideosArray;
+        break;
+      }
+    }
+    setTopicsData(updateTopicsData);
+  };
 
   return (
     <div className="mt-10">
@@ -65,10 +95,22 @@ const Units = ({ topics }: TopicsProps) => {
                       url={video.url}
                     />
                     <div className="flex">
-                      <VideoForm isEdit={true} action={addVideo} />
+                      <VideoForm
+                        isEdit={true}
+                        updateVideo={updateVideo}
+                        // action={(id: number = video.id, data: DataVideo) =>
+                        //   updateVideo(id, data)
+                        // }
+                        data={{
+                          id: video.id,
+                          title: video.title,
+                          description: video.description,
+                          url: video.url,
+                        }}
+                      />
                       <button
                         className="px-2 py-1 text-sm text-white bg-red-500 rounded"
-                        // onClick={() => deleteVideo(id)}
+                        onClick={() => deleteVideos(video.id)}
                       >
                         Delete
                       </button>
@@ -83,7 +125,7 @@ const Units = ({ topics }: TopicsProps) => {
                   >
                     Add Video
                   </button> */}
-                  <VideoForm isEdit={false} action={addVideo} />
+                  <VideoForm isEdit={false} addVideo={addVideo} />
                 </div>
               </div>
             )}
