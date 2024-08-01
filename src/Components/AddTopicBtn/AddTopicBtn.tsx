@@ -1,26 +1,32 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Topic } from "../../Types/TopicsTypes";
+import { UserContext } from "../../Context/UserContext";
+import AddNewResource from "../../Api/PostNewResource";
 
 const AddTopicBtn = ({
   topicsData,
   setTopicsData,
+  classNumber,
 }: {
   topicsData: Topic[];
   setTopicsData: React.Dispatch<React.SetStateAction<Topic[]>>;
+  classNumber: string | undefined;
 }) => {
+  const { user } = useContext(UserContext);
   const [addTopicStatus, setAddTopicStatus] = useState<boolean>(false);
   const [newTopicTitle, setNewTopicTitle] = useState<string>("");
   const [isCancel, setIsCancel] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
 
   const placeholderText = "Enter Topic";
 
   const addNewTopic = () => {
     const newTopic = {
-      id: topicsData.length + 1,
       title: newTopicTitle.trim(),
       videos: [],
     };
+    // console.log(newTopic, user?.userType, user?._id);
+    AddNewResource(newTopic, user?._id, classNumber);
+
     setTopicsData([...topicsData, newTopic]);
     setNewTopicTitle("");
     setAddTopicStatus(false);
