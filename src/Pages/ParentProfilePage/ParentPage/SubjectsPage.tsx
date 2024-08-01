@@ -116,31 +116,6 @@ const SubjectsPage: React.FC = () => {
           </button>
         ))}
       </div>
-      <div className="main-info-container">
-        <div className="calendar-container">
-          <div className="app-container mt-2">
-            <AttendanceJournal
-              events={mathAttendanceData}
-              selectedDate={selectedDate}
-              onDateChange={setSelectedDate}
-            />
-          </div>
-        </div>
-        <div className="exams-table-container  mt-2 ">
-          <ExamsTable
-            examsData={examsData}
-            subjectName={selectedSubject?.subjectName}
-          />
-        </div>
-
-        <div className="teacher-report-card-container mt-2">
-          <TeacherReportCard teacherReportData={teacherReportData} />
-          <div className="feedbackToTeacher-container">
-            <FeedbackToTeacher />
-          </div>
-        </div>
-        <LineChart chartData={chartData} />
-      </div>
 
       <div className="cols2-div-s">
         <AttendanceJournal
