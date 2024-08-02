@@ -13,22 +13,6 @@ body,
   background-color: rgb(254, 254, 255);
 }
 
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  padding: 0px 0px;
-
-  color-scheme: light dark;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,7 +20,7 @@ body,
 @layer components {
   /* main-div */
   .main-div-s {
-    @apply m-2 p-2 space-x-4 w-full flex flex-wrap;
+    @apply w-full flex flex-wrap;
   }
   .secondery-div-s {
     @apply grid grid-cols-1  m-2 p-2 space-x-4 w-full flex flex-col items-center;
@@ -48,37 +32,49 @@ body,
 
   /* component div */
   .c-div-s {
-    @apply border border-gray-300 rounded-md p-4 bg-white flex-auto w-full min-w-[250px];
+    @apply border border-gray-300 rounded-md p-2 bg-white w-full min-w-[250px];
   }
 
   .h2-s {
-    @apply text-lg font-semibold mb-2 text-center py-2;
+    @apply text-sm font-semibold mb-2 text-center py-1;
   }
   .table-s {
-    @apply min-w-full bg-white divide-y divide-gray-200;
+    @apply min-w-full bg-white divide-y divide-gray-200 text-sm;
   }
   .thead-s {
     @apply bg-gray-50;
   }
 
   .th-s {
-    @apply bg-gray-50 border-b-2 border-gray-300 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+    @apply bg-gray-50 border-b-2 border-gray-300 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
   }
 
   .td-s {
-    @apply px-6 py-4 whitespace-nowrap text-left;
+    @apply px-4 py-2 whitespace-nowrap text-left text-sm;
   }
 
   .table-action-s {
-    @apply px-6 py-4 whitespace-nowrap text-left;
+    @apply px-4 py-2 whitespace-nowrap text-left;
   }
 
   .expanded-row-s {
-    @apply px-6 py-4 bg-gray-50 text-gray-700;
+    @apply px-4 py-2 bg-gray-50 text-gray-700;
   }
 
   .expand-button-s {
     @apply relative text-blue-900 hover:text-white hover:bg-gray-200 rounded-full p-1;
+  }
+
+  @media (max-width: 640px) {
+    .td-s,
+    .th-s {
+      /* רווחים קטנים יותר במסכים קטנים */
+      @apply px-2 py-1; /* שונה מ-px-4, py-2 ל-px-2, py-1 */
+    }
+
+    .h2-s {
+      @apply text-lg; /* החזרת גודל הכותרת ל-lg במסכים קטנים */
+    }
   }
 
   /* .nav-items {

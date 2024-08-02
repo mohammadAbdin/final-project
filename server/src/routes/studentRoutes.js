@@ -1,10 +1,12 @@
 import express from "express";
 import { GetStudentSchedule } from "../controllers/student/GetStudentScheduleController.js";
 import { GetStudentSubjects } from "../controllers/student/GetStudentSubjectsController.js";
+import { GetStudentAllDetails } from "../controllers/student/GetStudentAllDetailsController.js";
 import { GetStudentReport } from "../controllers/student/GetStudentReportController.js";
 import { AddReport } from "../controllers/student/AddReportController.js";
 const router = express.Router();
 router.get("/Student-Schedule/:id", GetStudentSchedule);
+router.get("/Student-Details/:id", GetStudentAllDetails);
 router.get("/Student-Subjects/:id", GetStudentSubjects);
 router.get("/Student-reports/:id", GetStudentReport);
 router.post("/add-report", AddReport);

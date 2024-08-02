@@ -5,7 +5,7 @@
 }
 
 .react-calendar__tile {
-  padding: 20px;
+  padding: 0.1rem;
   border-radius: 8px;
   text-align: center;
 }
