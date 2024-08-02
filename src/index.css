@@ -13,22 +13,6 @@ body,
   background-color: rgb(254, 254, 255);
 }
 
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  padding: 0px 0px;
-
-  color-scheme: light dark;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,7 +20,7 @@ body,
 @layer components {
   /* main-div */
   .main-div-s {
-    @apply m-2 p-2 space-x-4 w-full flex flex-wrap;
+    @apply w-full flex flex-wrap;
   }
   .secondery-div-s {
     @apply grid grid-cols-1  m-2 p-2 space-x-4 w-full flex flex-col items-center;
@@ -48,7 +32,7 @@ body,
 
   /* component div */
   .c-div-s {
-    @apply border border-gray-300 rounded-md p-4 bg-white flex-auto w-full min-w-[250px];
+    @apply border border-gray-300 rounded-md p-4 bg-white w-full min-w-[250px];
   }
 
   .h2-s {
