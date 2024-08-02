@@ -132,7 +132,6 @@ const SubjectsPage: React.FC = () => {
       </h2>
 
       <div className="mt-3 bg-gray-50 dark:bg-gray-800 mx-auto">
-        {/* ה-dropdown עבור מסכים קטנים בלבד */}
         <div className="sm:hidden text-left">
           <div className="relative">
             <button
@@ -142,10 +141,10 @@ const SubjectsPage: React.FC = () => {
                   ? 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white'
                   : 'hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-900 dark:text-white'
               } 
-              group m-1 transition duration-200 ease-in-out`}
+              group transition duration-200 ease-in-out`}
               onClick={() => setIsOpen(!isOpen)}
             >
-              <span className="ml-2 whitespace-nowrap flex-1">
+              <span className="mr-2 whitespace-nowrap flex-1">
                 {isOpen ? subject : 'Choose subject'}
               </span>
               <span className="w-5 h-5 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white">
@@ -158,7 +157,7 @@ const SubjectsPage: React.FC = () => {
                 {childSubjects.map((subjectItem, index) => (
                   <button
                     key={index}
-                    className={`block w-full px-4 py-2 text-sm text-left 
+                    className={`block w-full px-4 py-1 text-sm text-left 
                     ${
                       subject === subjectItem
                         ? 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white'
