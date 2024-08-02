@@ -76,7 +76,7 @@ const StudentResourcesPage = () => {
   return (
     <div>
       <div>
-        <h2>You are watching: {subject}</h2>
+        <h2 className="h2-s">You are watching: {subject}</h2>
         <div className="subjects-container">
           {childSubjects?.map((subjectItem, index) => (
             <button

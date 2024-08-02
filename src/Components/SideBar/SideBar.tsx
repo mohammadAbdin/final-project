@@ -58,7 +58,7 @@ const Sidebar: React.FC = () => {
           )}
         </div>
       </div>
-      <main className="w-full bg-red-300 p-4">
+      <main className="w-full p-4">
         <Outlet />
       </main>
     </div>
