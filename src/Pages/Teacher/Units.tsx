@@ -138,14 +138,14 @@ const Units = ({ topics, classNumber }: TopicsProps) => {
           </li>
         ))}
       </ul>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         {/* <button
           className="px-4 py-2 mb-3  bg-green-500 text-white rounded-sm"
           // onClick={() => addTopic()}
         >
           Add Topic
-        </button> */}
-      </div>
+        </button>
+      </div> */}
     </div>
   );
 };
