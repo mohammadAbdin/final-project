@@ -1,20 +1,18 @@
-import teacherReportData from "../../../demoData/teacherReportData";
 import mathAttendanceData from "../../../demoData/mathAttendanceData";
-import examsData from "../../../demoData/examsData";
+
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../../Context/UserContext";
 import UseGetChildSubjects from "../../../Hooks/UseGetChildSubjects";
-import Chart from "chart.js/auto";
+// import Chart from "chart.js/auto";
 import LineChart from "../../../Components/StatsChart/StatsChart";
 import AttendanceJournal from "../../../Components/AttendanceJournal/AttendanceJournal";
 import ExamsTable from "../../../Components/ExamsTable/ExamsTable";
 import TeacherReportCard from "../../../Components/TeacherReportCard/TeacherReportCard";
-import VideoForm from "../../../Components/VideoForm/VideoForm";
-import { FeedbackToTeacher } from "../../../Components/FeedbackToTeacher/FeedbackToTeacher";
+// import VideoForm from "../../../Components/VideoForm/VideoForm";
+// import { FeedbackToTeacher } from "../../../Components/FeedbackToTeacher/FeedbackToTeacher";
 import Schedule from "../../../Components/ClassSchedule/Schedule";
-import StudentSchedule from "../../Student/StudentSchedule/StudentSchedule";
-import Avatar from "../../../Components/Avatar/Avatar";
+// import Avatar from "../../../Components/Avatar/Avatar";
 
 import {
   FaCalculator,
@@ -28,6 +26,7 @@ import {
   FaGlobe,
 } from "react-icons/fa";
 import { BiChevronDown } from "react-icons/bi";
+import refactorExamDataChart from "../../../Functions/refactorExamDataChart";
 
 interface ChartData {
   labels: string[];
@@ -59,70 +58,48 @@ const SubjectsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { user } = useContext(UserContext);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedSubject, setSelectedSubject] = useState(null);
-  const [chartData, setChartData] = useState<ChartData>({
-    labels: ["Exam1", "Exam2", "Midterm", "Final"],
-    datasets: [
-      {
-        label: "First dataset",
-        data: [85, 92, 78, 85],
-        fill: true,
-        backgroundColor: "rgba(75,192,192,0.2)",
-        borderColor: "rgba(75,192,192,1)",
-      },
-    ],
-  });
+  // const [selectedSubject, setSelectedSubject] = useState(null);
+  // const [report, setSelectedSubject] = useState(null);
+  const [chartData, setChartData] = useState<ChartData | null>(null);
   const { getChildSubjects, childSubjects } = UseGetChildSubjects(
     setIsLoading,
     student_id
   );
   const [subject, setSubject] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [subjects, setSubjects] = useState<string[] | null>(null);
   useEffect(() => {
     if (isLoading && user && !childSubjects) {
       if (user._id !== undefined) getChildSubjects();
     }
-    if (childSubjects) {
-      setSubject(subject || childSubjects[0]);
+  }, [isLoading, user, getChildSubjects, childSubjects]);
+  useEffect(() => {
+    if (childSubjects && !isLoading) {
+      setSubjects(Object.keys(childSubjects.details));
     }
-  }, [isLoading, user, getChildSubjects, childSubjects, subject]);
+  }, [childSubjects, isLoading]);
+  useEffect(() => {
+    if (subjects != null) {
+      setSubject(subject || subjects[0]);
+      if (subject != null && childSubjects != null)
+        setChartData(
+          refactorExamDataChart(childSubjects.details[`${subject}`].examRecords)
+        );
+    }
+  }, [subjects, subject, childSubjects]);
 
-  const schedule = [
-    { day: "Sunday", period: "08:00-09:00", class: "Social Studies" },
-    { day: "Sunday", period: "09:00-10:00", class: "Break" },
-    { day: "Sunday", period: "10:00-11:00", class: "Break" },
-    { day: "Sunday", period: "11:00-12:00", class: "Break" },
-    { day: "Sunday", period: "12:00-13:00", class: "Break" },
-    { day: "Monday", period: "08:00-09:00", class: "Social Studies" },
-    { day: "Monday", period: "09:00-10:00", class: "Break" },
-    { day: "Monday", period: "10:00-11:00", class: "Break" },
-    { day: "Monday", period: "11:00-12:00", class: "Break" },
-    { day: "Monday", period: "12:00-13:00", class: "Break" },
-    { day: "Tuesday", period: "08:00-09:00", class: "Break" },
-    { day: "Tuesday", period: "09:00-10:00", class: "Break" },
-    { day: "Tuesday", period: "10:00-11:00", class: "Break" },
-    { day: "Tuesday", period: "11:00-12:00", class: "Break" },
-    { day: "Tuesday", period: "12:00-13:00", class: "Break" },
-    { day: "Wednesday", period: "08:00-09:00", class: "Break" },
-    { day: "Wednesday", period: "09:00-10:00", class: "Break" },
-    { day: "Wednesday", period: "10:00-11:00", class: "Break" },
-    { day: "Wednesday", period: "11:00-12:00", class: "Break" },
-    { day: "Wednesday", period: "12:00-13:00", class: "Break" },
-    { day: "Thursday", period: "08:00-09:00", class: "Break" },
-    { day: "Thursday", period: "09:00-10:00", class: "Break" },
-    { day: "Thursday", period: "10:00-11:00", class: "Break" },
-    { day: "Thursday", period: "11:00-12:00", class: "Break" },
-    { day: "Thursday", period: "12:00-13:00", class: "Break" },
-  ];
+  // const student = {
+  //   name: "Avi Israeli",
+  //   classGrade: "3rd",
+  //   averageScore: 60,
+  // };
 
-  const student = {
-    name: "Avi Israeli",
-    classGrade: "3rd",
-    averageScore: 60,
-  };
-
-  if (isLoading || childSubjects === null) {
+  if (
+    isLoading ||
+    childSubjects === null ||
+    subjects === null ||
+    subject == null
+  ) {
     return (
       <div
         className="spinner mt-20 inline-block h-8 w-8 animate-spin rounded-full border-4 border-t-4 border-red-200 border-t-black"
@@ -132,7 +109,9 @@ const SubjectsPage: React.FC = () => {
       </div>
     );
   }
-  console.log(childSubjects);
+  // console.log(childSubjects);
+  // console.log(subject);
+  // console.log(childSubjects.details["Social Studies"].examRecords);
 
   return (
     <div className="main-div-s">
@@ -163,7 +142,7 @@ const SubjectsPage: React.FC = () => {
 
             {isOpen && (
               <div className="absolute z-10 mt-2 left-0 w-48 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-                {childSubjects.map((subjectItem, index) => (
+                {subjects.map((subjectItem, index) => (
                   <button
                     key={index}
                     className={`block w-full px-4 py-1 text-sm text-left 
@@ -184,10 +163,8 @@ const SubjectsPage: React.FC = () => {
             )}
           </div>
         </div>
-
-        {/* הכפתורים הרגילים - מוצגים במסכים גדולים */}
         <div className="hidden sm:flex flex-wrap justify-center space-x-6">
-          {childSubjects.map((subjectItem, index) => (
+          {subjects.map((subjectItem, index) => (
             <button
               key={index}
               className={`flex items-center p-2 rounded-lg 
@@ -303,7 +280,9 @@ const SubjectsPage: React.FC = () => {
       </div> */}
 
       <div className="secondery-div-s">
-        {user?.userType === "Parent" && <Schedule schedule={schedule} />}
+        {user?.userType === "Parent" && (
+          <Schedule schedule={childSubjects.schedule} />
+        )}
       </div>
       <div className="cols2-div-s">
         <AttendanceJournal
@@ -314,12 +293,11 @@ const SubjectsPage: React.FC = () => {
         <LineChart chartData={chartData} />
       </div>
       <div className="secondery-div-s">
-        <TeacherReportCard teacherReportData={teacherReportData} />
+        <TeacherReportCard teacherReportData={childSubjects.reports} />
       </div>
       <div className="secondery-div-s flex ">
         <ExamsTable
-          examsData={examsData}
-          subjectName={selectedSubject?.subjectName}
+          examsData={childSubjects.details[`${subject}`].examRecords}
         />
       </div>
     </div>

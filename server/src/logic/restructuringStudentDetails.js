@@ -1,9 +1,6 @@
-export const restructuringStudentDetailsSync = (
-  subjectsDetails,
-  student_id
-) => {
-  console.time("Synchronous Execution Time");
+import { parentPort, workerData } from "worker_threads";
 
+const restructuringStudentDetailsSync = (subjectsDetails, student_id) => {
   const restructuredDetails = subjectsDetails.reduce((acc, subjectDetails) => {
     const subject = subjectDetails.subject;
     let dataDates = [];
@@ -50,10 +47,15 @@ export const restructuringStudentDetailsSync = (
     return acc;
   }, {});
 
-  console.timeEnd("Synchronous Execution Time");
-  console.log(restructuredDetails);
+  return restructuredDetails;
 };
 
+const { subjectsDetails, student_id } = workerData;
+const restructuredDetails = restructuringStudentDetailsSync(
+  subjectsDetails,
+  student_id
+);
+parentPort?.postMessage(restructuredDetails);
 //attendace
 // each subject all exams and grades
 //reports

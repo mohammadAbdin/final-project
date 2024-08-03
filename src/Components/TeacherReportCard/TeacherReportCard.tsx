@@ -1,22 +1,16 @@
-import React, { useState } from 'react'
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
-import { FeedbackToTeacher } from '../FeedbackToTeacher/FeedbackToTeacher'
-
-interface TeacherReport {
-  teacher_name: string
-  date: string
-  title: string
-  description: string
-}
+import React, { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FeedbackToTeacher } from "../FeedbackToTeacher/FeedbackToTeacher";
+import { reportType } from "../../Types/StudentDetailsType";
 
 interface TeacherReportCardProps {
-  teacherReportData: TeacherReport[]
+  teacherReportData: reportType[];
 }
 
 const TeacherReportCard: React.FC<TeacherReportCardProps> = ({
   teacherReportData,
 }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="c-div-s overflow-x-auto">
@@ -33,8 +27,8 @@ const TeacherReportCard: React.FC<TeacherReportCardProps> = ({
         <tbody className="tbody">
           {teacherReportData.map((report, index) => (
             <React.Fragment key={index}>
-              <tr className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}>
-                <td className="td-s">{report.teacher_name}</td>
+              <tr className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
+                <td className="td-s">{report.teacherName}</td>
                 <td className="td-s">{report.date}</td>
                 <td className="td-s">{report.title}</td>
                 <td className="td-s">
@@ -66,7 +60,7 @@ const TeacherReportCard: React.FC<TeacherReportCardProps> = ({
         <FeedbackToTeacher />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TeacherReportCard
+export default TeacherReportCard;

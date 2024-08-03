@@ -1,11 +1,12 @@
 import axios from "axios";
+import { StudentDetailsType } from "../Types/StudentDetailsType";
 
 export const UseGetChildSubjectsRequest = async (
   id: string | undefined
-): Promise<string[] | null> => {
+): Promise<StudentDetailsType | null> => {
   try {
-    const response = await axios.get<[]>(
-      `http://localhost:5001/student/Student-Subjects/${id}`,
+    const response = await axios.get<StudentDetailsType>(
+      `http://localhost:5001/student/Student-Details/${id}`,
       {
         headers: {
           "Content-Type": "application/json",
