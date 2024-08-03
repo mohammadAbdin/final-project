@@ -5,7 +5,7 @@
 }
 
 .react-calendar__tile {
-  padding: 0.1rem;
+  padding: 0.1rem 0;
   border-radius: 8px;
   text-align: center;
 }
@@ -14,9 +14,9 @@
   background-color: #a0d6a5;
 }
 
-.late {
+/* .late {
   background-color: #a0c4ff;
-}
+} */
 
 .absent {
   background-color: #fbb6ce;

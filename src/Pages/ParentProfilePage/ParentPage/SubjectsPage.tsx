@@ -176,7 +176,6 @@ const SubjectsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* הכפתורים הרגילים - מוצגים במסכים גדולים */}
         <div className="hidden sm:flex flex-wrap justify-center space-x-6">
           {childSubjects.map((subjectItem, index) => (
             <button
@@ -191,7 +190,7 @@ const SubjectsPage: React.FC = () => {
               value={subjectItem}
               onClick={() => {
                 setSubject(subjectItem)
-                setIsOpen(false) // סגירת ה-dropdown בלחיצה על נושא
+                setIsOpen(false)
               }}
             >
               <span className="ml-2 whitespace-nowrap">{subjectItem}</span>
@@ -274,15 +273,13 @@ const SubjectsPage: React.FC = () => {
         />
         <LineChart chartData={chartData} />
       </div>
-      <div className="secondery-div-s">
-        <TeacherReportCard teacherReportData={teacherReportData} />
-      </div>
-      <div className="secondery-div-s flex ">
-        <ExamsTable
-          examsData={examsData}
-          subjectName={selectedSubject?.subjectName}
-        />
-      </div>
+
+      <TeacherReportCard teacherReportData={teacherReportData} />
+
+      <ExamsTable
+        examsData={examsData}
+        subjectName={selectedSubject?.subjectName}
+      />
     </div>
   )
 }

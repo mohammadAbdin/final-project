@@ -26,6 +26,7 @@ export const FeedbackToTeacher = () => {
     const { name, value } = e.target
     setFormData((prevData) => ({ ...prevData, [name]: value }))
   }
+  //
 
   const handleFormSubmit = () => {
     const newFeedback = {
@@ -43,10 +44,7 @@ export const FeedbackToTeacher = () => {
       {!showModal ? (
         <div>
           {' '}
-          <button
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-300"
-            onClick={handleAddFeedbackClick}
-          >
+          <button className="mt-4 blue-button" onClick={handleAddFeedbackClick}>
             Send Feedback To The Teacher
           </button>
         </div>

@@ -17,7 +17,7 @@ const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
   const days = Array.from(new Set(schedule.map((entry) => entry.day)))
 
   return (
-    <div className="border border-gray-300 rounded-md p-2 m-2 bg-white overflow-x-auto shadow-lg">
+    <div className="c-div-s overflow-x-auto">
       <div className={user?.userType === 'Parent' ? 'w-5/10' : 'w-full'}>
         <h2 className="h2-s">schedule</h2>
         <table className="w-full border-collapse">

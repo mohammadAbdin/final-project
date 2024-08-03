@@ -24,7 +24,7 @@ const AttendanceJournal = ({ events, selectedDate, onDateChange }) => {
 
       <div className="flex justify-center mt-5 space-x-6">
         <div className="flex items-center">
-          <div className="bg-green-300 w-4 h-4 mr-1"></div>
+          <div className="present w-4 h-4 mr-1"></div>
           <span>Present</span>
         </div>
         <div className="flex items-center">
