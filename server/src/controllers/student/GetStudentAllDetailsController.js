@@ -1,7 +1,7 @@
-import { restructuringStudentDetails } from "../../logic/restructuringStudentDetails.js";
+// GetStudentAllDetailsController.js
+import { restructuringStudentDetailsSync } from "../../logic/restructuringStudentDetails.js";
 import getStudentModel from "../../models/StudentSchema.js";
 import getTeacherModel from "../../models/TeacherSchema.js";
-// import { ClassInfoDetails } from "./../../../../src/Types/ClassInfoDetails";
 
 export const GetStudentAllDetails = async (req, res) => {
   try {
@@ -18,14 +18,12 @@ export const GetStudentAllDetails = async (req, res) => {
           as: "classInfo",
         },
       },
-      { $unwind: "$classInfo" }, // Unwind the classInfo array
+      { $unwind: "$classInfo" },
     ]);
     if (result.length === 0) {
       return res.status(404).json({ message: "Student not found" });
     }
-    // console.log(result[0].classInfo.subjects);
     const studentReports = result[0].report;
-    // console.log(reports);
 
     const reports = await Promise.all(
       studentReports.map(async (studentReport) => {
@@ -36,8 +34,7 @@ export const GetStudentAllDetails = async (req, res) => {
         return studentReport;
       })
     );
-    // console.log();
-    restructuringStudentDetails(result[0].classInfo.subjects, id);
+    restructuringStudentDetailsSync(result[0].classInfo.subjects, id);
     res.status(200).json({ reports: reports });
   } catch (error) {
     console.error("Error fetching student schedule:", error);
