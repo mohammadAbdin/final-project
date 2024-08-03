@@ -14,6 +14,8 @@ import VideoForm from "../../../Components/VideoForm/VideoForm";
 import { FeedbackToTeacher } from "../../../Components/FeedbackToTeacher/FeedbackToTeacher";
 import Schedule from "../../../Components/ClassSchedule/Schedule";
 import StudentSchedule from "../../Student/StudentSchedule/StudentSchedule";
+import Avatar from "../../../Components/Avatar/Avatar";
+
 import {
   FaCalculator,
   FaFlask,
@@ -113,6 +115,12 @@ const SubjectsPage: React.FC = () => {
     { day: "Thursday", period: "11:00-12:00", class: "Break" },
     { day: "Thursday", period: "12:00-13:00", class: "Break" },
   ];
+
+  const student = {
+    name: "Avi Israeli",
+    classGrade: "3rd",
+    averageScore: 60,
+  };
 
   if (isLoading || childSubjects === null) {
     return (
@@ -256,12 +264,42 @@ const SubjectsPage: React.FC = () => {
             className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
             value={subjectItem}
             onClick={(e) =>
-              setSubject((e.target as HTMLButtonElement).textContent || '')
+              setSubject((e.target as HTMLButtonElement).textContent || "")
             }
           >
             {subjectItem}
           </button>
         ))}
+      </div>
+      <Avatar
+        studentName={student.name}
+        classGrade={student.classGrade}
+        averageScore={student.averageScore}
+      />
+      {/* <div className="main-info-container">
+        <div className="calendar-container">
+          <div className="app-container mt-2">
+            <AttendanceJournal
+              events={mathAttendanceData}
+              selectedDate={selectedDate}
+              onDateChange={setSelectedDate}
+            />
+          </div>
+        </div>
+        <div className="exams-table-container  mt-2 ">
+          <ExamsTable
+            examsData={examsData}
+            subjectName={selectedSubject?.subjectName}
+          />
+        </div>
+
+        <div className="teacher-report-card-container mt-2">
+          <TeacherReportCard teacherReportData={teacherReportData} />
+          <div className="feedbackToTeacher-container">
+            <FeedbackToTeacher />
+          </div>
+        </div>
+        <LineChart chartData={chartData} />
       </div> */}
 
       <div className="secondery-div-s">
