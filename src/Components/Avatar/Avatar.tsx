@@ -21,8 +21,10 @@ const Avatar: React.FC<AvatarProps> = ({
     switch (classGrade) {
       case 1:
         "1st";
+        break;
       case 2:
         "2nd";
+        break;
       case 3:
         "3rd";
         return "👶"; // Example icon for lower grades

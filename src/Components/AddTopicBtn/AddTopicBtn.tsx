@@ -36,12 +36,18 @@ const AddTopicBtn = ({
   return (
     <>
       {addTopicStatus === false ? (
-        <button
-          className="px-4 py-2 mb-3  bg-green-500 text-white rounded"
-          onClick={() => setAddTopicStatus(true)}
-        >
-          Add Topic
-        </button>
+        <div>
+          {user?.userType == "Teacher" ? (
+            <button
+              className="px-4 py-2 mb-3  bg-green-500 text-white rounded"
+              onClick={() => setAddTopicStatus(true)}
+            >
+              Add Topic
+            </button>
+          ) : (
+            <></>
+          )}
+        </div>
       ) : (
         <>
           <input

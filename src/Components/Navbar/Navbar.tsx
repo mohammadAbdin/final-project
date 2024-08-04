@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom' // אם נדרש, יש להתאים להתאמה אישית שלך
-import { FiLogOut } from 'react-icons/fi' // דוגמה לאייקון, ניתן להשתמש בכל סט של אייקונים
-import { UserContext } from '../../Context/UserContext'
+import { useContext } from "react";
+import { FiLogOut } from "react-icons/fi"; // דוגמה לאייקון, ניתן להשתמש בכל סט של אייקונים
+import { UserContext } from "../../Context/UserContext";
 
 const Navbar = () => {
-  const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext);
 
   return (
     <nav className="bg-blue-500 p-2  flex justify-between items-center w-full">
@@ -19,7 +18,7 @@ const Navbar = () => {
         <div>
           {user && (
             <button
-              onClick={() => console.log('')}
+              onClick={() => console.log("")}
               className="flex items-center text-white"
             >
               <FiLogOut className="mr-2" />
@@ -29,10 +28,10 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
 
 // import React from 'react'
 // // import { useNavigate } from "react-router-dom";

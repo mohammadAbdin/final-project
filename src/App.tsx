@@ -11,7 +11,7 @@ import ParentPage from "./Pages/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 import EventClanedar from "./Components/Calendar/EventCalendar";
 import StudentDetails from "./Pages/Student/StudentDetails/StudentDetails";
-import TeacherAbsentCalendar from "./Pages/Teacher/TeacherAbsentCalendar/TeacherAbsentCalendar";
+// import TeacherAbsentCalendar from "./Pages/Teacher/TeacherAbsentCalendar/TeacherAbsentCalendar";
 import LogIn from "./Pages/LogIn/LogIn";
 import useGetTokens from "./Hooks/UseGetTokens";
 import { useContext, useEffect } from "react";
@@ -22,13 +22,13 @@ import ParentCard from "./Components/ParentCard/ParentCard";
 // import studentData from "./demoData/studentData";
 
 import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
-import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
-import teacherExamsData from "./demoData/teacherExamsData.js";
-import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
+// import TeacherReportsComponent from "./Pages/Teacher/TeacherReportsComponent/TeacherReportsComponent";
+
+// import SubjectsPageReut from "./Pages/ParentPage/SubjectsPage.js";
 import ClassesList from "./Pages/Teacher/ClassesList.js";
 import ClassPage from "./Pages/Teacher/ClassPage.js";
 import StudentResourcesPage from "./Pages/StudentResourcesPage/StudentResourcesPage.js";
-import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
+// import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
 import FeedbackDrop from "./Components/Feedback/FeedbackDrop.js";
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 

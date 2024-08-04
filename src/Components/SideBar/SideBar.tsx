@@ -1,24 +1,24 @@
-import React, { useContext, useState } from 'react'
-import { Outlet } from 'react-router-dom'
-import TeacherSideBar from '../../Pages/Teacher/TeacherSideBar'
-import { UserContext } from '../../Context/UserContext'
-import ParentSideBar from '../../Pages/ParentPage/ParentSideBar'
-import StudentSideBar from '../../Pages/Student/StudentSideBar'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import React, { useContext, useState } from "react";
+import { Outlet } from "react-router-dom";
+import TeacherSideBar from "../../Pages/Teacher/TeacherSideBar";
+import { UserContext } from "../../Context/UserContext";
+import ParentSideBar from "../../Pages/ParentPage/ParentSideBar";
+import StudentSideBar from "../../Pages/Student/StudentSideBar";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Sidebar: React.FC = () => {
-  const { user } = useContext(UserContext)
-  const [isOpen, setIsOpen] = useState(false)
+  const { user } = useContext(UserContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   const handleItemClick = () => {
     if (isOpen) {
-      toggleSidebar()
+      toggleSidebar();
     }
-  }
+  };
 
   return (
     <div className="flex flex-col md:flex-row w-4/5 mx-auto mt-10 bg-white">
@@ -33,13 +33,13 @@ const Sidebar: React.FC = () => {
               <button onClick={toggleSidebar}>
                 <FaTimes className="text-gray-900" />
               </button>
-              {user?.userType === 'Teacher' && (
+              {user?.userType === "Teacher" && (
                 <TeacherSideBar onItemClick={handleItemClick} />
               )}
-              {user?.userType === 'Parent' && (
+              {user?.userType === "Parent" && (
                 <ParentSideBar onItemClick={handleItemClick} />
               )}
-              {user?.userType === 'Student' && (
+              {user?.userType === "Student" && (
                 <StudentSideBar onItemClick={handleItemClick} />
               )}
             </div>
@@ -47,13 +47,13 @@ const Sidebar: React.FC = () => {
         )}
 
         <div className="hidden md:block sticky p-3">
-          {user?.userType === 'Teacher' && (
+          {user?.userType === "Teacher" && (
             <TeacherSideBar onItemClick={handleItemClick} />
           )}
-          {user?.userType === 'Parent' && (
+          {user?.userType === "Parent" && (
             <ParentSideBar onItemClick={handleItemClick} />
           )}
-          {user?.userType === 'Student' && (
+          {user?.userType === "Student" && (
             <StudentSideBar onItemClick={handleItemClick} />
           )}
         </div>
@@ -62,10 +62,10 @@ const Sidebar: React.FC = () => {
         <Outlet />
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
 
 // import React, { useContext } from "react";
 // import { Link, Outlet } from "react-router-dom";

@@ -16,7 +16,7 @@ const ExamsTable = ({ examsData }: ExamTableProps): JSX.Element => {
         <tbody className="bg-white divide-y divide-gray-200s">
           {examsData.map((exam, index) => (
             <tr
-              // key={exa}
+              key={index}
               className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
             >
               <td className="td-s">{exam.examName}</td>

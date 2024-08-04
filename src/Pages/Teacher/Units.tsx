@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Video from "./Video";
 import { Topic, TopicsProps, VideoType } from "../../Types/TopicsTypes";
 import AddTopicBtn from "../../Components/AddTopicBtn/AddTopicBtn";
@@ -10,7 +10,11 @@ const Units = ({ topics, classNumber }: TopicsProps) => {
   const { user } = useContext(UserContext);
   const [currentTopicId, setCurrentTopicId] = useState<string | null>(null);
   const [topicsData, setTopicsData] = useState<Topic[]>(topics);
+  console.log(topics);
 
+  useEffect(() => {
+    setTopicsData(topics);
+  }, [topics]);
   const toggleTopicDetails = (id: string) => {
     setCurrentTopicId(currentTopicId === id ? null : id);
   };

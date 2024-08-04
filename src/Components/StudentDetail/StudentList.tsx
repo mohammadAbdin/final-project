@@ -6,34 +6,6 @@ import UseGetClassStudentsAttendance from "../../Hooks/UseGetClassStudentsAttend
 import { StudentsAttendanceType } from "../../Types/StudentsAttendanceType";
 import { PutStudentsAttendace } from "../../Api/PutStudentsAttendace";
 
-// const students = [
-//   {
-//     student_id: 1,
-//     studentName: "John Doe",
-//     attendance: true,
-//   },
-//   {
-//     student_id: 2,
-//     studentName: "Jane Smith",
-//     attendance: false,
-//   },
-//   {
-//     student_id: 3,
-//     studentName: "Michael Johnson",
-//     attendance: true,
-//   },
-//   {
-//     student_id: 4,
-//     studentName: "Emily Davis",
-//     attendance: true,
-//   },
-//   {
-//     student_id: 5,
-//     studentName: "William Brown",
-//     attendance: false,
-//   },
-// ];
-
 const StudentList = () => {
   const location = useLocation();
   const selectedDate = location.state.selectedDate;

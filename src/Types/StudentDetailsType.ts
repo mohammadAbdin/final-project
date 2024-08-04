@@ -18,6 +18,16 @@ export interface detailsType {
     grade: string | number;
   }>;
   average: string;
+  resources: resourcesType[];
+}
+export interface resourcesType {
+  title: string;
+  videos: videoType[];
+}
+export interface videoType {
+  description: string;
+  title: string;
+  url: string;
 }
 
 export interface reportType {

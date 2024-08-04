@@ -1,16 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-const TeacherSideBar: React.FC = () => {
+const TeacherSideBar: React.FC<{ onItemClick: () => void }> = ({
+  onItemClick,
+}) => {
   return (
     <ul className="mt-6 space-y-1">
       <li>
-        <Link
-          to="/TeacherSchedule"
-          className="block text-left rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-500"
-        >
-          Schedule
-        </Link>
+        <button onClick={onItemClick}>
+          <NavLink
+            to="/TeacherSchedule"
+            className="block text-left rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-500"
+          >
+            Schedule
+          </NavLink>
+        </button>
       </li>
       <li>
         <Link

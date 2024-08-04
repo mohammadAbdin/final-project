@@ -15,7 +15,7 @@ const LineChart: React.FC<LineChartProps> = ({ chartData }) => {
       chartRef.current.destroy();
     }
 
-    if (canvasRef.current) {
+    if (canvasRef.current && chartData) {
       const newChartInstance = new Chart(canvasRef.current, {
         type: "line",
         data: chartData,

@@ -1,12 +1,9 @@
-import mathAttendanceData from "../../../demoData/mathAttendanceData";
-
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../../Context/UserContext";
 import UseGetChildSubjects from "../../../Hooks/UseGetChildSubjects";
 // import Chart from "chart.js/auto";
 import LineChart from "../../../Components/StatsChart/StatsChart";
-import AttendanceJournal from "../../../Components/AttendanceJournal/AttendanceJournal";
 import ExamsTable from "../../../Components/ExamsTable/ExamsTable";
 import TeacherReportCard from "../../../Components/TeacherReportCard/TeacherReportCard";
 // import VideoForm from "../../../Components/VideoForm/VideoForm";
@@ -27,6 +24,9 @@ import {
 } from "react-icons/fa";
 import { BiChevronDown } from "react-icons/bi";
 import refactorExamDataChart from "../../../Functions/refactorExamDataChart";
+import AttendanceJournal from "./../../../Components/AttendanceJournal/AttendanceJournal";
+import { transformAttendanceData } from "../../../Functions/transformAttendanceData";
+import { AttendaceDetailsType } from "../../../Types/AttendaceDetailsType";
 
 interface ChartData {
   labels: string[];
@@ -39,7 +39,7 @@ interface ChartData {
   }[];
 }
 
-const icons = {
+const icons: { [key in string[][number]]: JSX.Element } = {
   Math: <FaCalculator />,
   Science: <FaFlask />,
   English: <FaBook />,
@@ -58,8 +58,9 @@ const SubjectsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { user } = useContext(UserContext);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  // const [selectedSubject, setSelectedSubject] = useState(null);
-  // const [report, setSelectedSubject] = useState(null);
+  const [attendanceRecord, setAttendanceRecord] = useState<
+    AttendaceDetailsType[] | null
+  >(null);
   const [chartData, setChartData] = useState<ChartData | null>(null);
   const { getChildSubjects, childSubjects } = UseGetChildSubjects(
     setIsLoading,
@@ -81,24 +82,26 @@ const SubjectsPage: React.FC = () => {
   useEffect(() => {
     if (subjects != null) {
       setSubject(subject || subjects[0]);
-      if (subject != null && childSubjects != null)
+      if (subject != null && childSubjects != null) {
         setChartData(
           refactorExamDataChart(childSubjects.details[`${subject}`].examRecords)
         );
+        // childSubjects.details[`${subject}`].attendanceRecord
+        setAttendanceRecord(
+          transformAttendanceData(
+            childSubjects.details[`${subject}`].attendanceRecord.datesRecord
+          )
+        );
+      }
     }
   }, [subjects, subject, childSubjects]);
-
-  // const student = {
-  //   name: "Avi Israeli",
-  //   classGrade: "3rd",
-  //   averageScore: 60,
-  // };
 
   if (
     isLoading ||
     childSubjects === null ||
     subjects === null ||
-    subject == null
+    subject == null ||
+    attendanceRecord == null
   ) {
     return (
       <div
@@ -109,9 +112,7 @@ const SubjectsPage: React.FC = () => {
       </div>
     );
   }
-  // console.log(childSubjects);
-  // console.log(subject);
-  // console.log(childSubjects.details["Social Studies"].examRecords);
+  console.log("hi");
 
   return (
     <div className="main-div-s">
@@ -284,9 +285,9 @@ const SubjectsPage: React.FC = () => {
           <Schedule schedule={childSubjects.schedule} />
         )}
       </div>
-      <div className="cols2-div-s">
+      <div className="grid grid-cols-1 m-2 p-2 lg:grid-cols-2 gap-x-3 gap-y-3  justify-items-center">
         <AttendanceJournal
-          events={mathAttendanceData}
+          events={attendanceRecord}
           selectedDate={selectedDate}
           onDateChange={setSelectedDate}
         />

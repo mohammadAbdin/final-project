@@ -54,9 +54,8 @@ export const GetStudentAllDetails = async (req, res) => {
 
     worker.on("message", (restructuredDetails) => {
       if (!hasResponded) {
-        console.log(result[0].classInfo.schedule);
         const schedule = generateSchedule(result[0].classInfo.schedule);
-        // console.log(restructuredDetails, "restructuredDetails");
+        console.log(restructuredDetails, "restructuredDetails");
 
         res.status(200).json({
           reports: reports,
