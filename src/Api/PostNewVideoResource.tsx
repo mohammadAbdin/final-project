@@ -11,7 +11,7 @@ async function AddNewVideoResource(
     console.log(videoData, topicId, teacher_id, classNumber);
 
     const response = await axios.post(
-      "http://localhost:5001/class/Add-video-resource",
+      "https://final-project-1-hjx7.onrender.com/class/Add-video-resource",
       {
         videoData,
         topicId,

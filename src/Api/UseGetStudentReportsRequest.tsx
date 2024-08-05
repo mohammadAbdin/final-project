@@ -11,7 +11,7 @@ export const UseGetStudentReportsRequest = async (
     console.log(id);
 
     const response = await axios.get<FeedbackContent[]>(
-      `http://localhost:5001/student/Student-reports/${id}`
+      `https://final-project-1-hjx7.onrender.com/student/Student-reports/${id}`
     );
     console.log(response.data);
     return response.data;

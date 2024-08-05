@@ -8,11 +8,14 @@ async function AddNewExam(
   try {
     console.log(exam, className, id);
 
-    const response = await axios.post("http://localhost:5001/class/Add-exam", {
-      className,
-      exam,
-      id,
-    });
+    const response = await axios.post(
+      "https://final-project-1-hjx7.onrender.com/class/Add-exam",
+      {
+        className,
+        exam,
+        id,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("There was an error adding the user:", error);

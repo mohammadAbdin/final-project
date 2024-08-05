@@ -6,7 +6,7 @@ import { ParentOptionsType } from "./../Types/ParentOptionsType";
 export const getAllParentIds = async (): Promise<ParentOptionsType[]> => {
   try {
     const response = await axios.get<ParentOptionsType[]>(
-      `http://localhost:5001/parent/all-ids`
+      `https://final-project-1-hjx7.onrender.com/parent/all-ids`
     );
 
     // Log the response data to check the structure

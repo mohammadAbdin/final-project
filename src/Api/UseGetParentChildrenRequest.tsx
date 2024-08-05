@@ -6,7 +6,7 @@ export const UseGetParentChildrenRequest = async (
 ): Promise<Child[] | null> => {
   try {
     const response = await axios.get<[]>(
-      `http://localhost:5001/parent/Parent-Children/${id}`,
+      `https://final-project-1-hjx7.onrender.com/parent/Parent-Children/${id}`,
       {
         headers: {
           "Content-Type": "application/json",

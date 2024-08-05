@@ -20,11 +20,14 @@ export const PutExamMarks = async (
   try {
     console.log("hi");
 
-    await axios.put("http://localhost:5001/class/exam-grade-edits", {
-      modifiedStudents,
-      userId,
-      classNumber,
-    });
+    await axios.put(
+      "https://final-project-1-hjx7.onrender.com/class/exam-grade-edits",
+      {
+        modifiedStudents,
+        userId,
+        classNumber,
+      }
+    );
     console.log("Exam marks updated successfully.");
   } catch (error) {
     console.error("Failed to update exam marks:", error);

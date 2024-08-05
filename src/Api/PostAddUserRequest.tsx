@@ -10,10 +10,13 @@ async function AddUserRequest(
     console.log(userType);
     console.log(formData);
 
-    const response = await axios.post("http://localhost:5001/user/Add-user", {
-      userType,
-      formData,
-    });
+    const response = await axios.post(
+      "https://final-project-1-hjx7.onrender.com/user/Add-user",
+      {
+        userType,
+        formData,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("There was an error adding the user:", error);
