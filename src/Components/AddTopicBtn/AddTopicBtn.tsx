@@ -27,12 +27,16 @@ const AddTopicBtn = ({
       videos: [],
     };
     // console.log(newTopic, user?.userType, user?._id);
-    setIsLoading(true);
-    await AddNewResource(newTopic, user?._id, classNumber);
+    const response = await AddNewResource(newTopic, user?._id, classNumber);
+    // window.location.reload();
+    console.log("hi");
+    console.log(response);
+
     setTopicsData([...topicsData, newTopic]);
     setNewTopicTitle("");
     setAddTopicStatus(false);
     setIsCancel(true);
+    setIsLoading(true);
   };
 
   return (

@@ -16,4 +16,7 @@ export const PostResource = async (req, res) => {
   subject.resources.push(newTopic);
   console.log(subject.resources);
   await classObj.save();
+  res
+    .status(201)
+    .json({ message: "Resource added successfully", topic: newTopic });
 };

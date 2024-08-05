@@ -21,7 +21,7 @@ async function AddNewResource(
     );
     console.log(response);
 
-    // return response.data;
+    return response.data;
   } catch (error) {
     console.error("There was an error adding the user:", error);
     throw error;
