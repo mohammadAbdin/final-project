@@ -6,7 +6,7 @@ import VideoForm from "../../Components/VideoForm/VideoForm";
 import AddNewVideoResource from "../../Api/PostNewVideoResource";
 import { UserContext } from "../../Context/UserContext";
 
-const Units = ({ topics, classNumber }: TopicsProps) => {
+const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
   const { user } = useContext(UserContext);
   const [currentTopicId, setCurrentTopicId] = useState<string | null>(null);
   const [topicsData, setTopicsData] = useState<Topic[]>(topics);
@@ -18,7 +18,9 @@ const Units = ({ topics, classNumber }: TopicsProps) => {
   const toggleTopicDetails = (id: string) => {
     setCurrentTopicId(currentTopicId === id ? null : id);
   };
-
+  useEffect(() => {
+    console.log(topicsData);
+  }, [topicsData]);
   const addVideo = (videoData: VideoType) => {
     console.log(videoData, currentTopicId, classNumber);
     AddNewVideoResource(videoData, currentTopicId, classNumber, user?._id);
@@ -68,6 +70,7 @@ const Units = ({ topics, classNumber }: TopicsProps) => {
     <div className="mt-10">
       <div className="flex">
         <AddTopicBtn
+          setIsLoading={setIsLoading}
           classNumber={classNumber}
           topicsData={topicsData}
           setTopicsData={setTopicsData}

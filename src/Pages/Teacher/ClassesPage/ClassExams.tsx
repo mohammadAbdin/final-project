@@ -18,6 +18,7 @@ interface ClassExamsProps {
     userId: string
   ) => Promise<void>;
   addExam: () => void;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface modifiedStudent {
@@ -35,6 +36,7 @@ export function ClassExams({
   user,
   AddNewExam,
   addExam,
+  setIsLoading,
 }: ClassExamsProps) {
   // console.log(exams);
 
@@ -177,7 +179,7 @@ export function ClassExams({
             onClick={async () => {
               if (classNumber && user && user._id) {
                 await AddNewExam(newExamName, classNumber, user._id);
-                window.location.reload();
+                setIsLoading(true);
               }
             }}
           >

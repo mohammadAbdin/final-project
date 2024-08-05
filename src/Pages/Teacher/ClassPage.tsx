@@ -77,8 +77,10 @@ const ClassPage: React.FC = () => {
   );
 
   useEffect(() => {
-    if (isLoading && user && !classDetails) {
-      if (user._id != undefined) getClassDetails(user._id);
+    if (isLoading || !user || !classDetails) {
+      console.log("is loading ==true");
+
+      if (user?._id != undefined) getClassDetails(user._id);
     }
   }, [isLoading, user, getClassDetails, classDetails]);
   useEffect(() => {
@@ -157,11 +159,16 @@ const ClassPage: React.FC = () => {
           user={user}
           AddNewExam={AddNewExam}
           addExam={addExam}
+          setIsLoading={setIsLoading}
         />
       )}
 
       {view === "videos" && (
-        <Units classNumber={classNumber} topics={classDetails.resources} />
+        <Units
+          setIsLoading={setIsLoading}
+          classNumber={classNumber}
+          topics={classDetails.resources}
+        />
       )}
       {view === "Attendance journal" && (
         <TeachersAttendanceJournal classNumber={classNumber} />

@@ -6,7 +6,6 @@ export const GetClassDeatils = async (req, res) => {
     const { id, classNumber } = req.query;
     const Class = await getclassModel();
     const classes = await Class.findOne({ class: classNumber });
-    console.log(classes.subjects);
     const filteredSubjects = classes.subjects.filter(
       (subject) => subject.teacher_id === id
     );
@@ -14,6 +13,8 @@ export const GetClassDeatils = async (req, res) => {
     const students = await Student.find({ class: classNumber });
     const exams = filteredSubjects.flatMap((subject) => subject.exams);
     const resources = filteredSubjects.flatMap((subject) => subject.resources);
+    console.log(resources);
+
     res
       .status(200)
       .json({ exams: exams, resources: resources, students: students });
