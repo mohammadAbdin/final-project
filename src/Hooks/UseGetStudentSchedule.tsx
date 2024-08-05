@@ -12,7 +12,6 @@ interface UseGetStudentScheduleReturn {
 }
 
 const UseGetStudentSchedule = (
-  isLoading: boolean,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ): UseGetStudentScheduleReturn => {
   const [studentSchedule, setStudentSchedule] = useState<

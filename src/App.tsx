@@ -6,7 +6,7 @@ import StudentList from "./Components/StudentDetail/StudentList";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 // import ParentProfilePage from "./Pages/ParentProfilePage/ParentProfilePage";
 
-import AddUser from "./Pages/Manager/AddUser/AddUser";
+// import AddUser from "./Pages/Manager/AddUser/AddUser";
 import ParentPage from "./Pages/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 import EventClanedar from "./Components/Calendar/EventCalendar";
@@ -113,10 +113,10 @@ const router = createBrowserRouter([
         path: "/parent-card",
         element: <ParentCard />,
       },
-      {
-        path: "/Add-members",
-        element: <AddUser />,
-      },
+      // {
+      //   path: "/Add-members",
+      //   element: <AddUser />,
+      // },
 
       {
         path: "/student-list/:classNumber",

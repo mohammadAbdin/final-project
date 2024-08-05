@@ -10,7 +10,7 @@ export const FeedbackToTeacher = () => {
     title: "",
     description: "",
   });
-  const [feedbackData, setFeedbackData] = useState("");
+  const [feedbackData, setFeedbackData] = useState<FeedbackFormData[]>([]);
   const handleAddFeedbackClick = () => {
     setShowModal(true);
   };
@@ -33,7 +33,7 @@ export const FeedbackToTeacher = () => {
       title: formData.title,
       description: formData.description,
     };
-    setFeedbackData((prevData) => [...prevData, newFeedback]);
+    setFeedbackData([...feedbackData, newFeedback]);
     handleModalClose();
   };
   //

@@ -9,10 +9,8 @@ function TeacherSchedule() {
   const [isLoading, setIsLoading] = useState(true);
 
   // console.log("user", user);
-  const { getTeacherSchedule, teacherSchedule } = UseGetTeacherSchedule(
-    isLoading,
-    setIsLoading
-  );
+  const { getTeacherSchedule, teacherSchedule } =
+    UseGetTeacherSchedule(setIsLoading);
 
   useEffect(() => {
     if (isLoading && user && !teacherSchedule) {

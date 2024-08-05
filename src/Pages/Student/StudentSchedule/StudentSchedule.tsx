@@ -8,10 +8,8 @@ function StudentSchedule() {
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { getStudentSchedule, studentSchedule } = UseGetStudentSchedule(
-    isLoading,
-    setIsLoading
-  );
+  const { getStudentSchedule, studentSchedule } =
+    UseGetStudentSchedule(setIsLoading);
 
   useEffect(() => {
     if (isLoading && user && !studentSchedule) {

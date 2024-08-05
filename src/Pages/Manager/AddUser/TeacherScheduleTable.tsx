@@ -1,5 +1,5 @@
 import { ScheduleButton } from "./ScheduleButton";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FormDataType } from "../../../Types/FormDataType";
 import { getAllClasses } from "../../../Api/GetAllClasses";
 import { ClassSchedule } from "../../../Types/ClassScheduleType";
