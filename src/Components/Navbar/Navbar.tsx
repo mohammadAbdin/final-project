@@ -8,8 +8,8 @@ const Navbar = () => {
   return (
     <nav className="bg-blue-500 p-2  flex justify-between items-center w-full">
       <div className="flex flex-row  mx-4 justify-between items-center w-full">
-        <div className="flex items-center">
-          <img src="/logo.png" alt="Logo" className="h-8 mr-2" />
+        <div className="flex flex-col items-center justify-end">
+          <img src="/edutrackerlogo1.png" alt="Logo" className="h-8 mr-2" />
           {user && (
             <span className="text-white text-sm">Hello, {user?.userType}</span>
           )}
@@ -19,7 +19,7 @@ const Navbar = () => {
           {user && (
             <button
               onClick={() => console.log("")}
-              className="flex items-center text-white"
+              className="flex items-center text-white font-bold"
             >
               <FiLogOut className="mr-2" />
               Logout
