@@ -19,13 +19,15 @@ body,
 
 @layer components {
 
-  /* main-div */
+  /* main-div (use it for yor main componenet */
   .main-div-s {
-    @apply w-full flex flex-wrap;
+    @apply w-full flex flex-wrap gap-6 items-center;
   }
 
+  /*  */
   .secondery-div-s {
-    @apply grid grid-cols-1 m-2 p-2 space-x-4 w-full flex-col items-center;
+    /* @apply grid grid-cols-1  m-2 p-2 space-x-4 w-full flex flex-col items-center; */
+    @apply w-full;
   }
 
   /* main div with 2cols */
@@ -40,6 +42,18 @@ body,
 
   .h2-s {
     @apply text-sm font-semibold text-center py-1;
+  }
+
+  .blue-button {
+    @apply bg-blue-500 text-white px-2 py-1.5 rounded hover: bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300;
+  }
+
+  .turquoise-button {
+    @apply bg-turquoise-500 text-white px-2 py-1.5 rounded hover: bg-turquoise-700 focus:outline-none focus:ring-2 focus:ring-turquoise-300;
+  }
+
+  .turquoise-button {
+    @apply bg-pink-300 text-white px-2 py-1.5 rounded hover: bg-pink-500 focus:outline-none focus:ring-2 focus:ring-turquoise-500 bg-pink-300 bg-pink-300;
   }
 
   .table-s {
@@ -74,14 +88,11 @@ body,
 
     .td-s,
     .th-s {
-      /* רווחים קטנים יותר במסכים קטנים */
       @apply px-2 py-1;
-      /* שונה מ-px-4, py-2 ל-px-2, py-1 */
     }
 
     .h2-s {
       @apply text-lg;
-      /* החזרת גודל הכותרת ל-lg במסכים קטנים */
     }
   }
 
