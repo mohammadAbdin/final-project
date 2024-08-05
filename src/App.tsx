@@ -14,7 +14,8 @@ import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
 import ParentPage from "./Pages/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 import EventCalendar from "./Components/Calendar/EventCalendar";
-import StudentDetails from "./Pages/Student/StudentDetails/StudentDetails";
+// import StudentDetails from "./Pages/Student/StudentDetails/StudentDetails";
+
 import LogIn from "./Pages/LogIn/LogIn";
 import useGetTokens from "./Hooks/UseGetTokens";
 import { useContext, useEffect } from "react";
@@ -101,10 +102,10 @@ const router = createBrowserRouter([
         path: "EventCalendar",
         element: <EventCalendar />,
       },
-      {
-        path: "AbsentCalendar",
-        element: <StudentDetails />,
-      },
+      // {
+      //   path: "AbsentCalendar",
+      //   element: <StudentDetails />,
+      // },
       {
         path: "parent-card",
         element: <ParentCard />,
