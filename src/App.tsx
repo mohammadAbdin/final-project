@@ -31,7 +31,7 @@ import StudentResourcesPage from "./Pages/StudentResourcesPage/StudentResourcesP
 // import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
 import FeedbackDrop from "./Components/Feedback/FeedbackDrop.js";
 // import AutoAdding from "./Auto/AutoAdding.js";
-import ScheduleClasses from "./Auto/ScheduleClasses.js";
+// import ScheduleClasses from "./Auto/ScheduleClasses.js";
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 
 const AppLayout = () => {
@@ -132,10 +132,10 @@ const router = createBrowserRouter([
       //   path: "/Add-users-auto",
       //   element: <AutoAdding />,
       // },
-      {
-        path: "/ScheduleClasses",
-        element: <ScheduleClasses />,
-      },
+      // {
+      //   path: "/ScheduleClasses",
+      //   element: <ScheduleClasses />,
+      // },
 
       {
         path: "/FeedbackDrop/:student_id",
