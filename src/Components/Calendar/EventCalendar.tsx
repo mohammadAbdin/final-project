@@ -4,6 +4,7 @@ import {
   classes,
   StyledAppointmentsAppointmentContent,
 } from "./CalendarStyles";
+
 export default function EventClanedar() {
   const eventsData = [
     {
@@ -14,7 +15,7 @@ export default function EventClanedar() {
     },
     {
       event_id: "ev5678",
-      eventName: "13 / 55",
+      eventName: "Math Olympiad",
       date: "2024/07/15",
       period: "afternoon",
     },
@@ -39,7 +40,8 @@ export default function EventClanedar() {
     const month = parseInt(parts[1], 10);
     const day = parseInt(parts[2], 10);
     const obj = {
-      students: data.eventName,
+      event: data.eventName,
+      students: "",
       allStudents: "",
       startDate: new Date(year, month - 1, day, 12, 0),
       endDate: new Date(year, month - 1, day, 12, 1),
@@ -54,9 +56,7 @@ export default function EventClanedar() {
       <>
         <StyledAppointmentsAppointmentContent {...restProps} data={data}>
           <div className={classes.container}>
-            <div className={classes.text}>
-              {data.students} / {data.allStudents}
-            </div>
+            <div className="mt-6 text-sm">{data.event}</div>
           </div>
         </StyledAppointmentsAppointmentContent>
       </>

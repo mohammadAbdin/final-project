@@ -40,10 +40,7 @@ export const StyledAppointmentsAppointmentContent = styled(
   Appointments.AppointmentContent
 )(() => ({
   [`& .${classes.text}`]: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    fontSize: "15px",
+    fontSize: "12px",
     padding: "5px",
   },
   [`& .${classes.content}`]: {

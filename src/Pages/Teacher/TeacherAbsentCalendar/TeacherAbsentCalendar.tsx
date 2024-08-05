@@ -7,37 +7,35 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 
-export default function StudentDetails() {
-  const attendanceRecords = [
+export default function TeacherAbsentCalendar() {
+  const calendarData1: unknown[] = [
     {
-      date: "2024/07/24", // Format: 'year/month/day'
-      attendance: true,
+      students: 20,
+      allStudents: 24,
+      date: "2024/07/29",
     },
     {
-      date: "2024/07/23",
-      attendance: false,
+      students: 24,
+      allStudents: 24,
+      date: "2024/07/28",
     },
     {
-      date: "2024/07/22",
-      attendance: false,
-    },
-    {
-      date: "2024/07/21",
-      attendance: true,
+      students: 22,
+      allStudents: 24,
+      date: "2024/07/30",
     },
   ];
 
-  const calendarData = attendanceRecords.map((data) => {
+  const calendarData = calendarData1.map((data: any) => {
     const parts = data.date.split("/");
 
     // Convert the parts into numbers
     const year = parseInt(parts[0], 10);
     const month = parseInt(parts[1], 10);
     const day = parseInt(parts[2], 10);
-    const students = data.attendance ? "True" : "False";
     const obj = {
-      students: students,
-      allStudents: "",
+      students: data.students,
+      allStudents: data.allStudents,
       startDate: new Date(year, month - 1, day, 12, 0),
       endDate: new Date(year, month - 1, day, 12, 1),
     };
@@ -48,15 +46,16 @@ export default function StudentDetails() {
     ...restProps
   }: Appointments.AppointmentContentProps) => {
     return (
-      <div className="w-full bg-white">
+      <div>
         <StyledAppointmentsAppointmentContent {...restProps} data={data}>
           <div className={classes.container}>
-            <div className={`${classes.text} text-gray-600`}>
-              {data.students == "True" ? (
-                <CheckIcon sx={{ color: "#00E732", fontSize: 49 }} />
-              ) : (
-                <ClearIcon sx={{ color: "red", fontSize: 49 }} />
-              )}
+            {data.students == data.allStudents ? (
+              <CheckIcon sx={{ color: "white", fontSize: 20 }} />
+            ) : (
+              <ClearIcon sx={{ color: "white", fontSize: 20 }} />
+            )}
+            <div className=" text-lg">
+              {data.students} / {data.allStudents}
             </div>
           </div>
         </StyledAppointmentsAppointmentContent>
