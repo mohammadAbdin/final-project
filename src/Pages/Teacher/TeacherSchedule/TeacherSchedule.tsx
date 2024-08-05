@@ -32,6 +32,7 @@ function TeacherSchedule() {
   }
   const exampleScheduleData: ScheduleEntry[] =
     addBreaksToSchedule(teacherSchedule); // omar you can ask chat gbt to (any period from sunday to thursday that are not included in the data add an obj to it )
+  console.log(exampleScheduleData); // console
 
   return (
     <div>

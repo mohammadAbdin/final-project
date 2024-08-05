@@ -7,6 +7,9 @@ async function AddUserRequest(
   formData: FormDataType
 ): Promise<void> {
   try {
+    console.log(userType);
+    console.log(formData);
+
     const response = await axios.post("http://localhost:5001/user/Add-user", {
       userType,
       formData,

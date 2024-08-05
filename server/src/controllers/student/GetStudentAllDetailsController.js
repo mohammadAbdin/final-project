@@ -20,6 +20,7 @@ export const GetStudentAllDetails = async (req, res) => {
       },
       { $unwind: "$classInfo" },
     ]);
+    console.log(result[0].classInfo.subjects);
 
     if (result.length === 0) {
       if (!hasResponded) {

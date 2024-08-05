@@ -30,6 +30,8 @@ import ClassPage from "./Pages/Teacher/ClassPage.js";
 import StudentResourcesPage from "./Pages/StudentResourcesPage/StudentResourcesPage.js";
 // import StudentInfo from "./Components/StudentInfo/StudentInfo.js";
 import FeedbackDrop from "./Components/Feedback/FeedbackDrop.js";
+// import AutoAdding from "./Auto/AutoAdding.js";
+import ScheduleClasses from "./Auto/ScheduleClasses.js";
 // import TeacherAttendance from './Pages/Teacher/TeacherAttendance/TeacherAttendance'
 
 const AppLayout = () => {
@@ -127,9 +129,13 @@ const router = createBrowserRouter([
       },
 
       // {
-      //   path: "/StudentInfo",
-      //   element: <StudentInfo />,
+      //   path: "/Add-users-auto",
+      //   element: <AutoAdding />,
       // },
+      {
+        path: "/ScheduleClasses",
+        element: <ScheduleClasses />,
+      },
 
       {
         path: "/FeedbackDrop/:student_id",
