@@ -33,8 +33,8 @@ const FeedbackDrop: React.FC = () => {
   );
 
   useEffect(() => {
-    if (isLoading && user && !studentReports) {
-      if (user._id != undefined) getStudentReports();
+    if (isLoading || !user || !studentReports) {
+      if (user?._id != undefined) getStudentReports();
     }
   }, [isLoading, user, getStudentReports, studentReports]);
   useEffect(() => {
@@ -73,7 +73,7 @@ const FeedbackDrop: React.FC = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = async () => {
     const newFeedback: FeedbackContent = {
       reportType: feedbackType,
       writer_id: user?._id,
@@ -88,8 +88,9 @@ const FeedbackDrop: React.FC = () => {
         return [newFeedback];
       }
     });
-    AddNewReport(newFeedback, student_id);
+    await AddNewReport(newFeedback, student_id);
     handleModalClose();
+    setIsLoading(true);
   };
 
   return (
