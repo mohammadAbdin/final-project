@@ -4,57 +4,6 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import Units from "../Teacher/Units";
 import { Topic } from "../../Types/TopicsTypes";
-// import { StudentDetailsType } from "../../Types/StudentDetailsType";
-// const fetchTopics = [
-//   {
-//     id: 1,
-//     title: "Duplicate",
-//     videos: [
-//       {
-//         id: 1,
-//         title: "video1",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//       {
-//         id: 2,
-//         title: "video2",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//       {
-//         id: 3,
-//         title: "video3",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//     ],
-//   },
-//   {
-//     id: 2,
-//     title: "Divided",
-//     videos: [
-//       {
-//         id: 1,
-//         title: "video1",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//       {
-//         id: 2,
-//         title: "video2",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//       {
-//         id: 3,
-//         title: "video3",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//     ],
-//   },
-// ];
 
 const StudentResourcesPage = () => {
   const { student_id } = useParams<{ student_id: string }>();
@@ -102,7 +51,6 @@ const StudentResourcesPage = () => {
       </div>
     );
   }
-  console.log(childSubjects);
 
   return (
     <div>
@@ -124,7 +72,11 @@ const StudentResourcesPage = () => {
         </div>
       </div>
 
-      <Units classNumber="" topics={resourcesData} />
+      <Units
+        setIsLoading={setIsLoading}
+        classNumber=""
+        topics={resourcesData}
+      />
     </div>
   );
 };

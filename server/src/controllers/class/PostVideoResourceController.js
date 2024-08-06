@@ -1,7 +1,6 @@
 import getclassModel from "../../models/ClassSchema.js";
 export const PostVideoResource = async (req, res) => {
   const { videoData, topicId, teacher_id, classNumber } = req.body;
-  console.log(videoData, topicId, teacher_id);
   const Class = await getclassModel();
   const classObj = await Class.findOne({ class: classNumber });
   if (!classObj) {
@@ -14,6 +13,5 @@ export const PostVideoResource = async (req, res) => {
     (resource) => resource._id == topicId
   );
   resources.videos.push(videoData);
-  console.log(resources);
   await classObj.save();
 };

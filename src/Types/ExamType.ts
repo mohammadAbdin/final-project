@@ -1,6 +1,3 @@
-//   _id: string;
-//   examName: string;
-// }
 interface StudentGrade {
   Grade: number;
   student_id: string;

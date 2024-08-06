@@ -35,7 +35,6 @@ export default function EventClanedar() {
   const calendarData = eventsData.map((data) => {
     const parts = data.date.split("/");
 
-    // Convert the parts into numbers
     const year = parseInt(parts[0], 10);
     const month = parseInt(parts[1], 10);
     const day = parseInt(parts[2], 10);

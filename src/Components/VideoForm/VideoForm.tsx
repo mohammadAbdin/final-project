@@ -30,7 +30,6 @@ interface VideoFormProps {
   data?: DataVideo;
   updateVideo?: (videoData: VideoType) => void;
   addVideo?: (videoData: VideoType) => void;
-  // currentTopicId: string | null;
 }
 
 const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
@@ -52,7 +51,6 @@ const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
       description: vDesc,
       url: vUrl,
     };
-    console.log(videoData);
 
     if (updateVideo) {
       updateVideo(videoData);
@@ -61,11 +59,6 @@ const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
       addVideo(videoData);
     }
 
-    // action({
-    //   title: vTitle,
-    //   description: vDesc,
-    //   url: vUrl,
-    // });
     handleClose();
   };
 

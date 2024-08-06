@@ -17,7 +17,7 @@ export const FeedbackToTeacher = () => {
 
   const handleModalClose = () => {
     setShowModal(false);
-    setFormData({ title: "", description: "" }); // Reset form data
+    setFormData({ title: "", description: "" });
   };
 
   const handleFormChange = (
@@ -26,7 +26,6 @@ export const FeedbackToTeacher = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
-  //
 
   const handleFormSubmit = () => {
     const newFeedback = {

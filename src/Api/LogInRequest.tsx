@@ -9,7 +9,7 @@ export const logIn = async (
 ) => {
   try {
     const response = await axios.post(
-      `https://final-project-1-hjx7.onrender.com/user${path}`, // i must change the end-point
+      `https://final-project-1-hjx7.onrender.com/user${path}`,
       { email, password },
       {
         headers: {
@@ -20,7 +20,6 @@ export const logIn = async (
     );
 
     setIsLogedIn(true);
-    console.log(response.data);
 
     return response.data;
   } catch (error) {

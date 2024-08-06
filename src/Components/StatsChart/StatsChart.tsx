@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-// import { Line } from "react-chartjs-2";
 import Chart, { ChartData, ChartOptions } from "chart.js/auto";
 
 interface LineChartProps {
@@ -29,7 +28,6 @@ const LineChart: React.FC<LineChartProps> = ({ chartData }) => {
           plugins: {
             title: {
               display: true,
-              // text: "Student's Exams Statistics",
             },
             legend: {
               display: false,

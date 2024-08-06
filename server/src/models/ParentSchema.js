@@ -27,7 +27,7 @@ const parentSchema = new mongoose.Schema({
 let Parent;
 
 dbConnectionPromise.then((db) => {
-  Parent = db.model("Parent", parentSchema, "Parent"); //i must add the collection name
+  Parent = db.model("Parent", parentSchema, "Parent");
 });
 
 export default async function getParentModel() {

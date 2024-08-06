@@ -23,7 +23,7 @@ const studentSchema = new mongoose.Schema({
 let Student;
 
 dbConnectionPromise.then((db) => {
-  Student = db.model("Student", studentSchema); //i must add the collection name
+  Student = db.model("Student", studentSchema); 
 });
 
 export default async function getStudentModel() {

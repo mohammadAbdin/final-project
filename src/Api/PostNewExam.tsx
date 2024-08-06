@@ -6,8 +6,6 @@ async function AddNewExam(
   id: string
 ): Promise<void> {
   try {
-    console.log(exam, className, id);
-
     const response = await axios.post(
       "https://final-project-1-hjx7.onrender.com/class/Add-exam",
       {

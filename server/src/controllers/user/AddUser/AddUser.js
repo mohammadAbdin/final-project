@@ -7,7 +7,6 @@ export const AddUser = async (req, res) => {
     const { userType, formData } = req.body;
     const { fullName, email, id } = formData;
 
-    // console.log(req.body);
     const User = await getUserModel();
     const newUser = new User({
       name: fullName,

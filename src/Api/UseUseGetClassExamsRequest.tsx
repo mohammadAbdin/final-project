@@ -20,7 +20,6 @@ export const UseUseGetClassDetailsRequest = async (
         withCredentials: true,
       }
     );
-    console.log(response.data.resources);
 
     return response.data;
   } catch (error) {

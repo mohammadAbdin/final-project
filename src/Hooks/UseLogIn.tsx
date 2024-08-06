@@ -31,35 +31,10 @@ const useLogin = (): UseLoginReturn => {
 
   const [passwordError, setPasswordError] = useState<string | null>("");
 
-  // const handleRegister = async (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   setError(null);
-  //   setPasswordError("");
-
-  //   if (password !== passwordConfirmation) {
-  //     setPasswordError("Please confirm your password.");
-  //     return;
-  //   }
-  //   const response: LogInResponse = await logIn(
-  //     email,
-  //     password,
-  //     name,
-  //     setIsLogedIn,
-  //     setError,
-  //     "/LogIn/Register"
-  //   );
-  //   setUser(response.user);
-  //   if (response.token) {
-  //     Cookies.set("token", response.token);
-  //   }
-
-  //   navigate("/");
-  // };
   const handlelogIn = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
     setPasswordError("");
-    console.log(email, password);
 
     const response: LogInResponse = await logIn(
       email,
@@ -68,7 +43,6 @@ const useLogin = (): UseLoginReturn => {
       setError,
       "/auth"
     );
-    // console.log(response);
 
     setUser(response.user);
     if (response.token) {

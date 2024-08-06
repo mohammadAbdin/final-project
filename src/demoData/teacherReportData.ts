@@ -1,21 +1,3 @@
-// date
-// :
-// "2024/08/02"
-// description
-// :
-// "he didn't get a good mark"
-// reportType
-// :
-// "Teacher"
-// teacherName
-// :
-// "Dania hih"
-// title
-// :
-// "Second Exam"
-// writer_id
-// :
-// "66ad4fbf00d51d7220ad54a7"
 const teacherReportData = [
   {
     teacher_name: "Mia Levy",

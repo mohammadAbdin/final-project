@@ -13,8 +13,6 @@ export const PutStudentsAttendace = async (
   }
 
   try {
-    console.log(studentsWithAttendance, selectedDate, teacher_id, classNumber);
-
     await axios.put(
       "https://final-project-1-hjx7.onrender.com/class/attendance-students-edits",
       {

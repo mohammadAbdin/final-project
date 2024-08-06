@@ -1,4 +1,4 @@
-import { Worker } from "worker_threads"; // Import Worker
+import { Worker } from "worker_threads";
 import getStudentModel from "../../models/StudentSchema.js";
 import getTeacherModel from "../../models/TeacherSchema.js";
 import { generateSchedule } from "./../../logic/restructureSechedule.js";

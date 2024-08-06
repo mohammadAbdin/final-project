@@ -17,13 +17,10 @@ const UseGetTeacherSchedule = (
 
   const getTeacherSchedule = async (id: string) => {
     try {
-      //   console.log(id);
-      //   setTeacherSchedule(["hi", "hi"]);
       setIsLoading(false);
       const response: ScheduleEntry[] | null =
         await UseGetTeacherScheduleRequest(id);
       setTeacherSchedule(response);
-      //   determineSearchData({ data: response });
     } catch (error) {
       console.error("Error fetching user projects:", error);
       setTeacherSchedule(null);

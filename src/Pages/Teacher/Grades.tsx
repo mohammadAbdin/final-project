@@ -10,7 +10,6 @@ const grades: Grade[] = [
   { id: 1, studentName: "John Doe", grade: 95 },
   { id: 2, studentName: "Jane Smith", grade: 88 },
   { id: 3, studentName: "Jim Brown", grade: 76 },
-  // Add more grades as needed
 ];
 
 const GradesList: React.FC = () => {

@@ -1,8 +1,6 @@
 import { parentPort, workerData } from "worker_threads";
 
 const restructuringStudentDetailsSync = (subjectsDetails, student_id) => {
-  // console.log(subjectsDetails);
-
   const restructuredDetails = subjectsDetails.reduce((acc, subjectDetails) => {
     const subject = subjectDetails.subject;
     let dataDates = [];
@@ -59,6 +57,3 @@ const restructuredDetails = restructuringStudentDetailsSync(
   student_id
 );
 parentPort?.postMessage(restructuredDetails);
-//attendace
-// each subject all exams and grades
-//reports

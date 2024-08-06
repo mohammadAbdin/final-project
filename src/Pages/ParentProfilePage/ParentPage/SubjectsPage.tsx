@@ -2,14 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../../Context/UserContext";
 import UseGetChildSubjects from "../../../Hooks/UseGetChildSubjects";
-// import Chart from "chart.js/auto";
 import LineChart from "../../../Components/StatsChart/StatsChart";
 import ExamsTable from "../../../Components/ExamsTable/ExamsTable";
 import TeacherReportCard from "../../../Components/TeacherReportCard/TeacherReportCard";
-// import VideoForm from "../../../Components/VideoForm/VideoForm";
-// import { FeedbackToTeacher } from "../../../Components/FeedbackToTeacher/FeedbackToTeacher";
 import Schedule from "../../../Components/ClassSchedule/Schedule";
-// import Avatar from "../../../Components/Avatar/Avatar";
 
 import {
   FaCalculator,
@@ -86,7 +82,6 @@ const SubjectsPage: React.FC = () => {
         setChartData(
           refactorExamDataChart(childSubjects.details[`${subject}`].examRecords)
         );
-        // childSubjects.details[`${subject}`].attendanceRecord
         setAttendanceRecord(
           transformAttendanceData(
             childSubjects.details[`${subject}`].attendanceRecord.datesRecord
@@ -112,7 +107,6 @@ const SubjectsPage: React.FC = () => {
       </div>
     );
   }
-  console.log("hi");
 
   return (
     <div className="main-div-s">

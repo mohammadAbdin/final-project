@@ -18,8 +18,6 @@ const UseGetClassDetails = (
 
   const getClassDetails = async (id: string) => {
     try {
-      //   console.log(classNumber, id);
-
       const response: ClassInfoDetails | null =
         await UseUseGetClassDetailsRequest(id, classNumber);
       setIsLoading(false);

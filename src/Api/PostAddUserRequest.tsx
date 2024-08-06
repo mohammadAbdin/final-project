@@ -7,9 +7,6 @@ async function AddUserRequest(
   formData: FormDataType
 ): Promise<void> {
   try {
-    console.log(userType);
-    console.log(formData);
-
     const response = await axios.post(
       "https://final-project-1-hjx7.onrender.com/user/Add-user",
       {

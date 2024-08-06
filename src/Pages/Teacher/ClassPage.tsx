@@ -8,58 +8,6 @@ import StudentInfo from "../../Components/StudentInfo/StudentInfo";
 import AddNewExam from "../../Api/PostNewExam";
 import { UserContext } from "./../../Context/UserContext";
 import UseGetClassDetails from "../../Hooks/UseGetClassExams";
-// import { ExamType } from "../../Types/ExamType";
-
-// const fetchTopics = [
-//   {
-//     _id: "1",
-//     title: "Duplicate",
-//     videos: [
-//       {
-//         _id: "1",
-//         title: "video1",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//       {
-//         _id: "2",
-//         title: "video2",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//       {
-//         _id: "3",
-//         title: "video3",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//     ],
-//   },
-//   {
-//     _id: "2",
-//     title: "Divided",
-//     videos: [
-//       {
-//         _id: "1",
-//         title: "video1",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//       {
-//         _id: "2",
-//         title: "video2",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//       {
-//         _id: "3",
-//         title: "video3",
-//         description: "Lorem ipsum dolor sit amet.",
-//         url: "https://www.youtube.com/watch?v=jhiY62jG45o",
-//       },
-//     ],
-//   },
-// ];
 
 const ClassPage: React.FC = () => {
   const { classNumber } = useParams();
@@ -78,8 +26,6 @@ const ClassPage: React.FC = () => {
 
   useEffect(() => {
     if (isLoading || !user || !classDetails) {
-      console.log("is loading ==true");
-
       if (user?._id != undefined) getClassDetails(user._id);
     }
   }, [isLoading, user, getClassDetails, classDetails]);
@@ -104,7 +50,6 @@ const ClassPage: React.FC = () => {
   const addExam = () => {
     setIsAddingExam(true);
   };
-  console.log(classDetails.students);
 
   return (
     <div className="mx-auto p-4">

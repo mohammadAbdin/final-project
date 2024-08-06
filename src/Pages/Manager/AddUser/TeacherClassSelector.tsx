@@ -1,4 +1,3 @@
-// import React from "react";
 interface TeacherClassSelectorType {
   toggleDropdownClass: () => void;
   classNumber: string | null;

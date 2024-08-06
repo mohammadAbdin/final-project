@@ -31,8 +31,6 @@ function StudentSchedule() {
   const exampleScheduleData: ScheduleEntry[] =
     addBreaksToSchedule(studentSchedule);
 
-  console.log(exampleScheduleData);
-
   return (
     <div>
       <Schedule schedule={exampleScheduleData} />

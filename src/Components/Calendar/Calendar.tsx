@@ -18,10 +18,6 @@ import {
 import Paper from "@mui/material/Paper";
 import classNames from "clsx";
 
-// const classes = {
-//   weekEndDayScaleCell: "bg-gray-200",
-//   weekEndCell: "bg-gray-100",
-// };
 interface CalendarComponentType {
   calendarData: {
     students: string;
@@ -65,11 +61,6 @@ const CalendarComponent = ({
       {...restProps}
     />
   );
-  // const error = console.error;
-  // console.error = (...args: string[]) => {
-  //   if (/defaultProps/.test(args[0])) return;
-  //   error(...args);
-  // };
 
   return (
     <>

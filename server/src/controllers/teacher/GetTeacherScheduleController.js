@@ -4,7 +4,6 @@ export const GetTeacherSchedule = async (req, res) => {
   try {
     const { id } = req.params;
     const Teacher = await getTeacherModel();
-    console.log(id);
     const teacher = await Teacher.findOne({ teacher_id: id });
     if (!teacher) {
       return res.status(404).json({ message: "Teacher not found" });

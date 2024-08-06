@@ -15,7 +15,6 @@ export const AddReport = async (req, res) => {
       return res.status(404).json({ message: "Student not found" });
     }
     studentObj.report.push(newFeedback);
-    console.log(studentObj.report);
     await studentObj.save();
 
     return res.status(200).json({ message: "Report added successfully" });

@@ -9,8 +9,6 @@ async function AddNewResource(
   classNumber: string | undefined
 ): Promise<void> {
   try {
-    console.log(newTopic, id);
-
     const response = await axios.post(
       "https://final-project-1-hjx7.onrender.com/class/Add-resource",
       {
@@ -19,7 +17,6 @@ async function AddNewResource(
         classNumber,
       }
     );
-    console.log(response);
 
     return response.data;
   } catch (error) {

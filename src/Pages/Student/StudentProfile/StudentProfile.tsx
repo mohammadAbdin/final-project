@@ -1,7 +1,6 @@
 import StudentDisplay from "./StudentDisplay";
 
 function StudentProfile() {
-  //the api request and take real data
   const studentData = {
     imageSrc: "./profile-pic.png",
     name: "John Doe",

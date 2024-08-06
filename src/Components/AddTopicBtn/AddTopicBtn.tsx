@@ -26,11 +26,7 @@ const AddTopicBtn = ({
       title: newTopicTitle.trim(),
       videos: [],
     };
-    // console.log(newTopic, user?.userType, user?._id);
-    const response = await AddNewResource(newTopic, user?._id, classNumber);
-    // window.location.reload();
-    console.log("hi");
-    console.log(response);
+    await AddNewResource(newTopic, user?._id, classNumber);
 
     setTopicsData([...topicsData, newTopic]);
     setNewTopicTitle("");

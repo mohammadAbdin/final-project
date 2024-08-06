@@ -1,4 +1,3 @@
-// apiRequests.ts
 import axios from "axios";
 
 interface ModifiedStudent {
@@ -18,8 +17,6 @@ export const PutExamMarks = async (
   }
 
   try {
-    console.log("hi");
-
     await axios.put(
       "https://final-project-1-hjx7.onrender.com/class/exam-grade-edits",
       {

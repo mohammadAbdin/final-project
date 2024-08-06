@@ -47,7 +47,6 @@ export const StyledAppointmentsAppointmentContent = styled(
     opacity: 0.7,
   },
   [`& .${classes.container}`]: {
-    // backgroundColor: "red",
     width: "100%",
     lineHeight: 1.2,
     height: "100%",

@@ -2,7 +2,6 @@ import getStudentModel from "../../../models/StudentSchema.js";
 import getParentModel from "../../../models/ParentSchema.js";
 
 export const AddStudent = async (formData, newUser, fullName, res) => {
-  // console.log("formData", formData);
   const { gender, parent_id } = formData;
   try {
     const Student = await getStudentModel();
@@ -14,7 +13,6 @@ export const AddStudent = async (formData, newUser, fullName, res) => {
       gender: gender,
       class: formData.class,
     });
-    console.log(newStudent);
     await newStudent.save();
     await newUser.save();
 
@@ -26,7 +24,6 @@ export const AddStudent = async (formData, newUser, fullName, res) => {
       if (parent) {
         parent.children.push({ student_id: studentId });
         await parent.save();
-        console.log("Child added successfully");
       } else {
         console.log("Parent not found");
       }

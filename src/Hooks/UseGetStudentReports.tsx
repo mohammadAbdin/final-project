@@ -12,16 +12,12 @@ const UseGetStudentReports = (
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   student_id: string | undefined
 ): UseGetClassExamsReturn => {
-  console.log("hi");
-
   const [studentReports, setStudentReports] = useState<
     FeedbackContent[] | null
   >(null);
 
   const getStudentReports = async () => {
     try {
-      //   console.log(classNumber, id);
-
       setIsLoading(false);
       const response: FeedbackContent[] | null =
         await UseGetStudentReportsRequest(student_id);

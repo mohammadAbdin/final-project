@@ -153,7 +153,6 @@ export function TeacherPersonalInfo({
           className="text-left ml-5 bg-gray-500 p-2 rounded hover:bg-gray-700 text-white"
           onClick={(e) => {
             e.preventDefault();
-            console.log("formData", formData);
             AddUserRequest("Teacher", formData);
           }}
         >
