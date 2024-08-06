@@ -17,24 +17,25 @@ const Video: React.FC<VideoType> = ({ id, title, description, url }) => {
   return (
     <div
       key={id}
-      className="flex justify-between items-center mt-2 p-2 bg-gray-100 rounded"
+      className="flex    h-64 "
     >
-      <div>
-        <p className="font-semibold">{title}</p>
+     
 
-        <div className="w-1/2 aspect-square">
+        <div className="w-11/12 h-96 ">
           <iframe
             src={`https://www.youtube.com/embed/${videoId}`}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className="w-full h-full"
+            className="w-full h-2/3 "
           />
         </div>
-      </div>
+         <div className=" ml-6 text-gray-100  h-20" >
+        <p className="font-semibold text-xl">{title}</p>
+     
       <p>{description}</p>
-      <div></div>
+       </div>
     </div>
   );
 };

@@ -67,7 +67,7 @@ const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
 
   return (
     <div className="video-form-container">
-      <Button onClick={handleOpen} sx={{ color: `${isEdit ? "green" : ""}` }}>
+      <Button onClick={handleOpen} sx={{ color: `${isEdit ? "white" : ""}` }}>
         {isEdit ? "Edit" : "Add a video"}
       </Button>
       <Modal
