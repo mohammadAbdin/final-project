@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
-// import { UserContext } from "../Context/UserContext";
-// import { useNavigate } from "react-router-dom";
-// import { showToastInfoMessage } from "./Toast/Toasts";
 
 const StudentSideBar: React.FC<{ onItemClick: () => void }> = ({
   onItemClick,
@@ -24,8 +21,6 @@ const StudentSideBar: React.FC<{ onItemClick: () => void }> = ({
       <li>
         <button
           onClick={() => {
-            console.log(user?._id);
-
             navigate(`/SubjectsPage/${user?._id}`);
           }}
           className="block text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
@@ -36,8 +31,6 @@ const StudentSideBar: React.FC<{ onItemClick: () => void }> = ({
       <li>
         <button
           onClick={() => {
-            console.log(user?._id);
-
             navigate(`/StudentResourcesPage/${user?._id}`);
           }}
           className="block text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"

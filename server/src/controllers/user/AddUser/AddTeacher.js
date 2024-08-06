@@ -3,7 +3,6 @@ import { AddClasses } from "./AddClasses.js";
 export const AddTeacher = async (formData, newUser, fullName, email, res) => {
   const { phone, gender, age, subject, schedule } = formData;
   try {
-    // console.log(formData);
     const Teacher = await getTeacherModel();
     const newTeacher = new Teacher({
       teacher_id: newUser._id,
@@ -14,7 +13,6 @@ export const AddTeacher = async (formData, newUser, fullName, email, res) => {
       subject: subject,
       schedule: schedule,
     });
-    // console.log("newTeacher", newTeacher);
     await newTeacher.save();
     await newUser.save();
     AddClasses(schedule, subject, newUser._id, res);

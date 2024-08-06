@@ -4,7 +4,7 @@ import { dbConnectionPromise } from "../utils/mongoUtil.js";
 const eventSchema = new mongoose.Schema({
   event_id: {
     type: String,
-    unique: true, // Ensure the event_id is unique
+    unique: true,
   },
   eventName: {
     type: String,
@@ -26,7 +26,7 @@ const eventSchema = new mongoose.Schema({
 let Event;
 
 dbConnectionPromise.then((db) => {
-  Event = db.model("Event", eventSchema); //i must add the collection name
+  Event = db.model("Event", eventSchema);
 });
 
 export default async function getEventModel() {

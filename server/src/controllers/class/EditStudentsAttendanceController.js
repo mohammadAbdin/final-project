@@ -41,7 +41,6 @@ export const EditStudentsAttendance = async (req, res) => {
         })
       );
     }
-    console.log(subject.date);
     await Class.updateOne(
       { class: classNumber, "subjects.teacher_id": teacher_id },
       { $set: { "subjects.$.date": subject.date } }

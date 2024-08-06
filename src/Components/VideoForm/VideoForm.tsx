@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+
 import Modal from "@mui/material/Modal";
 import { VideoType } from "../../Types/TopicsTypes";
 
@@ -29,7 +30,6 @@ interface VideoFormProps {
   data?: DataVideo;
   updateVideo?: (videoData: VideoType) => void;
   addVideo?: (videoData: VideoType) => void;
-  // currentTopicId: string | null;
 }
 
 const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
@@ -51,7 +51,6 @@ const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
       description: vDesc,
       url: vUrl,
     };
-    console.log(videoData);
 
     if (updateVideo) {
       updateVideo(videoData);
@@ -60,11 +59,6 @@ const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
       addVideo(videoData);
     }
 
-    // action({
-    //   title: vTitle,
-    //   description: vDesc,
-    //   url: vUrl,
-    // });
     handleClose();
   };
 

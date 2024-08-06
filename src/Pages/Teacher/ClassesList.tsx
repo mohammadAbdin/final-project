@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import TeacherReportsComponent from "./TeacherReportsComponent/TeacherReportsComponent";
 import { UserContext } from "../../Context/UserContext";
 import UseGetTeacherCLass from "../../Hooks/UseGetTeacherCLass";
 
@@ -8,7 +7,6 @@ const ClassesList: React.FC = () => {
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  // console.log("user", user);
   const { getTeacherCLass, teacherClass } = UseGetTeacherCLass(setIsLoading);
 
   useEffect(() => {
@@ -27,7 +25,6 @@ const ClassesList: React.FC = () => {
       </div>
     );
   }
-  console.log(teacherClass);
 
   return (
     <div className="container mx-auto p-4">

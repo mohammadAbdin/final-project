@@ -47,7 +47,6 @@ export const EditExamGrades = async (req, res) => {
         });
       }
     }
-    console.log(classObj);
 
     await classObj.save();
 

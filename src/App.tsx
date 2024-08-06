@@ -8,21 +8,22 @@ import Navbar from "./Components/Navbar/Navbar";
 import StudentSchedule from "./Pages/Student/StudentSchedule/StudentSchedule";
 import StudentList from "./Components/StudentDetail/StudentList";
 import TeacherSchedule from "./Pages/Teacher/TeacherSchedule/TeacherSchedule";
-import AddUser from "./Pages/Manager/AddUser/AddUser";
+
 import ParentPage from "./Pages/ParentPage/ParentPage";
 import SubjectsPage from "./Pages/ParentProfilePage/ParentPage/SubjectsPage";
 import EventCalendar from "./Components/Calendar/EventCalendar";
-import StudentDetails from "./Pages/Student/StudentDetails/StudentDetails";
+
 import LogIn from "./Pages/LogIn/LogIn";
 import useGetTokens from "./Hooks/UseGetTokens";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./Context/UserContext";
 import ParentCard from "./Components/ParentCard/ParentCard";
 import StudentProfile from "./Pages/Student/StudentProfile/StudentProfile";
-import ClassesList from "./Pages/Teacher/ClassesList";
-import ClassPage from "./Pages/Teacher/ClassPage";
-import StudentResourcesPage from "./Pages/StudentResourcesPage/StudentResourcesPage";
-import FeedbackDrop from "./Components/Feedback/FeedbackDrop";
+
+import ClassesList from "./Pages/Teacher/ClassesList.js";
+import ClassPage from "./Pages/Teacher/ClassPage.js";
+import StudentResourcesPage from "./Pages/StudentResourcesPage/StudentResourcesPage.js";
+import FeedbackDrop from "./Components/Feedback/FeedbackDrop.js";
 
 const AppLayout = () => {
   const { user, setIsLogedIn, setUser } = useContext(UserContext);
@@ -63,6 +64,11 @@ const router = createBrowserRouter([
         path: "class/:classNumber",
         element: <ClassPage />,
       },
+
+      {
+        path: "/",
+        element: <LogIn />,
+      },
       {
         path: "TeacherSchedule",
         element: <TeacherSchedule />,
@@ -87,18 +93,12 @@ const router = createBrowserRouter([
         path: "EventCalendar",
         element: <EventCalendar />,
       },
-      {
-        path: "AbsentCalendar",
-        element: <StudentDetails />,
-      },
+
       {
         path: "parent-card",
         element: <ParentCard />,
       },
-      {
-        path: "Add-members",
-        element: <AddUser />,
-      },
+
       {
         path: "student-list/:classNumber",
         element: <StudentList />,
@@ -107,6 +107,7 @@ const router = createBrowserRouter([
         path: "student-profile",
         element: <StudentProfile />,
       },
+
       {
         path: "FeedbackDrop/:student_id",
         element: <FeedbackDrop />,

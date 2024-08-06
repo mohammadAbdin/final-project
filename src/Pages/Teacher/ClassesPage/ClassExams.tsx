@@ -18,6 +18,7 @@ interface ClassExamsProps {
     userId: string
   ) => Promise<void>;
   addExam: () => void;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface modifiedStudent {
@@ -35,16 +36,14 @@ export function ClassExams({
   user,
   AddNewExam,
   addExam,
+  setIsLoading,
 }: ClassExamsProps) {
-  // console.log(exams);
-
   const [expandedExam, setExpandedExam] = useState<string | null>(null);
   const [modifiedStudents, setModifiedStudents] = useState<modifiedStudent[]>(
     []
   );
   const [editingStudent, setEditingStudent] = useState<string | null>(null);
   const [newGrade, setNewGrade] = useState<string>("");
-  // const { user } = useContext(UserContext);
 
   const toggleExamDetails = (examId: string) => {
     setExpandedExam(expandedExam === examId ? null : examId);
@@ -73,8 +72,6 @@ export function ClassExams({
 
   const handleSave = () => {
     PutExamMarks(modifiedStudents, user?._id, classNumber);
-
-    console.log(modifiedStudents, user?._id, classNumber);
   };
 
   return (
@@ -96,7 +93,6 @@ export function ClassExams({
             {expandedExam === exam._id && (
               <div>
                 {students.map((student) => {
-                  // Find the grade either from the exam or modifiedStudents state
                   const studentGrade = exam.studentGrades.find(
                     (sg) => sg.student_id === student.student_id
                   );
@@ -177,7 +173,7 @@ export function ClassExams({
             onClick={async () => {
               if (classNumber && user && user._id) {
                 await AddNewExam(newExamName, classNumber, user._id);
-                window.location.reload();
+                setIsLoading(true);
               }
             }}
           >

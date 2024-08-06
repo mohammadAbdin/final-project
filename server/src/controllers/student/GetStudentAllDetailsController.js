@@ -1,4 +1,4 @@
-import { Worker } from "worker_threads"; // Import Worker
+import { Worker } from "worker_threads";
 import getStudentModel from "../../models/StudentSchema.js";
 import getTeacherModel from "../../models/TeacherSchema.js";
 import { generateSchedule } from "./../../logic/restructureSechedule.js";
@@ -20,6 +20,7 @@ export const GetStudentAllDetails = async (req, res) => {
       },
       { $unwind: "$classInfo" },
     ]);
+    console.log(result[0].classInfo.subjects);
 
     if (result.length === 0) {
       if (!hasResponded) {

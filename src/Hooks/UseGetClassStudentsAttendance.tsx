@@ -26,7 +26,6 @@ const UseGetClassStudentsAttendance = (
         classNumber
       );
       setClassStudentsAttendance(response);
-      //   determineSearchData({ data: response });
     } catch (error) {
       console.error("Error fetching user projects:", error);
       setClassStudentsAttendance(null);

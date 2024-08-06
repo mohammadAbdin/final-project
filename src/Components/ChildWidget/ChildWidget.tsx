@@ -29,7 +29,6 @@ const ChildWidget = () => {
       </div>
     );
   }
-  console.log(parentChildren);
 
   return (
     <div>

@@ -18,7 +18,7 @@ export const generateSchedule = (data) => {
       schedule.push({
         day: day,
         period: period,
-        class: entry ? entry.subject : "Break", // Replace "subject" with "class"
+        class: entry ? entry.subject : "Break",
       });
     });
   });

@@ -1,6 +1,21 @@
 import "./StudentProfile.css";
-
-const StudentDisplay = ({ student }) => {
+interface StudentDisplayPropsType {
+  student: {
+    imageSrc: string;
+    name: string;
+    className: string;
+    birthDate: string;
+    mother: {
+      name: string;
+      phone: string;
+    };
+    father: {
+      name: string;
+      phone: string;
+    };
+  };
+}
+const StudentDisplay = ({ student }: StudentDisplayPropsType) => {
   const { imageSrc, name, birthDate, mother, father } = student;
 
   return (

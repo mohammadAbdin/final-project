@@ -1,4 +1,3 @@
-// import React from "react";
 interface TeacherSelectedSubjectType {
   toggleDropdown: () => void;
   selectedSubject: string | null | undefined;

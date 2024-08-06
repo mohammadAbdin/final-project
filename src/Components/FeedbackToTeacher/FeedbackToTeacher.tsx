@@ -10,14 +10,14 @@ export const FeedbackToTeacher = () => {
     title: "",
     description: "",
   });
-  const [feedbackData, setFeedbackData] = useState("");
+  const [feedbackData, setFeedbackData] = useState<FeedbackFormData[]>([]);
   const handleAddFeedbackClick = () => {
     setShowModal(true);
   };
 
   const handleModalClose = () => {
     setShowModal(false);
-    setFormData({ title: "", description: "" }); // Reset form data
+    setFormData({ title: "", description: "" });
   };
 
   const handleFormChange = (
@@ -33,7 +33,7 @@ export const FeedbackToTeacher = () => {
       title: formData.title,
       description: formData.description,
     };
-    setFeedbackData((prevData) => [...prevData, newFeedback]);
+    setFeedbackData([...feedbackData, newFeedback]);
     handleModalClose();
   };
   //
@@ -43,10 +43,7 @@ export const FeedbackToTeacher = () => {
       {!showModal ? (
         <div>
           {" "}
-          <button
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-300"
-            onClick={handleAddFeedbackClick}
-          >
+          <button className="mt-4 blue-button" onClick={handleAddFeedbackClick}>
             Send Feedback To The Teacher
           </button>
         </div>

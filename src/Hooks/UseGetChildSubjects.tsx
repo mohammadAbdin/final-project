@@ -18,13 +18,10 @@ const UseGetChildSubjects = (
 
   const getChildSubjects = async () => {
     try {
-      //   console.log(id);
-      //   setTeacherSchedule(["hi", "hi"]);
       setIsLoading(false);
       const response: StudentDetailsType | null =
         await UseGetChildSubjectsRequest(student_id);
       setChildSubjects(response);
-      //   determineSearchData({ data: response });
     } catch (error) {
       console.error("Error fetching user projects:", error);
       setChildSubjects(null);

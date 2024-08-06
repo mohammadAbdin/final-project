@@ -18,9 +18,7 @@ export const PostExam = async (req, res) => {
         .json({ message: "Subject not found for this teacher" });
     }
 
-    // Validate exam object structure here
     const examObj = { exam_id: "1", examName: exam, studentGrades: [{}] };
-    console.log("mohammad");
 
     if (
       !examObj.exam_id ||
@@ -29,10 +27,8 @@ export const PostExam = async (req, res) => {
     ) {
       return res.status(400).json({ message: "Invalid exam object structure" });
     }
-    console.log("mohammad");
 
     subject.exams.push(examObj);
-    // console.log(subject);
     await classObj.save();
 
     res.status(200).json({ message: "Exam added successfully" });

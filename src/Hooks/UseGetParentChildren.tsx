@@ -15,12 +15,9 @@ const UseGetParentChildren = (
 
   const getParentChildren = async (id: string) => {
     try {
-      //   console.log(id);
-      //   setTeacherSchedule(["hi", "hi"]);
       setIsLoading(false);
       const response: Child[] | null = await UseGetParentChildrenRequest(id);
       setParentChildren(response);
-      //   determineSearchData({ data: response });
     } catch (error) {
       console.error("Error fetching user projects:", error);
       setParentChildren(null);

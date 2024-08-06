@@ -11,41 +11,6 @@ interface FeedbackFormData {
   description: string;
 }
 
-// const reports: FeedbackContent[] = [
-//   {
-//     reportType: "Teacher",
-//     writer_id: "12345",
-//     date: "2024-07-25",
-//     title: "Math Exam Report",
-//     description:
-//       "The math exam for Class 10 was conducted smoothly. The majority of students performed well.",
-//   },
-//   {
-//     reportType: "Parent",
-//     writer_id: "67890",
-//     date: "2024-07-26",
-//     title: "PTA Meeting Feedback",
-//     description:
-//       "Parents expressed concerns about the recent changes in the curriculum. They appreciated the teachers' efforts.",
-//   },
-//   {
-//     reportType: "Teacher",
-//     writer_id: "54321",
-//     date: "2024-07-27",
-//     title: "Field Trip Update",
-//     description:
-//       "The planned field trip to the science museum has been postponed due to unforeseen weather conditions.",
-//   },
-//   {
-//     reportType: "Parent",
-//     writer_id: "98765",
-//     date: "2024-07-28",
-//     title: "Student Progress Inquiry",
-//     description:
-//       "Inquiring about the academic progress of my child, particularly in science and mathematics subjects.",
-//   },
-// ];
-
 const FeedbackDrop: React.FC = () => {
   const { student_id } = useParams();
 

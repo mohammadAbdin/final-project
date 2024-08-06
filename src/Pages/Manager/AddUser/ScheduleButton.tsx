@@ -1,4 +1,3 @@
-import React from "react";
 import { FormDataType } from "../../../Types/FormDataType";
 import { ClassSchedule } from "../../../Types/ClassScheduleType";
 

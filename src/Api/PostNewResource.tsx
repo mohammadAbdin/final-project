@@ -9,19 +9,16 @@ async function AddNewResource(
   classNumber: string | undefined
 ): Promise<void> {
   try {
-    console.log(newTopic, id);
-
     const response = await axios.post(
-      "http://localhost:5001/class/Add-resource",
+      "https://final-project-1-hjx7.onrender.com/class/Add-resource",
       {
         newTopic,
         id,
         classNumber,
       }
     );
-    console.log(response);
 
-    // return response.data;
+    return response.data;
   } catch (error) {
     console.error("There was an error adding the user:", error);
     throw error;

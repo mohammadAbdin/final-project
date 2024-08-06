@@ -18,11 +18,9 @@ const UseGetClassDetails = (
 
   const getClassDetails = async (id: string) => {
     try {
-      //   console.log(classNumber, id);
-
-      setIsLoading(false);
       const response: ClassInfoDetails | null =
         await UseUseGetClassDetailsRequest(id, classNumber);
+      setIsLoading(false);
       setClassDetails(response);
     } catch (error) {
       console.error("Error fetching user projects:", error);

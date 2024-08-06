@@ -7,10 +7,12 @@ const AddTopicBtn = ({
   topicsData,
   setTopicsData,
   classNumber,
+  setIsLoading,
 }: {
   topicsData: Topic[];
   setTopicsData: React.Dispatch<React.SetStateAction<Topic[]>>;
   classNumber: string | undefined;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { user } = useContext(UserContext);
   const [addTopicStatus, setAddTopicStatus] = useState<boolean>(false);
@@ -19,18 +21,18 @@ const AddTopicBtn = ({
 
   const placeholderText = "Enter Topic";
 
-  const addNewTopic = () => {
+  const addNewTopic = async () => {
     const newTopic = {
       title: newTopicTitle.trim(),
       videos: [],
     };
-    // console.log(newTopic, user?.userType, user?._id);
-    AddNewResource(newTopic, user?._id, classNumber);
+    await AddNewResource(newTopic, user?._id, classNumber);
 
     setTopicsData([...topicsData, newTopic]);
     setNewTopicTitle("");
     setAddTopicStatus(false);
     setIsCancel(true);
+    setIsLoading(true);
   };
 
   return (

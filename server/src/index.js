@@ -15,7 +15,6 @@ import process from "process";
 
 const app = express();
 
-// Middleware
 const allowedOrigins = ["http://localhost:3006"];
 
 const corsOptions = {
@@ -41,10 +40,8 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-// Connect to the database
 connectDB();
 
-// Routes
 app.use("/user", authRoutes);
 app.use("/parent", parentRoutes);
 app.use("/class", classRoutes);

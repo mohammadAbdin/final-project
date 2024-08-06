@@ -73,7 +73,7 @@ const classSchema = new mongoose.Schema({
 let Class;
 
 dbConnectionPromise.then((db) => {
-  Class = db.model("class", classSchema, "classes"); //i must add the collection name
+  Class = db.model("class", classSchema, "classes");
 });
 
 export default async function getclassModel() {

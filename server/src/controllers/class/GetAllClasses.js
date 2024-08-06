@@ -5,7 +5,6 @@ export const GetAllClasses = async (req, res) => {
     const Class = await getclassModel();
     const classes = await Class.find({});
     const newClasses = restructureAllClasses(classes);
-    console.log(newClasses);
     res.status(200).json(newClasses);
   } catch (error) {
     throw new Error("Failed to fetch classes");

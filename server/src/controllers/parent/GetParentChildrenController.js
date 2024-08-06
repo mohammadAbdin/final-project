@@ -3,7 +3,6 @@ import getParentModel from "../../models/ParentSchema.js";
 export const getParentChildren = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const Parent = await getParentModel();
     const result = await Parent.aggregate([
       { $match: { parent_id: id } },
@@ -31,7 +30,6 @@ export const getParentChildren = async (req, res) => {
         },
       },
     ]);
-    console.log(result);
     const restructuredStudents = result[0].children.map(
       ({ name, class: studentClass, student_id }) => ({
         student_id: student_id,
@@ -40,8 +38,6 @@ export const getParentChildren = async (req, res) => {
         average: 80,
       })
     );
-
-    console.log(restructuredStudents);
 
     res.status(200).json(restructuredStudents);
   } catch (error) {

@@ -8,10 +8,8 @@ async function AddNewVideoResource(
   teacher_id: string | undefined
 ): Promise<void> {
   try {
-    console.log(videoData, topicId, teacher_id, classNumber);
-
     const response = await axios.post(
-      "http://localhost:5001/class/Add-video-resource",
+      "https://final-project-1-hjx7.onrender.com/class/Add-video-resource",
       {
         videoData,
         topicId,
@@ -19,9 +17,7 @@ async function AddNewVideoResource(
         classNumber,
       }
     );
-    console.log(response);
-
-    // return response.data;
+    return response.data;
   } catch (error) {
     console.error("There was an error adding the user:", error);
     throw error;

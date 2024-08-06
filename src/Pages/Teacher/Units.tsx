@@ -6,11 +6,10 @@ import VideoForm from "../../Components/VideoForm/VideoForm";
 import AddNewVideoResource from "../../Api/PostNewVideoResource";
 import { UserContext } from "../../Context/UserContext";
 
-const Units = ({ topics, classNumber }: TopicsProps) => {
+const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
   const { user } = useContext(UserContext);
   const [currentTopicId, setCurrentTopicId] = useState<string | null>(null);
   const [topicsData, setTopicsData] = useState<Topic[]>(topics);
-  console.log(topics);
 
   useEffect(() => {
     setTopicsData(topics);
@@ -18,9 +17,10 @@ const Units = ({ topics, classNumber }: TopicsProps) => {
   const toggleTopicDetails = (id: string) => {
     setCurrentTopicId(currentTopicId === id ? null : id);
   };
-
+  useEffect(() => {
+    console.log(topicsData);
+  }, [topicsData]);
   const addVideo = (videoData: VideoType) => {
-    console.log(videoData, currentTopicId, classNumber);
     AddNewVideoResource(videoData, currentTopicId, classNumber, user?._id);
     const updateTopicsData = [...topicsData];
     for (let i = 0; i < updateTopicsData.length; i++) {
@@ -68,6 +68,7 @@ const Units = ({ topics, classNumber }: TopicsProps) => {
     <div className="mt-10">
       <div className="flex">
         <AddTopicBtn
+          setIsLoading={setIsLoading}
           classNumber={classNumber}
           topicsData={topicsData}
           setTopicsData={setTopicsData}
@@ -107,16 +108,12 @@ const Units = ({ topics, classNumber }: TopicsProps) => {
                       <VideoForm
                         isEdit={true}
                         updateVideo={updateVideo}
-                        // action={(id: number = video.id, data: DataVideo) =>
-                        //   updateVideo(id, data)
-                        // }
                         data={{
                           _id: video._id,
                           title: video.title,
                           description: video.description,
                           url: video.url,
                         }}
-                        // currentTopicId={currentTopicId}
                       />
                       <button
                         className="px-2 py-1 text-sm text-white bg-red-500 rounded"
@@ -131,25 +128,13 @@ const Units = ({ topics, classNumber }: TopicsProps) => {
                 ))}
 
                 <div className="flex justify-center items-center my-3">
-                  <VideoForm
-                    isEdit={false}
-                    addVideo={addVideo}
-                    // currentTopicId={currentTopicId}
-                  />
+                  <VideoForm isEdit={false} addVideo={addVideo} />
                 </div>
               </div>
             )}
           </li>
         ))}
       </ul>
-      {/* <div className="flex justify-center">
-        {/* <button
-          className="px-4 py-2 mb-3  bg-green-500 text-white rounded-sm"
-          // onClick={() => addTopic()}
-        >
-          Add Topic
-        </button>
-      </div> */}
     </div>
   );
 };

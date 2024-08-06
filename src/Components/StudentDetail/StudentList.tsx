@@ -43,14 +43,11 @@ const StudentList = () => {
 
   const handleCheckboxChange = (student_id: string) => {
     if (studentList != null) {
-      console.log(student_id);
-
       const updatedStudents = studentList.map((student) =>
         student.student_id === student_id
           ? { ...student, attendance: !student.attendance }
           : student
       );
-      console.log(updatedStudents);
 
       setStudentList(updatedStudents);
     }
@@ -61,7 +58,6 @@ const StudentList = () => {
       (student) => student.attendance
     );
 
-    console.log(studentsWithAttendanceTrue);
     PutStudentsAttendace(
       studentsWithAttendanceTrue,
       selectedDate,
