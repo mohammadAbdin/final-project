@@ -1,37 +1,35 @@
+import { useContext, useEffect, useState } from "react";
 import Schedule from "../../../Components/ClassSchedule/Schedule";
 import { ScheduleEntry } from "../../../Types/ScheduleEntry";
+import { UserContext } from "../../../Context/UserContext";
+import UseGetTeacherSchedule from "../../../Hooks/UseGetTeacherSchedule";
+import { addBreaksToSchedule } from "../../../Functions/refactorTeacherSchedule";
 function TeacherSchedule() {
-  const exampleScheduleData: ScheduleEntry[] = [
-    { day: "Sunday", period: "08:00-09:00", class: "1" },
-    { day: "Sunday", period: "09:00-10:00", class: "2" },
-    { day: "Sunday", period: "10:00-11:00", class: "3" },
-    { day: "Sunday", period: "11:00-12:00", class: "Break" },
-    { day: "Sunday", period: "12:00-13:00", class: "4" },
+  const { user } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
 
-    { day: "Monday", period: "08:00-09:00", class: "1" },
-    { day: "Monday", period: "09:00-10:00", class: "2" },
-    { day: "Monday", period: "10:00-11:00", class: "Break" },
-    { day: "Monday", period: "11:00-12:00", class: "3" },
-    { day: "Monday", period: "12:00-13:00", class: "4" },
+  const { getTeacherSchedule, teacherSchedule } =
+    UseGetTeacherSchedule(setIsLoading);
 
-    { day: "Tuesday", period: "08:00-09:00", class: "Math" },
-    { day: "Tuesday", period: "09:00-10:00", class: "History" },
-    { day: "Tuesday", period: "10:00-11:00", class: "Gym" },
-    { day: "Tuesday", period: "11:00-12:00", class: "English" },
-    { day: "Tuesday", period: "12:00-13:00", class: "Break" },
+  useEffect(() => {
+    if (isLoading && user && !teacherSchedule) {
+      if (user._id != undefined) getTeacherSchedule(user._id);
+    }
+  }, [isLoading, user, getTeacherSchedule, teacherSchedule]);
 
-    { day: "Wednesday", period: "08:00-09:00", class: "Break" },
-    { day: "Wednesday", period: "09:00-10:00", class: "Two" },
-    { day: "Wednesday", period: "10:00-11:00", class: "3" },
-    { day: "Wednesday", period: "11:00-12:00", class: "4" },
-    { day: "Wednesday", period: "12:00-13:00", class: "1" },
+  if (isLoading || teacherSchedule === null) {
+    return (
+      <div
+        className="spinner mt-20 inline-block h-8 w-8 animate-spin rounded-full border-4 border-t-4 border-red-200 border-t-black"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
+    );
+  }
+  const exampleScheduleData: ScheduleEntry[] =
+    addBreaksToSchedule(teacherSchedule); // omar you can ask chat gbt to (any period from sunday to thursday that are not included in the data add an obj to it )
 
-    { day: "Thursday", period: "08:00-09:00", class: "1" },
-    { day: "Thursday", period: "09:00-10:00", class: "Break" },
-    { day: "Thursday", period: "10:00-11:00", class: "2" },
-    { day: "Thursday", period: "11:00-12:00", class: "3" },
-    { day: "Thursday", period: "12:00-13:00", class: "4" },
-  ];
   return (
     <div>
       <Schedule schedule={exampleScheduleData} />

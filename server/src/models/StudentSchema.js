@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
-// const studentScheduleSchema = new mongoose.Schema({
-//   day: String, // e.g., 'Monday'
-//   period: String, // e.g., '09:00-10:00'
-//   subject: String,
-// });
+const reportSchema = new mongoose.Schema({
+  reportType: String,
+  writer_id: String,
+  date: String,
+  title: String,
+  description: String,
+});
 
 const studentSchema = new mongoose.Schema({
   student_id: {
@@ -16,12 +18,12 @@ const studentSchema = new mongoose.Schema({
   name: String,
   gender: String,
   class: String,
-  // schedule: [studentScheduleSchema],
+  report: [reportSchema],
 });
 let Student;
 
 dbConnectionPromise.then((db) => {
-  Student = db.model("Student", studentSchema); //i must add the collection name
+  Student = db.model("Student", studentSchema); 
 });
 
 export default async function getStudentModel() {

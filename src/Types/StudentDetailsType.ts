@@ -1,0 +1,41 @@
+import { ScheduleEntry } from "./ScheduleEntry";
+
+export interface StudentDetailsType {
+  reports: reportType[];
+  details: { [subject: string]: detailsType };
+  schedule: ScheduleEntry[];
+}
+
+export interface detailsType {
+  attendanceRecord: {
+    datesRecord: Array<{
+      date: string;
+      attendance: boolean;
+    }>;
+  };
+  examRecords: Array<{
+    examName: string;
+    grade: string | number;
+  }>;
+  average: string;
+  resources: resourcesType[];
+}
+export interface resourcesType {
+  title: string;
+  videos: videoType[];
+}
+export interface videoType {
+  description: string;
+  title: string;
+  url: string;
+}
+
+export interface reportType {
+  date: string;
+  reportType: string;
+  description: string;
+  teacherName: string;
+  title: string;
+  writer_id: string;
+  _id: string;
+}

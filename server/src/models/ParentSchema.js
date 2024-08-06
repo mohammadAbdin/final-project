@@ -2,11 +2,8 @@ import mongoose from "mongoose";
 import { dbConnectionPromise } from "../utils/mongoUtil.js";
 
 const childSchema = new mongoose.Schema({
-  // name: String,
   student_id: {
     type: String,
-    // required: true,
-    // unique: true, // Ensure the student_id is unique
   },
 });
 
@@ -30,7 +27,7 @@ const parentSchema = new mongoose.Schema({
 let Parent;
 
 dbConnectionPromise.then((db) => {
-  Parent = db.model("Parent", parentSchema, "Parent"); //i must add the collection name
+  Parent = db.model("Parent", parentSchema, "Parent");
 });
 
 export default async function getParentModel() {

@@ -11,11 +11,8 @@ interface UseLoginReturn {
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   setName: (name: string) => void;
-  // handleRegister: (event: React.FormEvent) => Promise<void>;
   error: string | null;
-  // passwordConfirmation: string;
   passwordError: string | null;
-  // setPasswordConfirmation: (passwordConfirmation: string) => void;
   handlelogIn: (event: React.FormEvent) => Promise<void>;
   handleLogout: (event: React.FormEvent) => Promise<void>;
 }
@@ -32,50 +29,37 @@ const useLogin = (): UseLoginReturn => {
   const [error, setError] = useState<string | null>(null);
   const { setIsLogedIn, setUser } = useContext(UserContext);
 
-  // const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string | null>("");
 
-  // const handleRegister = async (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   setError(null);
-  //   setPasswordError("");
-
-  //   if (password !== passwordConfirmation) {
-  //     setPasswordError("Please confirm your password.");
-  //     return;
-  //   }
-  //   const response: LogInResponse = await logIn(
-  //     email,
-  //     password,
-  //     name,
-  //     setIsLogedIn,
-  //     setError,
-  //     "/LogIn/Register"
-  //   );
-  //   setUser(response.user);
-  //   if (response.token) {
-  //     Cookies.set("token", response.token);
-  //   }
-
-  //   navigate("/");
-  // };
   const handlelogIn = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
     setPasswordError("");
+
     const response: LogInResponse = await logIn(
       email,
       password,
       setIsLogedIn,
       setError,
-      "/LogIn/auth"
+      "/auth"
     );
+
     setUser(response.user);
     if (response.token) {
       Cookies.set("token", response.token);
     }
-
-    navigate("/");
+    switch (response.user.userType) {
+      case "Teacher":
+        navigate("/TeacherSchedule");
+        break;
+      case "Parent":
+        navigate("/ParentPage");
+        break;
+      case "Student":
+        navigate("/StudentSchedule");
+        break;
+      default:
+    }
   };
   const handleLogout = async () => {
     try {
@@ -108,10 +92,7 @@ const useLogin = (): UseLoginReturn => {
     setEmail,
     setPassword,
     setName,
-    // handleRegister,
     error,
-    // passwordConfirmation,
-    // setPasswordConfirmation,
     passwordError,
     handlelogIn,
     handleLogout,

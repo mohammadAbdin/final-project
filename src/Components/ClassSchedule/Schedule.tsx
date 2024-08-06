@@ -1,62 +1,65 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScheduleEntry } from "../../Types/ScheduleEntry";
+import { UserContext } from "../../Context/UserContext";
 
 const Schedule: React.FC<{ schedule: ScheduleEntry[] }> = ({ schedule }) => {
-  const generateScheduleJSX = (schedule: ScheduleEntry[]): JSX.Element[] => {
-    const groupedByDay: Record<string, ScheduleEntry[]> = {};
+  const { user } = useContext(UserContext);
 
-    schedule.forEach((entry) => {
-      if (!groupedByDay[entry.day]) {
-        groupedByDay[entry.day] = [];
-      }
-      groupedByDay[entry.day].push(entry);
-    });
+  const scheduleMap: Record<string, Record<string, string>> = {};
 
-    return Object.keys(groupedByDay).map((day) => (
-      <div
-        key={day}
-        className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 xl:w-1/5 p-2"
-      >
-        <h2 className="text-lg font-semibold mb-2 text-white">{day}</h2>
-        <div className="bg-gray-800 rounded-lg ">
-          {groupedByDay[day].map((entry) => (
-            <div
-              onClick={() => {
-                // if he is a teacher do
-                // if()
-                // else do nothing
-              }}
-              key={`${day}-${entry.period}`}
-              className="p-4 border-b border-gray-700 last:border-b-0"
-            >
-              <div className="text-sm text-gray-400">{entry.period}</div>
-              <div className="text-white font-semibold mt-1">{entry.class}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    ));
-  };
+  schedule.forEach((entry) => {
+    if (!scheduleMap[entry.period]) {
+      scheduleMap[entry.period] = {};
+    }
+    scheduleMap[entry.period][entry.day] = entry.class;
+  });
 
-  const scheduleJSX = generateScheduleJSX(schedule);
+  const days = Array.from(new Set(schedule.map((entry) => entry.day)));
 
   return (
-    <div className="min-h-full bg-gray-900 p-4 md:p-6">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4 text-white">The schedule</h1>
-        <div className="flex flex-row  gap-10   mb-6 ml-7 w-full overflow-x-auto whitespace-nowrap">
-          {Object.keys(
-            schedule.reduce((acc, curr) => ({ ...acc, [curr.day]: true }), {})
-          ).map((day, index) => (
-            <div
-              key={day}
-              className="px-6 py-2 bg-blue-600 text-white  rounded-full text-sm m-2 "
-            >
-              Day {index + 1}: {day}
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-wrap ">{scheduleJSX}</div>
+    <div className="c-div-s overflow-x-auto">
+      <div className={user?.userType === "Parent" ? "w-5/10" : "w-full"}>
+        <h2 className="h2-s">schedule</h2>
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border border-gray-300 p-1 text-xs font-semibold text-gray-700"></th>{" "}
+              {days.map((day) => (
+                <th
+                  key={day}
+                  className="border border-gray-300 p-1 text-center text-xs font-semibold text-gray-700"
+                >
+                  {day}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(scheduleMap).map((period) => (
+              <tr key={period} className="hover:bg-gray-50">
+                <td className="border border-gray-300 p-1 font-semibold text-xs text-gray-800">
+                  {period}
+                </td>
+                {days.map((day) => (
+                  <td
+                    key={`${period}-${day}`}
+                    className="border border-gray-300 p-1 text-center text-xs"
+                  >
+                    {scheduleMap[period][day] ? (
+                      <div className="bg-gray-200 rounded-md font-semibold p-1 text-xs text-gray-800 shadow-sm">
+                        <p className="text-xs font-normal">
+                          {scheduleMap[period][day]}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="text-gray-400 text-xs">-</div>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
