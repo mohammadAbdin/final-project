@@ -2,10 +2,18 @@ import React, { useEffect } from "react";
 import useLogin from "../../Hooks/UseLogIn";
 
 const LogIn: React.FC = () => {
-  const { email, password, setEmail, setPassword, handlelogIn, error } =
-    useLogin();
+  const {
+    email,
+    password,
+    setEmail,
+    setPassword,
+    handlelogIn,
+    error,
+    passwordError,
+  } = useLogin();
   useEffect(() => {
     console.log("Error: " + error);
+    console.log(passwordError);
   }, [error]);
 
   return (
