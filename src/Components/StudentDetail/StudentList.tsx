@@ -1,6 +1,6 @@
 import { StudentAttendanceRow } from "./StudentAttendanceRow";
 import { useContext, useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import UseGetClassStudentsAttendance from "../../Hooks/UseGetClassStudentsAttendance";
 import { StudentsAttendanceType } from "../../Types/StudentsAttendanceType";
@@ -10,6 +10,7 @@ const StudentList = () => {
   const location = useLocation();
   const selectedDate = location.state.selectedDate;
 
+  const navigate = useNavigate();
   const { classNumber } = useParams();
 
   const [studentList, setStudentList] = useState<
@@ -22,8 +23,8 @@ const StudentList = () => {
     UseGetClassStudentsAttendance(setIsLoading, selectedDate, classNumber);
 
   useEffect(() => {
-    if (isLoading && user && !classStudentsAttendance) {
-      if (user._id != undefined) getClassStudentsAttendance(user._id);
+    if (isLoading || !user || !classStudentsAttendance) {
+      if (user?._id != undefined) getClassStudentsAttendance(user._id);
     }
   }, [isLoading, user, getClassStudentsAttendance, classStudentsAttendance]);
   useEffect(() => {
@@ -53,17 +54,18 @@ const StudentList = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const studentsWithAttendanceTrue = studentList?.filter(
       (student) => student.attendance
     );
 
-    PutStudentsAttendace(
+    await PutStudentsAttendace(
       studentsWithAttendanceTrue,
       selectedDate,
       user?._id,
       classNumber
     );
+    navigate(`/class/${classNumber}`);
   };
 
   return (

@@ -70,8 +70,9 @@ export function ClassExams({
     });
   };
 
-  const handleSave = () => {
-    PutExamMarks(modifiedStudents, user?._id, classNumber);
+  const handleSave = async () => {
+    await PutExamMarks(modifiedStudents, user?._id, classNumber);
+    setIsLoading(true);
   };
 
   return (
