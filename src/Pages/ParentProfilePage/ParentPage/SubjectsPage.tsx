@@ -110,9 +110,9 @@ const SubjectsPage: React.FC = () => {
 
   return (
     <div className="main-div-s">
-      <h2>
+      {/* <h2>
         <span className="h2-s">You are watching:</span> {subject}
-      </h2>
+      </h2> */}
 
       <div className="mt-3 bg-gray-50 dark:bg-gray-800 mx-auto">
         <div className="sm:hidden text-left">
