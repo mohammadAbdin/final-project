@@ -1,7 +1,7 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Navigate,
+  // Navigate,
 } from "react-router-dom";
 import SideBar from "./Components/SideBar/SideBar";
 import Navbar from "./Components/Navbar/Navbar";
@@ -39,9 +39,9 @@ const AppLayout = () => {
     return <></>;
   }
 
-  if (!user) {
-    return <Navigate to="/Login" />;
-  }
+  // if (!user) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <div className="flex flex-col">
