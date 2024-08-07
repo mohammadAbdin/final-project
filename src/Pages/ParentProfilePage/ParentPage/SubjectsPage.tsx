@@ -107,6 +107,7 @@ const SubjectsPage: React.FC = () => {
       </div>
     );
   }
+  console.log(childSubjects);
 
   return (
     <div className="main-div-s">
