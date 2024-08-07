@@ -92,6 +92,7 @@ const FeedbackDrop: React.FC = () => {
     handleModalClose();
     setIsLoading(true);
   };
+  console.log(feedbackData);
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
