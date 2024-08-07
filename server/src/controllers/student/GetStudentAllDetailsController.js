@@ -64,6 +64,7 @@ export const GetStudentAllDetails = async (req, res) => {
           details: restructuredDetails,
           schedule: schedule,
           personalDetails: {
+            gender: result[0].gender,
             name: result[0].name,
             classNumber: result[0].classInfo.class,
             average: average,

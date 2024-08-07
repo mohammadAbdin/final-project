@@ -25,17 +25,19 @@ export const getParentChildren = async (req, res) => {
               student_id: "$children.student_id",
               name: "$studentDetails.name",
               class: "$studentDetails.class",
+              gender: "$studentDetails.gender",
             },
           },
         },
       },
     ]);
     const restructuredStudents = result[0].children.map(
-      ({ name, class: studentClass, student_id }) => ({
+      ({ name, class: studentClass, student_id, gender }) => ({
         student_id: student_id,
         studentName: name,
         class: studentClass,
         average: 80,
+        gender: gender,
       })
     );
 

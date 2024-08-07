@@ -56,7 +56,9 @@ const Avatar: React.FC<AvatarProps> = ({
       <span className="text-2xl">
         <img src={getAvatarIcon()} alt="" className="w-10 rounded-md" />
       </span>
-      <span className="ml-2 text-white">{studentName}</span>
+      <div className="flex flex-col items-center">
+        <span className="ml-2 text-white">{studentName}</span>
+      </div>
     </div>
   );
 };
