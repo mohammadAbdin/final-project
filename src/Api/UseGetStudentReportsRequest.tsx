@@ -6,7 +6,7 @@ export const UseGetStudentReportsRequest = async (
 ): Promise<FeedbackContent[]> => {
   try {
     const response = await axios.get<FeedbackContent[]>(
-      `https://final-project-1-hjx7.onrender.com/student/Student-reports/${id}`
+      `http://localhost:5001/student/Student-reports/${id}`
     );
     return response.data;
   } catch (error) {

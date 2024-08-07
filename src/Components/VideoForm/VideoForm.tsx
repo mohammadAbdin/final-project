@@ -1,10 +1,11 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import Modal from "@mui/material/Modal";
 import { VideoType } from "../../Types/TopicsTypes";
+import { UserContext } from "../../Context/UserContext";
 
 const style = {
   position: "absolute",
@@ -33,6 +34,7 @@ interface VideoFormProps {
 }
 
 const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
+  const { user } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -64,9 +66,13 @@ const VideoForm = ({ isEdit, data, updateVideo, addVideo }: VideoFormProps) => {
 
   return (
     <div className="video-form-container">
-      <Button onClick={handleOpen} sx={{ color: `${isEdit ? "white" : ""}` }}>
-        {isEdit ? "Edit" : "Add a video"}
-      </Button>
+      {user?.userType == "Teacher" ? (
+        <Button onClick={handleOpen} sx={{ color: `${isEdit ? "white" : ""}` }}>
+          {isEdit ? "Edit" : "Add a video"}
+        </Button>
+      ) : (
+        <></>
+      )}
       <Modal
         open={open}
         onClose={handleClose}

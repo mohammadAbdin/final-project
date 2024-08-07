@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 interface FeedbackFormData {
   title: string;
   description: string;
 }
 export const FeedbackToTeacher = () => {
+  const { user } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState<FeedbackFormData>({
     title: "",
@@ -43,9 +45,16 @@ export const FeedbackToTeacher = () => {
       {!showModal ? (
         <div>
           {" "}
-          <button className="mt-4 blue-button" onClick={handleAddFeedbackClick}>
-            Send Feedback To The Teacher
-          </button>
+          {user?.userType == "Teacher" ? (
+            <button
+              className="mt-4 blue-button"
+              onClick={handleAddFeedbackClick}
+            >
+              Send Feedback To The Teacher
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
       ) : (
         <div>

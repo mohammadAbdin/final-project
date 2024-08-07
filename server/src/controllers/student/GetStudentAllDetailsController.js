@@ -2,6 +2,7 @@ import { Worker } from "worker_threads";
 import getStudentModel from "../../models/StudentSchema.js";
 import getTeacherModel from "../../models/TeacherSchema.js";
 import { generateSchedule } from "./../../logic/restructureSechedule.js";
+import calculateOverallAverage from "./../../logic/calculateOverallAverage.js";
 export const GetStudentAllDetails = async (req, res) => {
   let hasResponded = false;
   try {
@@ -20,7 +21,7 @@ export const GetStudentAllDetails = async (req, res) => {
       },
       { $unwind: "$classInfo" },
     ]);
-    console.log(result[0].classInfo.subjects);
+    // console.log(result[0].classInfo.subjects);
 
     if (result.length === 0) {
       if (!hasResponded) {
@@ -56,12 +57,17 @@ export const GetStudentAllDetails = async (req, res) => {
     worker.on("message", (restructuredDetails) => {
       if (!hasResponded) {
         const schedule = generateSchedule(result[0].classInfo.schedule);
-        console.log(restructuredDetails, "restructuredDetails");
-
+        const average = calculateOverallAverage(restructuredDetails);
+        // console.log(restructuredDetails, "restructuredDetails");
         res.status(200).json({
           reports: reports,
           details: restructuredDetails,
           schedule: schedule,
+          personalDetails: {
+            name: result[0].name,
+            classNumber: result[0].classInfo.class,
+            average: average,
+          },
         });
         hasResponded = true;
       }

@@ -55,7 +55,6 @@ const StudentResourcesPage = () => {
   return (
     <div>
       <div>
-        <h2 className="h2-s">You are watching: {subject}</h2>
         <div className="subjects-container">
           {subjects?.map((subjectItem, index) => (
             <button

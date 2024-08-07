@@ -13,6 +13,7 @@ export interface detailsType {
       attendance: boolean;
     }>;
   };
+  teacher_id: string;
   examRecords: Array<{
     examName: string;
     grade: string | number;
@@ -33,6 +34,7 @@ export interface videoType {
 export interface reportType {
   date: string;
   reportType: string;
+  teacher_id: string;
   description: string;
   teacherName: string;
   title: string;

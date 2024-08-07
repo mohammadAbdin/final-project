@@ -23,6 +23,7 @@ import refactorExamDataChart from "../../../Functions/refactorExamDataChart";
 import AttendanceJournal from "./../../../Components/AttendanceJournal/AttendanceJournal";
 import { transformAttendanceData } from "../../../Functions/transformAttendanceData";
 import { AttendaceDetailsType } from "../../../Types/AttendaceDetailsType";
+import { reportType } from "../../../Types/StudentDetailsType";
 
 interface ChartData {
   labels: string[];
@@ -34,7 +35,9 @@ interface ChartData {
     borderColor: string;
   }[];
 }
-
+function removeUndefinedValues(arr: (reportType | undefined)[]) {
+  return arr.filter((item) => item !== undefined);
+}
 const icons: { [key in string[][number]]: JSX.Element } = {
   Math: <FaCalculator />,
   Science: <FaFlask />,
@@ -58,6 +61,7 @@ const SubjectsPage: React.FC = () => {
     AttendaceDetailsType[] | null
   >(null);
   const [chartData, setChartData] = useState<ChartData | null>(null);
+  const [reports, setReports] = useState<reportType[] | undefined>();
   const { getChildSubjects, childSubjects } = UseGetChildSubjects(
     setIsLoading,
     student_id
@@ -87,6 +91,20 @@ const SubjectsPage: React.FC = () => {
             childSubjects.details[`${subject}`].attendanceRecord.datesRecord
           )
         );
+        const selectedSubjectTeacher =
+          childSubjects.details[`${subject}`].teacher_id;
+        console.log(selectedSubjectTeacher);
+        const reportsArray = childSubjects.reports.map((report) => {
+          if (report.writer_id === selectedSubjectTeacher) {
+            return report;
+          } else return undefined;
+        });
+        console.log(reportsArray);
+
+        // Example usage
+
+        const cleanedReportsArray = removeUndefinedValues(reportsArray);
+        setReports(cleanedReportsArray);
       }
     }
   }, [subjects, subject, childSubjects]);
@@ -96,7 +114,8 @@ const SubjectsPage: React.FC = () => {
     childSubjects === null ||
     subjects === null ||
     subject == null ||
-    attendanceRecord == null
+    attendanceRecord == null ||
+    reports == null
   ) {
     return (
       <div
@@ -107,28 +126,25 @@ const SubjectsPage: React.FC = () => {
       </div>
     );
   }
-  console.log(childSubjects);
+  // console.log(childSubjects);
+  console.log(childSubjects.reports);
 
   return (
     <div className="main-div-s">
-      {/* <h2>
-        <span className="h2-s">You are watching:</span> {subject}
-      </h2> */}
-
-      <div className="mt-3 bg-gray-50 dark:bg-gray-800 mx-auto">
+      <div className="mt-3 bg-gray-50 mx-auto">
         <div className="sm:hidden text-left">
           <div className="relative">
             <button
               className={`flex items-center p-2 rounded-lg 
               ${
                 isOpen
-                  ? "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white"
+                  ? "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-blue-500"
                   : "hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-900 dark:text-white"
               } 
               group transition duration-200 ease-in-out`}
               onClick={() => setIsOpen(!isOpen)}
             >
-              <span className="mr-2 whitespace-nowrap flex-1">
+              <span className="mr-2 whitespace-nowrap  flex-1">
                 {isOpen ? subject : "Choose subject"}
               </span>
               <span className="w-5 h-5 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white">
@@ -144,7 +160,7 @@ const SubjectsPage: React.FC = () => {
                     className={`block w-full px-4 py-1 text-sm text-left 
                     ${
                       subject === subjectItem
-                        ? "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white"
+                        ? "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-blue-500"
                         : "hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-900 dark:text-white"
                     }`}
                     onClick={() => {
@@ -176,8 +192,10 @@ const SubjectsPage: React.FC = () => {
                 setIsOpen(false); // סגירת ה-dropdown בלחיצה על נושא
               }}
             >
-              <span className="ml-2 whitespace-nowrap">{subjectItem}</span>
-              <span className="w-5 h-5 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white">
+              <span className="ml-2 whitespace-nowrap text-blue-500">
+                {subjectItem}
+              </span>
+              <span className="w-5 h-5 ml-1 text-blue-500 group-hover:text-gray-900 dark:group-hover:text-blue-500">
                 {icons[subjectItem]}
               </span>
             </button>
@@ -289,7 +307,7 @@ const SubjectsPage: React.FC = () => {
         <LineChart chartData={chartData} />
       </div>
       <div className="secondery-div-s">
-        <TeacherReportCard teacherReportData={childSubjects.reports} />
+        <TeacherReportCard teacherReportData={reports} />
       </div>
       <div className="secondery-div-s flex ">
         <ExamsTable

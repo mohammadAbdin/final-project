@@ -10,7 +10,7 @@ export const LogOutUser = async (
 ) => {
   try {
     const response = await axios.post(
-      "https://final-project-1-hjx7.onrender.com/user/logout",
+      "http://localhost:5001/user/logout",
       {},
       { withCredentials: true }
     );

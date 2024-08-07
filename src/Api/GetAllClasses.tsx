@@ -4,7 +4,7 @@ import { ClassSchedule } from "../Types/ClassScheduleType";
 export const getAllClasses = async (): Promise<ClassSchedule[]> => {
   try {
     const response = await axios.get<ClassSchedule[]>(
-      "https://final-project-1-hjx7.onrender.com/class/all-classes"
+      "http://localhost:5001/class/all-classes"
     );
     return response.data;
   } catch (error) {

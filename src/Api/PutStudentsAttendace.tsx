@@ -13,15 +13,12 @@ export const PutStudentsAttendace = async (
   }
 
   try {
-    await axios.put(
-      "https://final-project-1-hjx7.onrender.com/class/attendance-students-edits",
-      {
-        studentsWithAttendance,
-        selectedDate,
-        teacher_id,
-        classNumber,
-      }
-    );
+    await axios.put("http://localhost:5001/class/attendance-students-edits", {
+      studentsWithAttendance,
+      selectedDate,
+      teacher_id,
+      classNumber,
+    });
     console.log("Exam marks updated successfully.");
   } catch (error) {
     console.error("Failed to update exam marks:", error);

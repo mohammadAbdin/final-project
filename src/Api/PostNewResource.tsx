@@ -10,7 +10,7 @@ async function AddNewResource(
 ): Promise<void> {
   try {
     const response = await axios.post(
-      "https://final-project-1-hjx7.onrender.com/class/Add-resource",
+      "http://localhost:5001/class/Add-resource",
       {
         newTopic,
         id,

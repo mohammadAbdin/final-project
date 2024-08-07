@@ -14,8 +14,7 @@ router.get("/class-exams", GetClassDeatils);
 router.get("/attendance-date", GetClassStudentAttendance);
 router.post("/Add-exam", PostExam);
 router.post("/Add-resource", PostResource);
-router.delete("/class/delete-video", DeleteVideo);
-
+router.delete("/delete-video", DeleteVideo);
 router.post("/Add-video-resource", PostVideoResource);
 router.put("/exam-grade-edits", EditExamGrades);
 router.put("/attendance-students-edits", EditStudentsAttendance);

@@ -6,14 +6,12 @@ export const DeleteVideo = async (req, res) => {
   try {
     const Class = await getclassModel();
 
-    // Find the class object using classNumber
     const classObj = await Class.findOne({ class: classNumber });
 
     if (!classObj) {
       return res.status(404).json({ message: "Class not found" });
     }
 
-    // Find the subject within the class using teacher_id
     const subject = classObj.subjects.find(
       (sub) => sub.teacher_id === teacher_id
     );
@@ -32,7 +30,6 @@ export const DeleteVideo = async (req, res) => {
       return res.status(404).json({ message: "Resource not found" });
     }
 
-    // Remove the video that matches videoId from the videos array
     const videoIndex = resource.videos.findIndex(
       (vid) => vid._id.toString() === videoId
     );

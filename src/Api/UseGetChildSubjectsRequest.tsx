@@ -6,7 +6,7 @@ export const UseGetChildSubjectsRequest = async (
 ): Promise<StudentDetailsType | null> => {
   try {
     const response = await axios.get<StudentDetailsType>(
-      `https://final-project-1-hjx7.onrender.com/student/Student-Details/${id}`,
+      `http://localhost:5001/student/Student-Details/${id}`,
       {
         headers: {
           "Content-Type": "application/json",

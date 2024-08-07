@@ -8,7 +8,7 @@ export const UseGetClassStudentsAttendanceRequest = async (
 ): Promise<StudentsAttendanceType[] | null> => {
   try {
     const response = await axios.get<StudentsAttendanceType[]>(
-      `https://final-project-1-hjx7.onrender.com/class/attendance-date`,
+      `http://localhost:5001/class/attendance-date`,
       {
         params: {
           selectedDate,

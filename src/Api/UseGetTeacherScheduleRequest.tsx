@@ -6,7 +6,7 @@ export const UseGetTeacherScheduleRequest = async (
 ): Promise<ScheduleEntry[] | null> => {
   try {
     const response = await axios.get<[]>(
-      `https://final-project-1-hjx7.onrender.com/teacher/Teacher-Schedule/${id}`,
+      `http://localhost:5001/teacher/Teacher-Schedule/${id}`,
       {
         headers: {
           "Content-Type": "application/json",

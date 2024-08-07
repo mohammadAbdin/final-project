@@ -6,7 +6,7 @@ export const UseGetTeacherSubjectsRequest = async (
 ): Promise<ClassType[] | null> => {
   try {
     const response = await axios.get<[]>(
-      `https://final-project-1-hjx7.onrender.com/teacher/Teacher-Classes/${id}`,
+      `http://localhost:5001/teacher/Teacher-Classes/${id}`,
       {
         headers: {
           "Content-Type": "application/json",
