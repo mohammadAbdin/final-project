@@ -5,6 +5,7 @@ import AddTopicBtn from "../../Components/AddTopicBtn/AddTopicBtn";
 import VideoForm from "../../Components/VideoForm/VideoForm";
 import AddNewVideoResource from "../../Api/PostNewVideoResource";
 import { UserContext } from "../../Context/UserContext";
+import deleteVideosRequest from "../../Api/deleteVideosRequest";
 
 const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
   const { user } = useContext(UserContext);
@@ -51,6 +52,9 @@ const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
   };
 
   const deleteVideos = (videoId: string) => {
+    console.log(videoId);
+    console.log(currentTopicId);
+    deleteVideosRequest(classNumber, user?._id, currentTopicId, videoId);
     const updateTopicsData = [...topicsData];
     for (let i = 0; i < updateTopicsData.length; i++) {
       if (updateTopicsData[i]._id === currentTopicId) {
@@ -74,7 +78,7 @@ const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
           setTopicsData={setTopicsData}
         />
       </div>
-      <ul className="bg-gray-800  shadow-md rounded-lg p-4 mb-4  ">
+      <ul className="bg-blue-500  shadow-md rounded-lg p-4 mb-4  ">
         {topicsData.map((topic, index) => (
           <li key={index} className="border-b py-2 last:border-b-0  rounded-md">
             <div key={topic._id} className="flex justify-between items-center ">
@@ -83,9 +87,11 @@ const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
                 onClick={() => {
                   if (topic._id) toggleTopicDetails(topic._id);
                 }}
-                className="cursor-pointer text-gray-100  hover:underline"
+                className="cursor-pointer   hover:underline"
               >
-                Unit {index + 1} : {topic.title}
+                <p className="Indigo-50">
+                  Unit {index + 1} : {topic.title}
+                </p>
               </span>
             </div>
             {currentTopicId === topic._id && (
@@ -93,7 +99,7 @@ const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
                 {topic.videos.map((video, index2) => (
                   <div
                     key={index2}
-                    className="flex justify-between items-end mt-2 p-2 bg-gray-700 rounded  "
+                    className="flex justify-between items-end mt-2 p-2 bg-blue-300 rounded  "
                   >
                     <Video
                       id={video._id}

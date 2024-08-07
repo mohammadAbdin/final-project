@@ -56,9 +56,9 @@ body,
     @apply bg-blue-700
   }
 
-  .turquoise-button {
+  /* .turquoise-button {
     @apply bg-turquoise-500 text-white px-2 py-1.5 rounded;
-  }
+  } */
 
   .turquoise-button:focus {
     @apply outline-none ring-2 ring-turquoise-300;
