@@ -72,16 +72,6 @@ const SubjectsPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [subjects, setSubjects] = useState<string[] | null>(null);
 
-  // interface StudentDetailsType {
-  //   reports: reportType[];
-  //   details: { [subject: string]: detailsType };
-  //   schedule: ScheduleEntry[];
-  //   personalDetails: {
-  //     average: 95;
-  //     name: "Jhonnie Walker";
-  //     classNumber: "12";
-  //   };
-  // }
   useEffect(() => {
     if (isLoading && user && !childSubjects) {
       if (user._id !== undefined) getChildSubjects();
@@ -219,6 +209,7 @@ const SubjectsPage: React.FC = () => {
         studentName={childSubjects.personalDetails.name}
         classGrade={childSubjects.personalDetails.classNumber}
         averageScore={childSubjects.personalDetails.average}
+        gender={childSubjects.personalDetails.gender}
       />
 
       {/* <div className="mt-3 flex flex-wrap justify-center space-x-6 bg-gray-50 dark:bg-gray-800 mx-auto">

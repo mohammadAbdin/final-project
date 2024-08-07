@@ -4,6 +4,7 @@ import "./ChildWidget.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import UseGetParentChildren from "../../Hooks/UseGetParentChildren";
+// import Avatar from "../Avatar/Avatar";
 
 const ChildWidget = () => {
   const naviagte = useNavigate();
@@ -38,6 +39,7 @@ const ChildWidget = () => {
           key={singleChild.student_id}
           className="bg-white border border-gray-300 rounded-md p-2 m-4  hover:bg-gray-300"
         >
+          {/* <Avatar studentName={singleChild.studentName} /> */}
           <h3>Child's name: {singleChild.studentName} </h3>
           <p>Class: {singleChild.class}</p>
           <p>Average: {singleChild.average}</p>
