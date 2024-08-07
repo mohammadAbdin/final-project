@@ -8,7 +8,15 @@ async function deleteVideosRequest(
 ): Promise<void> {
   try {
     const response = await axios.delete(
-      `https://final-project-1-hjx7.onrender.com/class/delete-video/${classNumber}/${teacher_id}/${topicId}/${videoId}`
+      "https://final-project-1-hjx7.onrender.com/class/delete-video",
+      {
+        params: {
+          classNumber,
+          teacher_id,
+          topicId,
+          videoId,
+        },
+      }
     );
 
     if (response.status === 200) {

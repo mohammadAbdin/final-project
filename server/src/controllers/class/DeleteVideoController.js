@@ -1,7 +1,7 @@
 import getclassModel from "../../models/ClassSchema.js";
 
 export const DeleteVideo = async (req, res) => {
-  const { classNumber, teacher_id, topicId, videoId } = req.params;
+  const { classNumber, teacher_id, topicId, videoId } = req.query;
 
   try {
     const Class = await getclassModel();
@@ -44,7 +44,7 @@ export const DeleteVideo = async (req, res) => {
     resource.videos.splice(videoIndex, 1);
     console.log(resource);
 
-    // await classObj.save();
+    await classObj.save();
 
     return res.status(200).json({ message: "Video deleted successfully" });
   } catch (error) {
