@@ -27,7 +27,7 @@ const Avatar: React.FC<AvatarProps> = ({
 }) => {
   const getAvatarColor = () => {
     if (averageScore >= 90) return "bg-green-500"; // High score
-    if (averageScore >= 75) return "bg-yellow-500"; // Medium score
+    if (averageScore >= 75) return "bg-yellow-500"; // Medium score//avi
     if (averageScore >= 65) return "bg-orange-500"; // Medium-Low score
     return "bg-red-500"; // Low score
   };
