@@ -1,6 +1,7 @@
 export interface Child {
   student_id: string;
   studentName: string;
-  class: number;
+  class: string;
   average?: number;
+  gender: string;
 }
