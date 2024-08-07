@@ -86,7 +86,7 @@ export function ClassExams({
             <div className="flex justify-between items-center">
               <span
                 onClick={() => toggleExamDetails(exam._id)}
-                className="cursor-pointer text-gray-700"
+                className="cursor-pointer text-gray-700 text-2xl text-Bold"
               >
                 {exam.examName}
               </span>
