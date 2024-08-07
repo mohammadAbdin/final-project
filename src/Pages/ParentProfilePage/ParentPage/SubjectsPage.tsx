@@ -23,6 +23,7 @@ import refactorExamDataChart from "../../../Functions/refactorExamDataChart";
 import AttendanceJournal from "./../../../Components/AttendanceJournal/AttendanceJournal";
 import { transformAttendanceData } from "../../../Functions/transformAttendanceData";
 import { AttendaceDetailsType } from "../../../Types/AttendaceDetailsType";
+import Avatar from "../../../Components/Avatar/Avatar";
 import { reportType } from "../../../Types/StudentDetailsType";
 
 interface ChartData {
@@ -66,9 +67,32 @@ const SubjectsPage: React.FC = () => {
     setIsLoading,
     student_id
   );
+
   const [subject, setSubject] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [subjects, setSubjects] = useState<string[] | null>(null);
+  type PersonalDetails = {
+    name: string;
+    classNumber: string;
+    average: number;
+  };
+
+  const personalDetails: PersonalDetails = {
+    name: "johnnie walker",
+    classNumber: "4",
+    average: 87,
+  };
+
+  // interface StudentDetailsType {
+  //   reports: reportType[];
+  //   details: { [subject: string]: detailsType };
+  //   schedule: ScheduleEntry[];
+  //   personalDetails: {
+  //     average: 95;
+  //     name: "Jhonnie Walker";
+  //     classNumber: "12";
+  //   };
+  // }
   useEffect(() => {
     if (isLoading && user && !childSubjects) {
       if (user._id !== undefined) getChildSubjects();
@@ -202,6 +226,11 @@ const SubjectsPage: React.FC = () => {
           ))}
         </div>
       </div>
+      <Avatar
+        studentName={personalDetails.name}
+        classGrade={personalDetails.classNumber}
+        averageScore={personalDetails.average}
+      />
 
       {/* <div className="mt-3 flex flex-wrap justify-center space-x-6 bg-gray-50 dark:bg-gray-800 mx-auto">
         {childSubjects.map((subjectItem, index) => (
