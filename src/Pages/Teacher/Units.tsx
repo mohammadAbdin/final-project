@@ -65,8 +65,8 @@ const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
   };
 
   return (
-    <div className="mt-10">
-      <div className="flex">
+    <div className="mt-10 bg ">
+      <div className="flex ">
         <AddTopicBtn
           setIsLoading={setIsLoading}
           classNumber={classNumber}
@@ -74,19 +74,16 @@ const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
           setTopicsData={setTopicsData}
         />
       </div>
-      <ul className="bg-white shadow-md rounded-lg p-4 mb-4">
+      <ul className="bg-gray-800  shadow-md rounded-lg p-4 mb-4  ">
         {topicsData.map((topic, index) => (
-          <li
-            key={index}
-            className="border-b py-2 last:border-b-0 hover:bg-blue-100 rounded-md"
-          >
-            <div key={topic._id} className="flex justify-between items-center">
+          <li key={index} className="border-b py-2 last:border-b-0  rounded-md">
+            <div key={topic._id} className="flex justify-between items-center ">
               <span
                 key={topic._id}
                 onClick={() => {
                   if (topic._id) toggleTopicDetails(topic._id);
                 }}
-                className="cursor-pointer text-gray-700  hover:underline"
+                className="cursor-pointer text-gray-100  hover:underline"
               >
                 Unit {index + 1} : {topic.title}
               </span>
@@ -96,7 +93,7 @@ const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
                 {topic.videos.map((video, index2) => (
                   <div
                     key={index2}
-                    className="flex justify-between items-center mt-2 p-2 bg-gray-100 rounded"
+                    className="flex justify-between items-end mt-2 p-2 bg-gray-700 rounded  "
                   >
                     <Video
                       id={video._id}
@@ -104,7 +101,7 @@ const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
                       description={video.description}
                       url={video.url}
                     />
-                    <div className="flex">
+                    <div className="flex ">
                       <VideoForm
                         isEdit={true}
                         updateVideo={updateVideo}
@@ -116,7 +113,7 @@ const Units = ({ topics, classNumber, setIsLoading }: TopicsProps) => {
                         }}
                       />
                       <button
-                        className="px-2 py-1 text-sm text-white bg-red-500 rounded"
+                        className="px-2 py-1 text-sm text-gray-900 bg-white rounded"
                         onClick={() => {
                           if (video._id) deleteVideos(video._id);
                         }}
