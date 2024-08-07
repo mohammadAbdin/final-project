@@ -14,7 +14,7 @@ export const PutStudentsAttendace = async (
 
   try {
     await axios.put(
-      "https://final-project-1-hjx7.onrender.comclass/attendance-students-edits",
+      "https://final-project-1-hjx7.onrender.com/class/attendance-students-edits",
       {
         studentsWithAttendance,
         selectedDate,

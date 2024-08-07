@@ -9,7 +9,7 @@ export const logIn = async (
 ) => {
   try {
     const response = await axios.post(
-      `https://final-project-1-hjx7.onrender.comuser${path}`,
+      `https://final-project-1-hjx7.onrender.com/user${path}`,
       { email, password },
       {
         headers: {

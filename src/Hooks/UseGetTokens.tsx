@@ -19,7 +19,7 @@ const fetchData = async (
       console.log("there is no token");
     } else {
       const response = await fetch(
-        "https://final-project-1-hjx7.onrender.comuser/protectedRoute",
+        "https://final-project-1-hjx7.onrender.com/user/protectedRoute",
         {
           headers: {
             Authorization: `Bearer ${token}`,

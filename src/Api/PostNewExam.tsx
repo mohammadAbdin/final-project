@@ -7,7 +7,7 @@ async function AddNewExam(
 ): Promise<void> {
   try {
     const response = await axios.post(
-      "https://final-project-1-hjx7.onrender.comclass/Add-exam",
+      "https://final-project-1-hjx7.onrender.com/class/Add-exam",
       {
         className,
         exam,

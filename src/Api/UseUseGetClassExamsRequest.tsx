@@ -8,7 +8,7 @@ export const UseUseGetClassDetailsRequest = async (
 ): Promise<ClassInfoDetails | null> => {
   try {
     const response = await axios.get<ClassInfoDetails>(
-      `https://final-project-1-hjx7.onrender.comclass/class-exams`,
+      `https://final-project-1-hjx7.onrender.com/class/class-exams`,
       {
         params: {
           id,

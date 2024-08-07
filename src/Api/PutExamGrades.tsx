@@ -18,7 +18,7 @@ export const PutExamMarks = async (
 
   try {
     await axios.put(
-      "https://final-project-1-hjx7.onrender.comclass/exam-grade-edits",
+      "https://final-project-1-hjx7.onrender.com/class/exam-grade-edits",
       {
         modifiedStudents,
         userId,
