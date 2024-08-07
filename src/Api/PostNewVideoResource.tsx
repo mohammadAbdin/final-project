@@ -9,7 +9,7 @@ async function AddNewVideoResource(
 ): Promise<void> {
   try {
     const response = await axios.post(
-      "http://localhost:5001/class/Add-video-resource",
+      "https://final-project-1-hjx7.onrender.comclass/Add-video-resource",
       {
         videoData,
         topicId,

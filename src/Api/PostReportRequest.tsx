@@ -17,7 +17,7 @@ async function AddNewReport(
     //   writer_id: "66af3fb72ba7cf6ff9a36155",
     // };
     const response = await axios.post(
-      "http://localhost:5001/student/add-report",
+      "https://final-project-1-hjx7.onrender.comstudent/add-report",
       { newFeedback, student_id }
     );
     return response.data;
