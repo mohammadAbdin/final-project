@@ -71,17 +71,6 @@ const SubjectsPage: React.FC = () => {
   const [subject, setSubject] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [subjects, setSubjects] = useState<string[] | null>(null);
-  type PersonalDetails = {
-    name: string;
-    classNumber: string;
-    average: number;
-  };
-
-  const personalDetails: PersonalDetails = {
-    name: "johnnie walker",
-    classNumber: "4",
-    average: 87,
-  };
 
   // interface StudentDetailsType {
   //   reports: reportType[];
@@ -150,8 +139,8 @@ const SubjectsPage: React.FC = () => {
       </div>
     );
   }
-  // console.log(childSubjects);
-  console.log(childSubjects.reports);
+  console.log(childSubjects.personalDetails);
+  // console.log(childSubjects.reports);
 
   return (
     <div className="main-div-s">
@@ -227,9 +216,9 @@ const SubjectsPage: React.FC = () => {
         </div>
       </div>
       <Avatar
-        studentName={personalDetails.name}
-        classGrade={personalDetails.classNumber}
-        averageScore={personalDetails.average}
+        studentName={childSubjects.personalDetails.name}
+        classGrade={childSubjects.personalDetails.classNumber}
+        averageScore={childSubjects.personalDetails.average}
       />
 
       {/* <div className="mt-3 flex flex-wrap justify-center space-x-6 bg-gray-50 dark:bg-gray-800 mx-auto">

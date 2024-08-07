@@ -4,8 +4,14 @@ export interface StudentDetailsType {
   reports: reportType[];
   details: { [subject: string]: detailsType };
   schedule: ScheduleEntry[];
+  personalDetails: PersonalDetails;
 }
-
+export interface PersonalDetails {
+  name: string;
+  classNumber: string;
+  average: number;
+  gender: string;
+}
 export interface detailsType {
   attendanceRecord: {
     datesRecord: Array<{

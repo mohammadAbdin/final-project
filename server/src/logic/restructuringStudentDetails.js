@@ -3,7 +3,7 @@ import { parentPort, workerData } from "worker_threads";
 const restructuringStudentDetailsSync = (subjectsDetails, student_id) => {
   const restructuredDetails = subjectsDetails.reduce((acc, subjectDetails) => {
     const subject = subjectDetails.subject;
-    console.log(subjectDetails);
+    // console.log(subjectDetails);
 
     let dataDates = [];
     if (subjectDetails.date != undefined) {
