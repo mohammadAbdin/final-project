@@ -4,7 +4,7 @@ import "./ChildWidget.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import UseGetParentChildren from "../../Hooks/UseGetParentChildren";
-// import Avatar from "../Avatar/Avatar";
+import Avatar2 from "../Avatar/Avatar2";
 
 const ChildWidget = () => {
   const naviagte = useNavigate();
@@ -38,12 +38,13 @@ const ChildWidget = () => {
         <div
           onClick={() => naviagte(`/SubjectsPage/${singleChild.student_id}`)}
           key={singleChild.student_id}
-          className="bg-white border border-gray-300 rounded-md p-2 m-4  hover:bg-gray-300"
+          className="bg-white border bg-blue-200 border-gray-300 rounded-md p-2 m-4  hover:bg-gray-300"
         >
-          {/* <Avatar studentName={singleChild.studentName} /> */}
-          <h3>Child's name: {singleChild.studentName} </h3>
-          <p>Class: {singleChild.class}</p>
-          <p>Average: {singleChild.average}</p>
+          <Avatar2
+            studentName={singleChild.studentName}
+            classGrade={singleChild.class}
+            gender={singleChild.gender}
+          />
         </div>
       ))}
     </div>
